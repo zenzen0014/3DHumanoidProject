@@ -1,0 +1,1989 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<title><%= title %></title>
+  	<link rel="icon" href="static/img/icon.jpg">
+  	
+  	<!-- Tell the browser to be responsive to screen width -->
+  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+	<!-- Bootstrap 3.3.7 -->
+  	<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+  	<!-- Font Awesome -->
+	<link rel="stylesheet" href="static/bootstrap/plugin/font-awesome/css/font-awesome.css">
+
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="static/bootstrap/plugin/Ionicons/css/ionicons.min.css">
+
+  	<!-- bootstrap slider -->
+  	<link rel="stylesheet" href="static/bootstrap/plugin/bootstrap-slider/slider.css">
+
+	<!-- Theme style -->
+	<link rel="stylesheet" href="static/bootstrap/dist/css/AdminLTE.min.css">
+
+	<!-- AdminLTE Skins. Choose a skin from the css/skins
+	       folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="static/bootstrap/dist/css/skins/_all-skins.min.css">
+
+
+	<link rel="stylesheet" href="static/js/toast/toastr.css">
+	<link rel="stylesheet" href="static/js/sweetalert/sweetalert.css">
+
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+	<style>
+			body {
+				/*background-color: #000;
+				color: #000;*/
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				padding: 10px;
+				width: 100%;
+				text-align: center;
+			}
+
+			a {
+				/*text-decoration: underline;*/
+				cursor: pointer;
+				/*color: #bbb;*/
+			}
+			
+			.ac {  /* prevent dat-gui from being selected */
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			.no-pointer-events {
+				pointer-events: none;
+			}
+			.control-disabled {
+				color: #888;
+				text-decoration: line-through;
+			}
+
+			#dat {
+				left: 10;
+				position: absolute;
+				top: 0;
+				z-Index: 200;
+			}
+
+
+			#stats{
+				position: fixed;
+			    bottom: 0px;
+			    left: 0px;
+			    cursor: pointer;
+			    opacity: 0.9;
+			    z-index: 10000;
+			}
+
+	</style>
+</head>
+
+
+
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+
+	<div class="wrapper">
+
+
+
+
+
+	  	<header class="main-header">
+	    	<!-- Logo -->
+	    	<a href="#" class="logo">
+	      		<span class="logo-mini"><b>3</b>DH</span>
+	      		<span class="logo-lg"><b>Humanoid</b>3D</span>
+	    	</a>
+
+		    <nav class="navbar navbar-static-top">
+		     	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" id="mb_tb_btn">
+		        	<span class="sr-only">Toggle navigation</span>
+		      	</a>
+
+
+		      	<div class="navbar-custom-menu">
+	        		<ul class="nav navbar-nav">
+	          			<li>
+	            			<a href="#" data-toggle="control-sidebar" id="sb_tb_btn">
+	            			<i class="fa fa-bars" id="ic_sb_tb_tb"></i></a>
+	          			</li>
+	        		</ul>
+	      		</div>
+
+		    </nav>
+	  	</header>
+
+
+
+
+
+
+
+	  	<!-- Left side column. contains the logo and sidebar -->
+	  	<aside class="main-sidebar" id="ms">
+	    	<!-- sidebar: style can be found in sidebar.less -->
+	   		<section class="sidebar">
+	   			<!-- sidebar menu: : style can be found in sidebar.less -->
+	      		<ul class="sidebar-menu" data-widget="tree">
+	        		<li class="header">MAIN NAVIGATION</li>
+	        		
+	        		<li class="active treeview">
+	          			<a href="#">
+	            			<i class="fa fa-dashboard"></i> <span>Boolean Animation</span>
+	            			<!-- <span class="pull-right-container">
+	              				<i class="fa fa-angle-left pull-right"></i>
+	            			</span> -->
+	          			</a>
+	        		</li>
+
+
+	        		<li>
+	          			<a href="#">
+	            			<i class="fa fa-gg"></i> <span>Interactive Motion</span>
+	          			</a>
+	        		</li>
+
+
+	        		<li>
+	          			<a href="/bootstrap_test">
+	            			<i class="fa fa-object-ungroup"></i> <span>Custom Motion</span>
+	          			</a>
+	        		</li>
+
+
+	        		<!--
+	        		<li>
+	          			<a href="#">
+	            			<i class="fa fa-th"></i> <span>Widgets</span>
+				            <span class="pull-right-container">
+				              	<small class="label pull-right bg-green">new</small>
+				            </span>
+	          			</a>
+	        		</li>
+
+	        		<li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-edit"></i> <span>Forms</span>
+				            <span class="pull-right-container">
+				              	<i class="fa fa-angle-left pull-right"></i>
+				            </span>
+				        </a>
+				        <ul class="treeview-menu">
+				            <li>
+				            	<a href="pages/forms/general.html">
+				            		<i class="fa fa-circle-o"></i> General Elements
+				            	</a>
+				            </li>
+				            <li>
+				            	<a href="pages/forms/advanced.html">
+				            		<i class="fa fa-circle-o"></i> Advanced Elements
+				            	</a>
+				            </li>
+				        </ul>
+			        </li>
+			        -->
+	        	</ul>
+	   		</section>
+	   	</aside>
+
+
+
+
+
+
+
+
+	  	<div class="content-wrapper" id="wrapper">
+	  		<div class="row">
+	  			<div class="col-lg-12" style="padding-left: 0px;">
+					<div class="row">
+						<div id="container" class="col-md-12" style="padding-left: -15px;">
+							<div id="info" class="col-md-3" style="font-family: Monospace;"><%= title %> <br/> <%= name %></div>
+							<!-- <div class="col-md-3"></div> -->
+							<div id="dat" class="col-md-3"></div>
+							<div id="stats" class="col-md-3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+
+
+
+
+
+
+	    <!-- <footer class="main-footer">
+		    <div class="pull-right hidden-xs">
+		      	<b>Version</b> 1.0.0
+		    </div>
+	    	<strong>
+	    		Copyright &copy; 2018 <a href="#">ZenZen</a>.
+	    	</strong> All rights reserved.
+	  	</footer> -->
+
+
+
+
+
+
+
+
+	  	<!-- Control Sidebar -->
+	 	<aside class="control-sidebar control-sidebar-dark" id="navbar">
+		    <!-- Create the tabs -->
+		    <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+		      	<li class="active">
+		      		<a href="#control-sidebar-home-tab" data-toggle="tab">
+		      			<i class="fa fa-object-ungroup"></i>
+		      		</a>
+		      	</li>
+		      	<li>
+		      		<a href="#control-sidebar-settings-tab" data-toggle="tab">
+		      			<i class="fa fa-history"></i>
+		      		</a>
+		      	</li>
+		    </ul>
+
+		    <!-- Tab panes -->
+		    <div class="tab-content">
+
+	      		<!-- Home tab content -->
+	      		<div class="tab-pane active" id="control-sidebar-home-tab">
+	      			<h3 class="control-sidebar-heading">Motion Path Activity</h3>
+	      			<div class="col-lg-12 ct_slider" style="overflow-y: scroll;">
+	      				<ul class="control-sidebar-menu" id="motion_path_content">
+
+	      				</ul>
+	      			</div>
+	      			<br/>
+        			<div class="col-lg-12" style="text-align:center">
+			            <button type="button" class="btn btn-block btn-primary btn-sm" id="play_all_path">
+				        	<span class="fa fa-play-circle"></span> <strong>Play All</strong>
+	                    </button>
+				        <button type="button" class="btn btn-block bg-purple btn-sm" id="save_motion">
+				        	<span class="fa fa-archive"></span> <strong>Save Motions</strong>
+	                    </button>
+			        </div>		
+	      		</div>
+
+
+	      		<!-- Settings tab content -->
+	      		<div class="tab-pane" id="control-sidebar-settings-tab">
+	      			<h3 class="control-sidebar-heading">Recent Activity</h3>
+	        		<ul class="control-sidebar-menu" id="motion_history_content">
+			         
+	       			</ul>
+	        		<!-- /.control-sidebar-menu -->
+	      		</div>
+	     		 <!-- /.tab-pane -->
+	    	</div>
+	  	</aside>
+		<!-- /.control-sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+		       immediately after the control sidebar -->
+	  	<div class="control-sidebar-bg"></div>
+
+
+
+
+
+
+	</div>
+
+
+
+		<!-- THREE JS PLUGIN -->
+	<script src="static/js/three.js/three.min.js"></script>
+	<script src="static/js/three.js/Detector.js"></script>
+	<script src="static/js/three.js/OrbitControls.js"></script>
+	<script src="static/js/three.js/stats.min.js"></script>
+	<script src="static/js/three.js/dat.gui.min.js"></script>
+	<script src="static/js/three.js/DragControls.js"></script>
+	<script src="static/js/three.js/TrackballControls.js"></script>
+
+	<!-- <script src="static/js/timeliner/timeliner_gui.min.js"></script>
+	<script src="static/js/timeliner/TimelinerController.js"></script> -->
+
+
+
+	<!-- THREE JS PLUGIN -->
+	<script src="static/js/app/app.js"></script>
+
+
+	<!-- jQuery 3 -->
+	<script src="static/bootstrap/plugin/jquery/dist/jquery.min.js"></script>
+  	
+	<!-- Bootstrap 3.3.7 -->
+	<script src="static/bootstrap/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Slimscroll -->
+	<script src="static/bootstrap/plugin/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- FastClick -->
+	<script src="static/bootstrap/plugin/fastclick/lib/fastclick.js"></script>
+
+	<script src="static/bootstrap/plugin/moment/min/moment.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="static/bootstrap/dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="static/bootstrap/dist/js/demo.js"></script>
+	<!-- 
+	<script src="static/bootstrap/plugin/bootstrap-slider/bootstrap-slider.js"></script>
+	<script>
+	  	$(function () {
+	    	/* BOOTSTRAP SLIDER */
+	    	$('.slider').slider()
+	  	})
+	</script>
+	-->
+
+
+
+	<!-- JAVASCRIPT LIBRARY-->
+	<script src="static/js/toast/toastr.min.js"></script>
+	<script src="static/js/sweetalert/sweetalert.min.js"></script>
+	<script src="static/js/mathjs/math.js"></script>
+	<script src="static/js/web_socket.js"></script>
+	<script src="static/js/underscore-min.js"></script>
+
+	<script src="static/bootstrap/plugin/pace.min.js"></script>
+	<!-- JAVASCRIPT LIBRARY-->
+
+
+
+
+
+
+	<script type="x-shader/x-fragment" id="fragmentShaderDepth">
+		#include <packing>
+
+		uniform sampler2D texture;
+		varying vec2 vUV;
+
+		void main() {
+
+			vec4 pixel = texture2D( texture, vUV );
+
+			if ( pixel.a < 0.5 ) discard;
+
+			gl_FragData[ 0 ] = packDepthToRGBA( gl_FragCoord.z );
+
+		}
+	</script>
+
+
+
+
+	<script type="x-shader/x-vertex" id="vertexShaderDepth">
+
+		varying vec2 vUV;
+
+		void main() {
+
+			vUV = 0.75 * uv;
+
+			vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+			gl_Position = projectionMatrix * mvPosition;
+
+		}
+	</script>
+
+
+
+
+
+	<script>
+
+		if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+		var stats;
+		var camera, scene, renderer, cameraControls;
+
+		var clothGeometry;
+		var sphere;
+		var object;
+		var canvas_height = window.innerHeight, canvas_width = document.getElementById('container').offsetWidth;
+
+		var container = document.getElementById( 'container' );
+
+
+		var loader = new THREE.ObjectLoader();
+
+		var controls, effect, cameraVR, isVR,id;
+
+		var events = {};
+		this.width = 500;
+		this.height = 500;
+
+
+
+		
+		var url = window.location.href;
+		var arr = url.split("/");
+		
+		var base_url = arr[0] + "//" + arr[2];
+
+
+
+
+
+		var add_notif = new Audio('static/sounds/appointment.mp3');
+		var success_notif = new Audio('static/sounds/success.mp3');
+		var delete_notif = new Audio('static/sounds/chat_sound.mp3');
+		// audio.play();
+
+
+
+		$(document).ready(function() {
+
+			//start js rendering
+			init_page();
+
+            toast_options= {
+		        "closeButton": true,
+		        "debug": false,
+		        "newestOnTop": false,
+		        "progressBar": true,
+		        "positionClass": "toast-top-right",
+		        "preventDuplicates": true,
+		        "onclick": null,
+		        "showDuration": "300",
+		        "hideDuration": "300",
+		        "timeOut": "1500",
+		        "extendedTimeOut": "1000",
+		        "showEasing": "swing", //easeOutBounce swing
+		        "hideEasing": "linear", //easeInBack linear
+		        "closeEasing": "linear",
+		        "showMethod": "fadeIn",//slideDown fadeIn
+		        "hideMethod": "fadeOut", //slideUp fadeOut
+		        "closeMethod": "fadeOut"
+		    }
+
+		    // get_all_data();
+
+            // setTimeout(function(){ws_service(60, 0, 50, 600);}, 1000);
+            // setTimeout(function(){ws_service(60, 8, 50, 400);}, 1000);
+
+            stats_monitor();
+
+            // console.log(document.getElementsByClassName("control-sidebar-bg")[0].style.background);
+
+            if(window.innerHeight > 740){
+            	document.getElementsByClassName("ct_slider")[0].style.height = (window.innerHeight* 3/4) + "px";
+            	// document.getElementsByClassName("control-sidebar-dark")[0].style.opacity = 1;
+        	}else{
+        		document.getElementsByClassName("ct_slider")[0].style.height = (window.innerHeight* 3/6) + "px";
+        		// document.getElementsByClassName("control-sidebar-dark")[0].style.opacity = 0.5;
+        	}
+
+        	check_total_motion();
+       		motion_history();
+
+        });
+
+
+        
+
+
+
+
+
+		function init_page(){
+			var loader = new THREE.FileLoader();  
+			loader.load( 'static/json/great_one.json', function ( model ) {
+				init_model(JSON.parse(model));
+
+				init_angle();
+
+				// console.log(JSON.parse(model));
+				// set_size( window.innerHeight, window.innerWidth );
+				set_size( canvas_height, canvas_width);
+				play();
+				// document.body.appendChild( container );
+
+				window.addEventListener( 'resize', function () {
+					// set_size( window.innerHeight, window.innerWidth );
+					set_size( $("#container").height(), $("#container").width());
+				} );
+
+			});
+		}
+
+
+
+
+		$(window).resize(function() {
+            set_size( $("#container").height(), $("#container").width());
+        });
+
+
+
+		$(document).ajaxStart(function () {
+			Pace.restart()
+		});
+
+
+
+
+
+
+
+
+		function init_model(json){
+			
+			renderer = new THREE.WebGLRenderer( { antialias: true } );
+			renderer.setClearColor( 0x000000 );
+			renderer.setPixelRatio( window.devicePixelRatio );
+			// renderer.setSize( window.innerWidth, window.innerHeight );
+			// renderer.shadowMap.renderSingleSided = false;
+
+
+			if ( json.project.gammaInput ) renderer.gammaInput = true;
+			if ( json.project.gammaOutput ) renderer.gammaOutput = true;
+
+			if ( json.project.shadows ) {
+				renderer.shadowMap.enabled = true;
+			}
+
+			// this.dom.appendChild( renderer.domElement );
+			$("#container").append( renderer.domElement );
+
+
+			set_scene( loader.parse( json.scene ) );
+			set_camera( loader.parse( json.camera ) );
+
+
+
+
+
+			//LIGHT
+			var light = [3];
+			scene.add( new THREE.AmbientLight( 0x151515 ) );
+			light[0] = new THREE.DirectionalLight( 0xdfebff, 1 ); //color , intensity
+			light[0].position.set( 200, 300, 200 );//intencity, v pos, sh pos
+			// light.position.set( 50, 200, 100 ); 
+			light[0].castShadow = true;
+			light[0].shadow.mapSize.width = 1024;
+			light[0].shadow.mapSize.height = 512;//1024 512
+
+			// light.shadow.camera.far = 1000;
+			light[0].shadow.camera.near = 100;
+			light[0].shadow.camera.far = 1200;
+
+			// var d = 300;
+			// light.shadow.camera.left = - d;
+			// light.shadow.camera.right = d;
+			// light.shadow.camera.top = d;
+			// light.shadow.camera.bottom = - d;
+			light[0].shadow.camera.left = -1000;
+			light[0].shadow.camera.right = 1000;
+			light[0].shadow.camera.top = 350;
+			light[0].shadow.camera.bottom = -350;
+			
+			scene.add( light[0] );
+
+
+			light[ 1 ] = new THREE.DirectionalLight( 0xdfebff, 0.7 , 200 );
+			light[ 1 ].position.set( -200, 300, 200 );
+			scene.add( light[1] );
+
+
+			light[ 2 ] = new THREE.DirectionalLight( 0xdfebff, 0.4 , 500 );
+			light[ 2 ].position.set( 0, 400, -300 );
+			scene.add( light[2] );
+
+			// light[ 1 ] = new THREE.PointLight( 0xffffff, 0.5, 50 );
+			// light[ 2 ] = new THREE.PointLight( 0xffffff, 0.4, 0 );
+			// light[ 3 ] = new THREE.PointLight( 0xffffff, 0.4, 0 );
+
+			// light[ 1 ].position.set( 0, 200, 0 );
+			// light[ 2 ].position.set( 200, 200, 200 );
+			// light[ 3 ].position.set( -200, 200, - 100 );
+
+			// scene.add( light[ 1 ] );
+			// scene.add( light[ 2 ] );
+			// scene.add( light[ 3 ] );
+
+
+
+
+
+
+
+
+
+
+
+			//  GROUND
+			var gt = new THREE.TextureLoader().load( "static/img/grasslight-big.jpg" );
+			var gg = new THREE.PlaneBufferGeometry( 16000, 16000 );
+			var gm = new THREE.MeshPhongMaterial( { color: 0xffffff, map: gt } );
+
+			var ground = new THREE.Mesh( gg, gm );
+			ground.rotation.x = - Math.PI / 2;
+			ground.material.map.repeat.set( 64, 64 );
+			ground.material.map.wrapS = THREE.RepeatWrapping;
+			ground.material.map.wrapT = THREE.RepeatWrapping;
+			// note that because the ground does not cast a shadow, .castShadow is left false
+			ground.receiveShadow = true;
+
+			scene.add( ground );
+
+			/**
+			// ground
+			var loader = new THREE.TextureLoader();
+			var groundTexture = loader.load( 'static/img/grasslight-big.jpg' );
+			groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
+			groundTexture.repeat.set( 25, 25 );
+			groundTexture.anisotropy = 16;
+
+			var groundMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, map: groundTexture } );
+
+			var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
+			mesh.position.y = - 250;
+			mesh.rotation.x = - Math.PI / 2;
+			mesh.receiveShadow = true;
+			scene.add( mesh );
+			**/
+
+
+
+
+
+
+			// controls
+			// var controls = new THREE.OrbitControls( camera, renderer.domElement );
+			// controls.maxPolarAngle = Math.PI * 0.5;
+			// controls.minDistance = 1000;
+			// controls.maxDistance = 7500;
+
+
+
+
+
+
+			// CONTROLS
+			
+			cameraControls = new THREE.OrbitControls( camera, renderer.domElement );
+			cameraControls.maxPolarAngle = Math.PI * 0.4;//rotate camera vertically
+			// cameraControls.setAzimuthalAngle = -0.029893144818949887;
+			cameraControls.target.set( 0, 150, 0 );
+			cameraControls.maxDistance = 2000;
+			cameraControls.update();
+			
+
+			/*
+			controls = new THREE.TrackballControls( camera );
+			controls.rotateSpeed = 1.0;
+			controls.zoomSpeed = 1.2;
+			controls.panSpeed = 0.8;
+			controls.noZoom = false;
+			controls.noPan = false;
+			controls.staticMoving = true;
+			controls.dynamicDampingFactor = 0.3;
+			*/
+
+
+
+
+
+			createPanel();
+
+
+
+
+			events = {
+				init: [],
+				start: [],
+				stop: [],
+				keydown: [],
+				keyup: [],
+				mousedown: [],
+				mouseup: [],
+				mousemove: [],
+				touchstart: [],
+				touchend: [],
+				touchmove: [],
+				update: []
+			};
+
+
+
+
+			var scriptWrapParams = 'player,renderer,scene,camera';
+			var scriptWrapResultObj = {};
+
+			for ( var eventKey in events ) {
+
+				scriptWrapParams += ',' + eventKey;
+				scriptWrapResultObj[ eventKey ] = eventKey;
+
+			}
+
+
+
+
+			var scriptWrapResult = JSON.stringify( scriptWrapResultObj ).replace( /\"/g, '' );
+
+			for ( var uuid in json.scripts ) {
+
+				var object = scene.getObjectByProperty( 'uuid', uuid, true );
+
+				if ( object === undefined ) {
+
+					console.warn( 'APP.Player: Script without object.', uuid );
+					continue;
+
+				}
+
+				var scripts = json.scripts[ uuid ];
+
+				for ( var i = 0; i < scripts.length; i ++ ) {
+
+					var script = scripts[ i ];
+
+					var functions = ( new Function( scriptWrapParams, script.source + '\nreturn ' + scriptWrapResult + ';' ).bind( object ) )( this, renderer, scene, camera );
+
+					for ( var name in functions ) {
+
+						if ( functions[ name ] === undefined ) continue;
+
+						if ( events[ name ] === undefined ) {
+
+							console.warn( 'APP.Player: Event type not supported (', name, ')' );
+							continue;
+
+						}
+
+						events[ name ].push( functions[ name ].bind( object ) );
+
+					}
+
+				}
+
+			}
+
+			dispatch( events.init, arguments );
+
+
+
+			
+
+			scene.traverse(function(child){
+	            if (child instanceof THREE.SkinnedMesh){  
+					child.skeleton.bones[0].position.set(0, 3, 0);
+				}
+			});
+
+		}
+
+
+
+
+
+
+
+
+
+
+		function set_scene(value){
+			scene = value;
+			scene.background = new THREE.Color( 0xffffff );
+			scene.fog = new THREE.Fog( 0xffffff, 1000, 4000 );
+			// scene.fog = new THREE.Fog( 0xcce0ff, 500, 10000 );
+		}
+
+
+
+
+
+
+
+
+		function set_camera(value){
+			camera = value;
+			camera.aspect = this.width / this.height;
+			camera.updateProjectionMatrix();
+
+			// if ( isVR === true ) {
+
+				// cameraVR = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+				cameraVR = new THREE.PerspectiveCamera(60, canvas_width / canvas_height, 1, 10000);
+
+				cameraVR.projectionMatrix = camera.projectionMatrix;
+				camera.position.set( 0, 120, 500 );//1000, 50, 1500 => h rotate, v rotate, camera pos
+				camera.add( cameraVR );
+
+
+				// CAMERA
+				// camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 4000 );
+				// camera.position.set( 0, 150, 1300 );
+
+
+
+
+				// controls = new THREE.VRControls( cameraVR );
+				// effect = new THREE.VREffect( renderer );
+
+				// if ( WEBVR.isAvailable() === true ) {
+
+				// 	this.dom.appendChild( WEBVR.getButton( effect ) );
+
+				// }
+
+				// if ( WEBVR.isLatestAvailable() === false ) {
+
+				// 	this.dom.appendChild( WEBVR.getMessage() );
+
+				// }
+
+			// }
+		}
+
+
+
+
+
+
+
+
+
+		function set_size(h, w){
+			this.width = w;
+			this.height = h;
+
+			if ( camera ) {
+				camera.aspect = w / h;
+				camera.updateProjectionMatrix();
+
+			}
+
+			if ( renderer ) {
+				renderer.setSize( w, h );
+			}
+
+			stats_monitor();
+		}
+
+
+
+
+
+		var nv_sd = 0;
+		$("#sb_tb_btn").click(function(){
+			
+			if($("#navbar").css("right") == '-230px'){
+				nv_sd = 1;
+				$("#ic_sb_tb_tb").removeClass("fa-bars");
+				$("#ic_sb_tb_tb").addClass("fa-arrow-right");
+			}else{
+				nv_sd = 0;
+				$("#ic_sb_tb_tb").removeClass("fa-arrow-right");
+				$("#ic_sb_tb_tb").addClass("fa-bars");
+			}
+			stats_monitor();
+		});
+
+
+
+
+
+
+
+		var nv_mb = 0;
+		$("#mb_tb_btn").click(function(){
+			
+			// if(nv_mb == 0){
+			// 	nv_mb = 1;
+			// 	$("#ic_sb_tb_tb").removeClass("fa-bars");
+			// 	$("#ic_sb_tb_tb").addClass("fa-arrow-left");
+			// }else{
+			// 	nv_mb = 0;
+			// 	$("#ic_sb_tb_tb").removeClass("fa-arrow-left");
+			// 	$("#ic_sb_tb_tb").addClass("fa-bars");
+			// }
+		});
+
+
+
+
+
+		function stats_monitor(){
+			$("#stats").empty();
+			// performance monitor
+			stats = new Stats();
+			stats.showPanel(1);// 0: fps, 1: ms, 2: mb, 3+: custom
+			if(nv_sd == 1){
+				if($(window).width() > 740){
+					stats.dom.style.left = ($("#container").width()-270)+"px";
+				}else{
+					stats.dom.style.left =  "0px";
+				}
+			}else{
+				if($(window).width() > 740){
+					stats.dom.style.left = ($("#container").width()-40)+"px";
+				}else{
+					stats.dom.style.left = "0px";
+				}
+				
+			}
+			
+			//$("#navbar").css("margin-left");
+			if($(window).width() > 740){
+				stats.dom.style.top = '50px';
+			}else{
+				stats.dom.style.top = '0px';
+			}
+			
+			// stats.dom.style.position = 'relative';
+			$("#stats").append( stats.dom );
+		}
+
+
+
+
+
+
+
+
+		function dispatch( array, event ) {
+
+			for ( var i = 0, l = array.length; i < l; i ++ ) {
+
+				array[ i ]( event );
+
+			}
+		}
+
+
+
+
+
+
+
+
+		var prevTime, request;
+		function animate( time ) {
+
+			request = requestAnimationFrame( animate );
+
+			try {
+
+				dispatch( events.update, { time: time, delta: time - prevTime } );
+
+			} catch ( e ) {
+
+				console.error( ( e.message || e ), ( e.stack || "" ) );
+
+			}
+
+			if ( isVR === true ) {
+
+				camera.updateMatrixWorld();
+
+				controls.update();
+				effect.render( scene, cameraVR );
+
+			} else {
+
+				renderer.render( scene, camera );
+
+			}
+
+			prevTime = time;
+
+
+			// console.log(cameraControls.getAzimuthalAngle ());
+
+
+			stats.update();
+		}
+
+		
+
+
+
+
+
+
+		function onWindowResize() {
+
+			// camera.aspect = window.innerWidth / window.innerHeight;
+			camera.aspect = canvas_width / canvas_height;
+			camera.updateProjectionMatrix();
+
+			// renderer.setSize( window.innerWidth, window.innerHeight );
+		}
+
+
+
+
+
+
+
+
+
+
+		function play(){
+			document.addEventListener( 'keydown', onKeyDown );
+			document.addEventListener( 'keyup', onDocumentKeyUp );
+			document.addEventListener( 'mousedown', onDocumentMouseDown );
+			document.addEventListener( 'mouseup', onDocumentMouseUp );
+			document.addEventListener( 'mousemove', onDocumentMouseMove );
+			document.addEventListener( 'touchstart', onDocumentTouchStart );
+			document.addEventListener( 'touchend', onDocumentTouchEnd );
+			document.addEventListener( 'touchmove', onDocumentTouchMove );
+
+			document.addEventListener( 'SocketMouseRotate', onSocketMouseRotate );
+
+
+			dispatch( events.start, arguments );
+
+			request = requestAnimationFrame( animate );
+			prevTime = performance.now();
+		}
+
+
+
+
+
+
+
+
+		function stop(){
+			document.removeEventListener( 'keydown', onDocumentKeyDown );
+			document.removeEventListener( 'keyup', onDocumentKeyUp );
+			document.removeEventListener( 'mousedown', onDocumentMouseDown );
+			document.removeEventListener( 'mouseup', onDocumentMouseUp );
+			document.removeEventListener( 'mousemove', onDocumentMouseMove );
+			document.removeEventListener( 'touchstart', onDocumentTouchStart );
+			document.removeEventListener( 'touchend', onDocumentTouchEnd );
+			document.removeEventListener( 'touchmove', onDocumentTouchMove );
+
+			dispatch( events.stop, arguments );
+
+			cancelAnimationFrame( request );
+		}
+
+
+
+
+
+
+
+
+		function dispose(){
+			while ( this.dom.children.length ) {
+
+				this.dom.removeChild( this.dom.firstChild );
+
+			}
+
+			renderer.dispose();
+
+			camera = undefined;
+			scene = undefined;
+			renderer = undefined;
+		}
+
+
+
+
+
+
+
+
+
+
+		function onDocumentKeyDown( event ) {
+
+			dispatch( events.keydown, event );
+		}
+
+
+
+		function onDocumentKeyUp( event ) {
+
+			dispatch( events.keyup, event );
+		}
+
+
+
+		function onDocumentMouseDown( event ) {
+
+			dispatch( events.mousedown, event );
+		}
+
+
+		function onDocumentMouseUp( event ) {
+
+			dispatch( events.mouseup, event );
+		}
+
+
+		function onDocumentMouseMove( event ) {
+
+			dispatch( events.mousemove, event );
+		}
+
+
+
+
+		function onSocketMouseRotate( event ) {
+			// socket.on('mouseRotate', function (data) {
+			// 	dispatch( data, event );
+			// 	// console.log(data);
+			// });
+		}
+
+
+
+		function onDocumentTouchStart( event ) {
+
+			dispatch( events.touchstart, event );
+
+			//socket.emit('rotateCanvas', { data: events.mousemove }); 
+
+			// console.log(events.mousemove);
+		}
+
+
+
+
+		function onDocumentTouchEnd( event ) {
+
+			dispatch( events.touchend, event );
+		}
+
+
+
+
+		function onDocumentTouchMove( event ) {
+
+			dispatch( events.touchmove, event );
+		}
+
+
+
+
+
+
+
+
+		function onKeyDown ( event ) {
+
+			event.stopPropagation();
+
+			switch( event.keyCode ) {
+
+				case 38: /*up*/
+				case 87: /*W*/ 	controls.moveForward = true; break;
+
+				case 40: /*down*/
+				case 83: /*S*/ 	 controls.moveBackward = true; break;
+
+				case 37: /*left*/
+				case 65: /*A*/   controls.moveLeft = true; break;
+
+				case 39: /*right*/
+				case 68: /*D*/    controls.moveRight = true; break;
+
+				//case 67: /*C*/     controls.crouch = true; break;
+				//case 32: /*space*/ controls.jump = true; break;
+				//case 17: /*ctrl*/  controls.attack = true; break;
+
+			}
+		}
+
+
+
+
+
+
+
+
+		function onKeyUp ( event ) {
+
+			event.stopPropagation();
+
+			switch( event.keyCode ) {
+
+				case 38: /*up*/
+				case 87: /*W*/ controls.moveForward = false; break;
+
+				case 40: /*down*/
+				case 83: /*S*/ 	 controls.moveBackward = false; break;
+
+				case 37: /*left*/
+				case 65: /*A*/ 	 controls.moveLeft = false; break;
+
+				case 39: /*right*/
+				case 68: /*D*/ 	  controls.moveRight = false; break;
+
+				//case 67: /*C*/     controls.crouch = false; break;
+				//case 32: /*space*/ controls.jump = false; break;
+				//case 17: /*ctrl*/  controls.attack = false; break;
+
+			}
+		}
+
+
+
+
+
+
+
+		var panel;
+		function createPanel() {
+			panel = new dat.GUI({ width: 220, autoPlace: false, closed :true});
+			var customContainer = $('#dat').append($(panel.domElement));
+
+			var folder1 = panel.addFolder('Bones Config');
+
+
+			settings = {
+				'Shoulder L' 		: 0.0,
+				'Arm L' 			: 0.0,
+				'Thigh L' 			: 0.0,
+				'Calve L' 			: 0.0,
+				'Angkle L' 			: 0.0,
+				
+				'Shoulder R' 		: 0.0,
+				'Arm R' 			: 0.0,
+				'Thigh R' 			: 0.0,
+				'Calve R' 			: 0.0,
+				'Angkle R' 			: 0.0,
+
+				'Velocity'			: 50,			
+
+				'(+) Add Motion'	: add_motion,
+			}
+
+			folder1.add( settings, 'Shoulder L' , -180, 180, 1 ).listen().onChange(function (val) {pos_update(10, val);});
+			folder1.add( settings, 'Arm L' , -180, 180, 1 ).listen().onChange(function (val) {pos_update(11, val);});
+			folder1.add( settings, 'Thigh L' , -90, 180, 1 ).listen().onChange(function (val) {pos_update(7, val);});
+			folder1.add( settings, 'Calve L' , -180, 180, 1 ).listen().onChange(function (val) {pos_update(8, val);});
+			folder1.add( settings, 'Angkle L' , 0, 45, 1 ).listen().onChange(function (val) {pos_update(9, val);});
+			
+			folder1.add( settings, 'Shoulder R' , -180, 180, 1 ).listen().onChange(function (val) {pos_update(16, val);});
+			folder1.add( settings, 'Arm R' , -180, 180, 1 ).listen().onChange(function (val) {pos_update(17, val);});
+			folder1.add( settings, 'Thigh R' , -90, 180, 1 ).listen().onChange(function (val) {pos_update(13, val);});
+			folder1.add( settings, 'Calve R' , -180, 180, 1 ).listen().onChange(function (val) {pos_update(14, val);});
+			folder1.add( settings, 'Angkle R' , -45, 0, 1 ).listen().onChange(function (val) {pos_update(15, val);});
+			
+
+			folder1.add( settings, 'Velocity' , 50, 160, 10 ).listen().onChange(function (val) {});
+			
+
+			folder1.add( settings, '(+) Add Motion' );
+			
+		}
+
+
+
+
+
+
+
+
+
+
+		var rightElbow, rightShoulder, righthandIK, 
+		    rightAngkle, rightCalves, rightThigh, rightLegIK;
+		var leftElbow, leftShoulder, lefthandIK,
+		    leftAngkle, leftCalves, leftThigh, leftLegIK;
+		var bodyAngle, controlAngleZ, controlAngleX, controlPosY, is_swr=0;
+
+		function init_angle(){
+			scene.traverse(function(child){
+	            if (child instanceof THREE.SkinnedMesh){
+	            	child.skeleton.bones[0].position.set(0, 3, 0);
+
+					rightElbow		= 0;
+					rightShoulder	= 0;
+					righthandIK     = child.skeleton.bones[3].position;
+
+					rightAngkle		= 0;
+					rightCalves		= 0;
+					rightThigh		= 0;
+					rightLegIK      = child.skeleton.bones[4].position;
+
+					leftElbow		= 0;
+					leftShoulder	= 0;
+					lefthandIK      = child.skeleton.bones[1].position;
+
+					leftAngkle		= 0;
+					leftCalves		= 0;
+					leftThigh		= 0;
+					leftLegIK       = child.skeleton.bones[2].position;
+
+					bodyAngle		= 0;
+					controlAngleZ	= 0;
+					controlAngleX	= 0;
+					controlPosY		= 0;
+					child.skeleton.bones[0].position.y = controlPosY;
+
+
+
+
+
+					child.skeleton.bones[10].rotation.x 	= 0;
+					child.skeleton.bones[16].rotation.x 	= 0;
+					child.skeleton.bones[11].rotation.z 	= 0;
+					child.skeleton.bones[17].rotation.z 	= 0;
+					child.skeleton.bones[9].rotation.z  	= 0;
+					child.skeleton.bones[8].rotation.x 		= 0;
+					child.skeleton.bones[7].rotation.x 		= 0;
+					child.skeleton.bones[15].rotation.z 	= 0;
+					child.skeleton.bones[14].rotation.x 	= 0;
+					child.skeleton.bones[13].rotation.x 	= 0;
+
+					child.skeleton.bones[5].rotation.set(0, 0, 0);
+
+				}else if  (child instanceof THREE.SkeletonHelper){
+	                child.update();
+	            }
+	        });
+		}
+
+
+
+
+
+
+		var CrightElbow = CrightShoulder = CrighthandIK = 0; 
+		var CrightAngkle = CrightCalves = CrightThigh = CrightLegIK = 0;
+		var CleftElbow = CleftShoulder = ClefthandIK = 0;
+		var CleftAngkle = CleftCalves = CleftThigh = CleftLegIK = 0;
+		var CbodyAngle = CcontrolAngleZ = CcontrolAngleX = CcontrolPosY = 0;
+		function actual_angle_pos(type, val){
+			if(type == 'Shoulder_L'){
+				CleftShoulder = val;
+			}
+			else if(type == 'Shoulder_R'){
+				CrightShoulder = val;
+			}
+			else if(type == 'Arm_L'){
+				CleftElbow = val;
+			}
+			else if(type == 'Arm_R'){
+				CrightElbow = val;
+			}
+			else if(type == 'Calve_L'){
+				CleftCalves = val;
+			}
+			else if(type == 'Thigh_L'){
+				CleftThigh = val;
+			}
+			else if(type == 'Thigh_R'){
+				CrightThigh = val;
+			}
+			else if(type == 'Calve_R'){
+				CrightCalves = val;
+			}
+			else if(type == 'Angkle_R'){
+				CrightAngkle = val;
+			}
+			else if(type == 'Angkle_L'){
+				CleftAngkle = val;
+			}
+			/*
+			scene.traverse(function(child){
+	            if (child instanceof THREE.SkinnedMesh){
+	            	// console.log(child.skeleton.bones);
+					CrightElbow		= child.skeleton.bones[17].rotation.z;
+					CrightShoulder	= child.skeleton.bones[16].rotation.x;
+					CrighthandIK    = child.skeleton.bones[3].position;
+
+					CrightAngkle	= child.skeleton.bones[15].rotation.z;
+					CrightCalves	= child.skeleton.bones[14].rotation.x;
+					CrightThigh		= child.skeleton.bones[13].rotation.x;
+					CrightLegIK     = child.skeleton.bones[4].position;
+
+					CleftElbow		= child.skeleton.bones[11].rotation.z;
+					CleftShoulder	= child.skeleton.bones[10].rotation.x;
+					ClefthandIK     = child.skeleton.bones[1].position;
+
+					CleftAngkle		= child.skeleton.bones[9].rotation.z;
+					CleftCalves		= child.skeleton.bones[8].rotation.x;
+					CleftThigh		= child.skeleton.bones[7].rotation.x;
+					CleftLegIK      = child.skeleton.bones[2].position;
+
+					CbodyAngle		= child.skeleton.bones[5].rotation.z;
+					CcontrolAngleZ	= child.skeleton.bones[0].rotation.z;
+					CcontrolAngleX	= child.skeleton.bones[0].rotation.x;
+					CcontrolPosY	= 0;
+					child.skeleton.bones[0].position.y = controlPosY;
+				}else if  (child instanceof THREE.SkeletonHelper){
+	                child.update(); 
+	            }
+	        });
+	        */
+		}
+
+
+
+
+
+
+
+
+
+
+		function pos_update(srv, val){
+			degree = val/180;//math.sin(math.unit(val, 'deg'));
+			scene.traverse(function(child){
+	            if (child instanceof THREE.SkinnedMesh){
+	            	child.skeleton.bones[0].position.set(0, 3, 0);
+
+	            	if($.inArray(srv, [6, 11, 12, 17]) > -1){
+						child.skeleton.bones[srv].rotation.set(0, 0, degree);
+					}
+					if($.inArray(srv, [7, 8, 10, 13, 14, 16])  > -1){
+						child.skeleton.bones[srv].rotation.set(degree, 0, 0);
+					}
+					// if(srv==9){
+					// 	child.skeleton.bones[5].rotation.set(0, 0, -degree);
+					// 	child.skeleton.bones[srv].rotation.set(0, 0, degree);
+					// 	child.skeleton.bones[15].rotation.set(0, 0, 0);
+					// }
+					// if(srv==15){
+					// 	child.skeleton.bones[5].rotation.set(0, 0, -degree);
+					// 	child.skeleton.bones[srv].rotation.set(0, 0, degree);
+					// 	child.skeleton.bones[9].rotation.set(0, 0, 0);
+					// }
+					if(srv==9 || srv==15){
+						if(degree < 0.275 && degree > -0.275){
+							cons = 4;
+							swingMovement = (10.7373*2.54) * degree * cons;
+							child.skeleton.bones[0].position.set(swingMovement, 3, 0);
+							child.skeleton.bones[5].rotation.set(0, 0, -degree);
+							if(degree < 0){
+			            		child.skeleton.bones[15].rotation.set(0, 0, degree);
+			            	}else{
+			            		child.skeleton.bones[9].rotation.set(0, 0, degree);
+			            	}
+						}
+					}
+	            }else if  (child instanceof THREE.SkeletonHelper){
+	                child.update();
+	            }
+	        });
+		}
+
+
+
+
+
+
+
+
+		var motion_step = 0;
+		var jsonPanel = new Array();
+		function add_motion() {
+			pdata = panel.__folders["Bones Config"].__controllers[10].object;
+			json_panel = {
+				"Step"			: motion_step,
+				"Velocity"		: pdata["Velocity"],
+
+				"Shoulder_L" 	: pdata["Shoulder L"],
+				"Arm_L" 		: pdata["Arm L"],
+
+				"Thigh_L" 		: pdata["Thigh L"],
+				"Calve_L" 		: pdata["Calve L"],
+				"Angkle_L" 		: pdata["Angkle L"],
+
+				"Shoulder_R" 	: pdata["Shoulder R"],
+				"Arm_R" 		: pdata["Arm R"],			
+
+				"Thigh_R" 		: pdata["Thigh R"],
+				"Calve_R" 		: pdata["Calve R"],
+				"Angkle_R" 		: pdata["Angkle R"]
+
+			}
+			jsonPanel.push(json_panel);
+			motion_step+=1;
+
+			generate_timeline();
+			toastr.success('Added to Path', 'Sucess', toast_options);
+			add_notif.play();
+			check_total_motion();
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+		function generate_timeline(){
+			$("#motion_path_content").empty();
+			$.each(jsonPanel, function(k, v){
+				content = '<li>'+
+			          		'<div class="col-sm-12" style="margin-left:-10px">'+
+				            	'<a href="#">'+
+				              		'<div class="menu-info" style="margin-left:-5px">'+
+				                		'<h4 class="control-sidebar-subheading">'+
+				                			'Motion Set ('+(k + 1)+')'+
+				                		'</h4>'+
+				                		'<p>Velocity '+v.Velocity+' Hz</p>'+
+				              		'</div>'+		              		
+				            	'</a>'+
+			            	'</div>'+
+			            	'<div class="col-sm-12" style="margin-left:-15px">'+
+			            		'<span class="label label-primary mp_play" dt-step="'+v.Step+'" style="cursor: pointer; cursor: hand;">'+
+			            			'<i class="fa fa-fw fa-play"></i> Play'+
+			            		'</span>&nbsp;'+
+		      					// '<span class="label label-success">'+
+		      					// 	'<i class="fa fa-fw fa-edit"></i> Edit'+
+		      					// '</span>&nbsp;'+
+		      					'<span class="label label-danger mp_remove" dt-step="'+v.Step+'" style="cursor: pointer; cursor: hand;">'+
+		      						'<i class="fa fa-fw fa-trash"></i> Remove'+
+		      					'</span>'+
+			            	'</div>'+
+			            	'<hr style="margin-bottom:8px; margin-top:8px; border-top-color:#807d7d" />'+
+			          	'</li>';
+			    $("#motion_path_content").append(content);
+			});
+		}
+
+
+
+
+
+
+
+
+
+
+		$("#motion_path_content").on("click", ".mp_remove", function(){
+			check_total_motion();
+			jsonPanel.splice($(this).attr("dt-step"), 1);
+			generate_timeline();
+		});
+
+
+
+
+
+
+
+
+
+		$("#motion_path_content").on("click", ".mp_play", function(){
+			if(window.innerHeight > 740){
+			}else{
+				$("#sb_tb_btn").click();
+			}
+			// init_angle();
+
+			$.each(jsonPanel[$(this).attr("dt-step")], function(k, v){				
+				play_path(k, v);
+			});
+		});
+
+
+
+
+
+
+		function check_total_motion(){
+			if(jsonPanel.length == 0){
+				$("#play_all_path").prop("disabled", true);
+				$("#save_motion").prop("disabled", true);
+			}else{
+				$("#play_all_path").prop("disabled", false);
+				$("#save_motion").prop("disabled", false);
+			}
+		}
+
+
+
+
+
+
+
+		var gvelo, gstep;
+		function play_path(key, val){
+			if(key=="Step" || key=="Velocity"){
+				if(key=="Step"){
+					gstep = val;
+				}
+				if(key=="Velocity"){
+					gvelo = val;
+				}
+			}else{
+				if(val!==0){
+					var passVal;
+					if(key =="Shoulder_L"){
+						passVal = CleftShoulder;
+					}if(key =="Arm_L"){
+						passVal = CleftElbow;
+					}if(key =="Thigh_L"){
+						passVal = CleftThigh;
+					}if(key =="Calve_L"){
+						passVal = CleftCalves;
+					}if(key =="Angkle_L"){
+						passVal = CleftAngkle;
+					}
+
+					if(key =="Shoulder_R"){
+						passVal = CrightShoulder;
+					}if(key =="Arm_R"){
+						passVal = CrightElbow;
+					}if(key =="Thigh_R"){
+						passVal = CrightThigh;
+					}if(key =="Calve_R"){
+						passVal = CrightCalves;
+					}if(key =="Angkle_R"){
+						passVal = CrightAngkle;
+					}
+
+
+					if(val == passVal){
+						init_angle();
+					}else{
+						if(val > passVal){
+							for(pos = passVal; pos <= val; pos++){
+						    	(function(pos) {
+						    		setTimeout(function() { 
+								    	set_pos(key, pos);
+								    	// console.log(pos);
+									}, (160-gvelo) * (pos)/30);
+								})(pos);
+						    }
+						}else{
+							for(pos = passVal; pos >= val; pos--){
+						    	(function(pos) {
+						    		setTimeout(function() { 
+								    	set_pos(key, pos);
+								    	// console.log(pos);
+									}, (160-gvelo) * -(pos)/30);
+								})(pos);
+						    }
+						}
+						actual_angle_pos(key, val);
+						ws_service(key, passVal, val);
+					}
+					
+				//wss function
+				}
+			}
+		}
+
+
+
+
+
+
+
+
+
+
+
+
+		function ws_service(key, passVal, cVal){
+			var aws = new WebSocket("ws://localhost:2208");	
+		    aws.onopen = function() {
+		    	console.log('wss joined');
+
+	            var servoNo;
+		        if(key == 'Shoulder_L'){
+		            servoNo = 0;
+		        }if(key == 'Arm_L'){
+		            servoNo = 1;
+		        }if(key == 'Thigh_L'){
+		            servoNo = 2;
+		        }if(key == 'Calve_L'){
+		            servoNo = 3;
+		        }if(key == 'Angkle_L'){
+		            servoNo = 4;
+		        }
+		        
+		        if(key == 'Shoulder_R'){
+		            servoNo = 8;
+		        }if(key == 'Arm_R'){
+		            servoNo = 9;
+		        }if(key == 'Thigh_R'){
+		            servoNo = 10;
+		        }if(key == 'Calve_R'){
+		            servoNo = 11;
+		        }if(key == 'Angkle_R'){
+		            servoNo = 12;
+		        }
+			    myDict = {
+							"client_type"	: 1,
+							"data_status" 	: 1,
+		       				"data_status" 	: 1,
+					    	"server": {
+		       					"status" 	: 1,
+		       					"IP"		: localStorage.getItem("my_ip")
+		       				},
+		       				"servo_data":{
+		                        "servoNo"  : servoNo,
+		                        "passVal"  : passVal+180,
+		                        "cVal"     : cVal+180,
+		                        "gVelo"    : gvelo
+		                    }
+				}
+				aws.send(JSON.stringify(myDict));
+				console.log(myDict);			
+			};
+
+			aws.onmessage = function(e) {
+				setTimeout(function timeout() {
+					if(JSON.parse(e.data).client_type == 0){
+						// aws.send(JSON.stringify(myDict)); 
+						console.log(JSON.parse(e.data));
+					}
+				}, 1000);
+			};
+
+			aws.onerror = function (error) {
+			  console.error('WebSocket Error ' + error);
+			};
+
+
+			aws.onclose = function() {console.log('wss closed');};
+
+
+			// init_angle(velo, srv, min, max);
+
+
+			// model_service("all", null)
+
+		}
+
+
+
+
+		function set_pos(type, val){
+			degree = val/180;
+			// console.log(type+"::"+degree);
+			scene.traverse(function(child){
+	            if (child instanceof THREE.SkinnedMesh){
+	            	child.skeleton.bones[0].position.set(0, 3, 0);
+					if(type == 'Shoulder_L'){
+						child.skeleton.bones[10].rotation.x = degree;
+						//math.sin(math.unit(val, 'deg'));
+					}
+					else if(type == 'Shoulder_R'){
+						child.skeleton.bones[16].rotation.x = degree;
+					}
+					else if(type == 'Arm_L'){
+						child.skeleton.bones[11].rotation.z = degree;
+					}
+					else if(type == 'Arm_R'){
+						child.skeleton.bones[17].rotation.z = degree;
+					}
+					else if(type == 'Calve_L'){
+						child.skeleton.bones[8].rotation.x = degree;
+					}
+					else if(type == 'Thigh_L'){
+						child.skeleton.bones[7].rotation.x = degree;
+					}
+					else if(type == 'Thigh_R'){
+						child.skeleton.bones[13].rotation.x = degree;
+					}
+					else if(type == 'Calve_R'){
+						child.skeleton.bones[14].rotation.x = degree;
+					}
+					else if(type == 'Angkle_R' || type == 'Angkle_L'){ 
+						if(degree < 0.275 && degree > -0.275){
+							cons = 4;
+							swingMovement = (10.7373*2.54) * degree * cons;
+							child.skeleton.bones[0].position.set(swingMovement, 3, 0);
+							child.skeleton.bones[5].rotation.set(0, 0, -degree);
+							if(degree < 0){
+			            		child.skeleton.bones[15].rotation.set(0, 0, degree);
+			            	}else{
+			            		child.skeleton.bones[9].rotation.set(0, 0, degree);
+			            	}
+						}
+					}
+					// else{
+					// 	child.skeleton.bones[0].rotation.z = math.sin(math.unit(val, 'deg'));
+					// 	if(is_swr == 1){
+					// 		child.skeleton.bones[0].position.set(0, -val*0.6, 0);
+					// 	}else{
+					// 		child.skeleton.bones[0].position.set(0, val*0.6, 0);
+					// 	}
+					// }
+				}else if  (child instanceof THREE.SkeletonHelper){
+	                child.update();
+	            }
+	        });
+		}
+
+
+
+
+
+
+
+
+
+
+
+		$("#save_motion").click(function(){
+			var d = new Date();
+			var ParamKey = d.getTime();
+
+			$.each(jsonPanel, function(k, v){
+				jsonP = {
+					"Step"			: v.Step,
+					"Velocity"		: v.Velocity,
+					"ParamKey" 		: ParamKey,
+
+					"Shoulder_L" 	: v.Shoulder_L,
+					"Arm_L" 		: v.Arm_L,
+
+					"Thigh_L" 		: v.Thigh_L,
+					"Calve_L" 		: v.Calve_L,
+					"Angkle_L" 		: v.Angkle_L,
+
+					"Shoulder_R" 	: v.Shoulder_R,
+					"Arm_R" 		: v.Arm_R,			
+
+					"Thigh_R" 		: v.Thigh_R,
+					"Calve_R" 		: v.Calve_R,
+					"Angkle_R" 		: v.Angkle_R
+
+				}
+				$.ajax({
+	                url: '/bones',
+	                method: 'POST',
+	                data:JSON.stringify(jsonP),
+	                contentType: 'application/json',
+	                success: function(response) {
+	                	toastr.success('Save to Database', 'Sucess', toast_options);
+						success_notif.play();
+						motion_history();
+	                },
+	                error:function (xhr, ajaxOptions, thrownError){
+					    if(xhr.status==404) {
+					        toastr.warning('Save to Database', 'Failed', toast_options);
+							delete_notif.play();
+					    }
+					}
+	            });
+
+	         //    $.ajax({
+		        //     url: '/test_json_parser',
+		        //     method: 'PUT',
+		        //     contentType: 'application/json',
+		        //     data: JSON.stringify({ name: "mama" }),
+		        //     success: function(response) {
+		        //         console.log(response);
+		        //     }
+		        // });
+			});
+		});
+
+
+
+
+
+
+
+		$("#play_all_path").click(function(){
+			if(window.innerHeight > 740){
+			}else{
+				$("#sb_tb_btn").click();
+			}
+			play_all_motion(jsonPanel);
+		});
+
+
+
+
+
+
+		function motion_history(){
+			$.ajax({
+                url: '/bones/key',
+                method: 'GET',
+                contentType: 'application/json',
+                success: function(res) {
+                	$("#motion_history_content").empty();
+                	$.each(res, function(k, v){
+						content = '<li>'+
+					          		'<div class="col-sm-12">'+
+						            	'<a href="#">'+
+						              		'<div class="menu-info" style="margin-left:-5px">'+
+						                		'<h4 class="control-sidebar-subheading">'+
+						                			'Motion Key:: '+(v._id)+
+						                		'</h4>'+
+						                		'<p>Total Path '+v.count+' Motion(s)</p>'+
+						              		'</div>'+		              		
+						            	'</a>'+
+					            	'</div>'+
+					            	'<div class="col-sm-12">'+
+					            		'<span class="label label-primary mh_play" dt-key="'+v._id+'" style="cursor: pointer; cursor: hand;">'+
+					            			'<i class="fa fa-fw fa-play"></i> Play'+
+					            		'</span>&nbsp;'+
+				      					'<span class="label label-success mh_edit" dt-key="'+v._id+'">'+
+				      						'<i class="fa fa-fw fa-edit"></i> Edit'+
+				      					'</span>&nbsp;'+
+				      					'<span class="label label-danger mh_remove" dt-key="'+v._id+'" style="cursor: pointer; cursor: hand;">'+
+				      						'<i class="fa fa-fw fa-trash"></i> Remove'+
+				      					'</span>'+
+					            	'</div>'+
+					            	'<div class="col-sm-12 extend_list" id="'+v._id+'">'+
+					            	'</div>'+
+					            	'<hr style="margin-bottom:8px; margin-top:8px; border-top-color:#807d7d" />'+
+					          	'</li>';
+					    $("#motion_history_content").append(content);
+					});
+                },
+                error:function (xhr, ajaxOptions, thrownError){
+				    if(xhr.status==404) {
+				        toastr.warning('Save to Database', 'Failed', toast_options);
+						delete_notif.play();
+				    }
+				}
+            });
+		}
+
+
+
+
+
+		function play_all_motion(json_data){
+			init_angle();
+			for(i = 0; i < json_data.length; i++){
+				(function(i) {
+					setTimeout(function() { 
+						$.each(json_data[i], function(k, v){
+							play_path(k, v);
+						});
+					}, i*1000);
+				})(i);
+			}
+			
+		}
+
+
+
+	</script>
+
+
+
+</body>
+</html>

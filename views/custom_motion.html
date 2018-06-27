@@ -1,0 +1,2687 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+	<head>
+		<title><%= title %></title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+
+		<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+		<link rel="stylesheet" href="static/bootstrap/plugin/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="static/bootstrap/css/animate.css">
+		<link rel="stylesheet" href="static/js/toast/toastr.css">
+		<link rel="stylesheet" href="static/js/sweetalert/sweetalert.css">
+
+		<link rel="stylesheet" href="static/bootstrap/plugin/slider/ion.rangeSlider.css">
+		<link rel="stylesheet" href="static/bootstrap/plugin/slider/ion.rangeSlider.skinFlat.css">
+
+		<link rel="stylesheet" href="static/bootstrap/css/style.css">
+
+		
+
+		<style>
+			body {
+				font-family: Monospace;
+				/*background-color: #000;
+				color: #000;*/
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				padding: 10px;
+				width: 100%;
+				text-align: center;
+			}
+
+			a {
+				text-decoration: underline;
+				cursor: pointer;color: #bbb;
+			}
+			
+			.ac {  /* prevent dat-gui from being selected */
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			.no-pointer-events {
+				pointer-events: none;
+			}
+			.control-disabled {
+				color: #888;
+				text-decoration: line-through;
+			}
+
+			#dat {
+				left: 10;
+				position: absolute;
+				top: 0;
+				z-Index: 200;
+			}
+
+
+			#stats{
+				position: fixed;
+			    bottom: 0px;
+			    left: 0px;
+			    cursor: pointer;
+			    opacity: 0.9;
+			    z-index: 10000;
+			}
+
+		</style>
+
+	</head>
+
+	<body class=" fixed-sidebar mini-navbar pace-done">
+
+		<div id="wrapper" class="gray-bg fadeInRight animated">
+			<!-- <div id="page-wrapper" > -->
+				<!-- <div class="wrapper wrapper-content"> -->
+
+					<div class="row">
+
+						<div class="col-lg-8" style="padding-left: 0px;">
+							<div class="row">
+								<div id="container" class="col-md-12" style="padding-left: -15px;">
+										<div id="info" class="col-md-3"><%= title %> <br/> <%= name %></div>
+										<!-- <div class="col-md-3"></div> -->
+										<div id="dat" class="col-md-3"></div>
+										<div id="stats" class="col-md-3"></div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-lg-4">
+
+							<div class="wrapper-content">
+		                        
+
+								<div class="col-md-12" id="its_me"></div>
+
+				                <div class="col-md-12" style="overflow-y: scroll; height:70vh;" id="clients"></div>
+
+
+
+						</div>
+
+					</div>
+
+
+				<!-- </div> -->
+			<!-- </div> -->
+		</div>
+		
+		
+	    		
+
+
+
+
+
+
+
+
+		<!-- THREE JS PLUGIN -->
+		<script src="static/js/three.js/three.min.js"></script>
+		<script src="static/js/three.js/Detector.js"></script>
+		<script src="static/js/three.js/OrbitControls.js"></script>
+		<script src="static/js/three.js/stats.min.js"></script>
+		<script src="static/js/three.js/dat.gui.min.js"></script>
+		<script src="static/js/three.js/DragControls.js"></script>
+		<script src="static/js/three.js/TrackballControls.js"></script>
+
+		<!-- <script src="static/js/timeliner/timeliner_gui.min.js"></script>
+		<script src="static/js/timeliner/TimelinerController.js"></script> -->
+		<!-- THREE JS PLUGIN -->
+
+
+
+
+		<script src="static/js/app/app.js"></script>
+
+
+
+
+		<!-- JAVASCRIPT LIBRARY-->
+
+
+		<!-- <script src="static/bootstrap/js/jquery-3.1.1.min.js"></script> -->
+		<script src="static/js/jquery-2.1.4.min.js"></script>
+
+		<script src="static/bootstrap/js/bootstrap.min.js"></script>
+		<script src="static/bootstrap/js/inspinia.js"></script>
+		<script src="static/bootstrap/plugin/jquery.metisMenu.js"></script>
+		
+
+		<script src="static/bootstrap/plugin/jquery-ui.min.js"></script>
+		<script src="static/bootstrap/plugin/jquery.slimscroll.min.js"></script>
+		<script src="static/bootstrap/plugin/pace.min.js"></script>
+
+
+		<script src="static/js/toast/toastr.min.js"></script>
+		<script src="static/js/sweetalert/sweetalert.min.js"></script>
+		<script src="static/js/mathjs/math.js"></script>
+
+
+		<script src="static/js/socket.io/socket.io.js"></script>
+
+		<script src="static/js/web_socket.js"></script>
+		<!-- JAVASCRIPT LIBRARY -->
+
+
+
+
+
+		<script type="x-shader/x-fragment" id="fragmentShaderDepth">
+			#include <packing>
+
+			uniform sampler2D texture;
+			varying vec2 vUV;
+
+			void main() {
+
+				vec4 pixel = texture2D( texture, vUV );
+
+				if ( pixel.a < 0.5 ) discard;
+
+				gl_FragData[ 0 ] = packDepthToRGBA( gl_FragCoord.z );
+
+			}
+		</script>
+
+
+
+
+		<script type="x-shader/x-vertex" id="vertexShaderDepth">
+
+			varying vec2 vUV;
+
+			void main() {
+
+				vUV = 0.75 * uv;
+
+				vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+				gl_Position = projectionMatrix * mvPosition;
+
+			}
+
+		</script>
+
+
+
+
+		<script>
+
+
+			
+
+
+
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var stats;
+			var camera, scene, renderer, cameraControls;
+
+			var clothGeometry;
+			var sphere;
+			var object;
+
+			// console.log(document.getElementById('container').offsetWidth +" "+document.getElementById('container').offsetHeight);
+
+			var canvas_height = window.innerHeight, canvas_width = document.getElementById('container').offsetWidth;
+
+			var container = document.getElementById( 'container' );
+
+
+			var loader = new THREE.ObjectLoader();
+
+			var controls, effect, cameraVR, isVR,id;
+
+			var events = {};
+			this.width = 500;
+			this.height = 500;
+
+
+
+			
+			var url = window.location.href;
+			var arr = url.split("/");
+			
+			var base_url = arr[0] + "//" + arr[2];
+
+
+
+
+			$(document).ready(function() {
+
+	            setTimeout(function() {
+	            	
+	                toastr.options = {
+	                    closeButton: true,
+	                    progressBar: true,
+	                    showMethod: 'slideDown',
+	                    positionClass: "toast-top-right",
+	                    timeOut: 2500
+	                };
+	                // toastr.success('A Humanoid Connected with ID: '+id);
+
+	            }, 1000);
+
+	            get_all_data();
+
+	            // setTimeout(function(){ws_service(60, 0, 50, 600);}, 1000);
+	            setTimeout(function(){ws_service(60, 8, 50, 400);}, 1000);
+
+	        });
+
+
+
+	        function get_all_data(){
+	            $.ajax({
+	                url: '/bones',
+	                contentType: 'application/json',
+	                success: function(response) {
+	                	$.each(response, function(key,val){
+	                		console.log(val.rightLegRot);
+	                	});
+	                },
+	                error:function (xhr, ajaxOptions, thrownError){
+					    if(xhr.status==404) {
+					        // alert(thrownError);
+					    }
+					}
+	            });
+	        }
+
+
+			
+
+			//start js rendering
+			init_page();
+
+
+
+
+
+			function init_page(){
+				var loader = new THREE.FileLoader();  
+				loader.load( 'static/json/great_one.json', function ( model ) {
+					init_model(JSON.parse(model)); 
+					// console.log(JSON.parse(model));
+					// set_size( window.innerHeight, window.innerWidth );
+					set_size( canvas_height, canvas_width);
+					play();
+					// document.body.appendChild( container );
+
+					window.addEventListener( 'resize', function () {
+						// set_size( window.innerHeight, window.innerWidth );
+						set_size( canvas_height, canvas_width);
+					} );
+
+				});
+			}
+
+
+
+			$(document).ajaxStart(function () {
+
+				Pace.restart()
+			});
+
+
+
+
+
+
+
+
+			function init_model(json){
+				
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setClearColor( 0x000000 );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				// renderer.setSize( window.innerWidth, window.innerHeight );
+				// renderer.shadowMap.renderSingleSided = false;
+
+
+				if ( json.project.gammaInput ) renderer.gammaInput = true;
+				if ( json.project.gammaOutput ) renderer.gammaOutput = true;
+
+				if ( json.project.shadows ) {
+					renderer.shadowMap.enabled = true;
+				}
+
+				// this.dom.appendChild( renderer.domElement );
+				$("#container").append( renderer.domElement );
+
+
+				set_scene( loader.parse( json.scene ) );
+				set_camera( loader.parse( json.camera ) );
+
+
+
+
+
+
+
+				//LIGHT
+				var light = [3];
+				scene.add( new THREE.AmbientLight( 0x151515 ) );
+				light[0] = new THREE.DirectionalLight( 0xdfebff, 1 ); //color , intensity
+				light[0].position.set( 200, 300, 200 );//intencity, v pos, sh pos
+				// light.position.set( 50, 200, 100 ); 
+				light[0].castShadow = true;
+				light[0].shadow.mapSize.width = 1024;
+				light[0].shadow.mapSize.height = 512;//1024 512
+
+				// light.shadow.camera.far = 1000;
+				light[0].shadow.camera.near = 100;
+				light[0].shadow.camera.far = 1200;
+
+				// var d = 300;
+				// light.shadow.camera.left = - d;
+				// light.shadow.camera.right = d;
+				// light.shadow.camera.top = d;
+				// light.shadow.camera.bottom = - d;
+				light[0].shadow.camera.left = -1000;
+				light[0].shadow.camera.right = 1000;
+				light[0].shadow.camera.top = 350;
+				light[0].shadow.camera.bottom = -350;
+				
+				scene.add( light[0] );
+
+
+				light[ 1 ] = new THREE.DirectionalLight( 0xdfebff, 0.7 , 200 );
+				light[ 1 ].position.set( -200, 300, 200 );
+				scene.add( light[1] );
+
+
+				light[ 2 ] = new THREE.DirectionalLight( 0xdfebff, 0.4 , 500 );
+				light[ 2 ].position.set( 0, 400, -300 );
+				scene.add( light[2] );
+
+				// light[ 1 ] = new THREE.PointLight( 0xffffff, 0.5, 50 );
+				// light[ 2 ] = new THREE.PointLight( 0xffffff, 0.4, 0 );
+				// light[ 3 ] = new THREE.PointLight( 0xffffff, 0.4, 0 );
+
+				// light[ 1 ].position.set( 0, 200, 0 );
+				// light[ 2 ].position.set( 200, 200, 200 );
+				// light[ 3 ].position.set( -200, 200, - 100 );
+
+				// scene.add( light[ 1 ] );
+				// scene.add( light[ 2 ] );
+				// scene.add( light[ 3 ] );
+
+
+
+
+
+
+
+
+
+
+
+				//  GROUND
+				var gt = new THREE.TextureLoader().load( "static/img/grasslight-big.jpg" );
+				var gg = new THREE.PlaneBufferGeometry( 16000, 16000 );
+				var gm = new THREE.MeshPhongMaterial( { color: 0xffffff, map: gt } );
+
+				var ground = new THREE.Mesh( gg, gm );
+				ground.rotation.x = - Math.PI / 2;
+				ground.material.map.repeat.set( 64, 64 );
+				ground.material.map.wrapS = THREE.RepeatWrapping;
+				ground.material.map.wrapT = THREE.RepeatWrapping;
+				// note that because the ground does not cast a shadow, .castShadow is left false
+				ground.receiveShadow = true;
+
+				scene.add( ground );
+
+				/**
+				// ground
+				var loader = new THREE.TextureLoader();
+				var groundTexture = loader.load( 'static/img/grasslight-big.jpg' );
+				groundTexture.wrapS = groundTexture.wrapT = THREE.RepeatWrapping;
+				groundTexture.repeat.set( 25, 25 );
+				groundTexture.anisotropy = 16;
+
+				var groundMaterial = new THREE.MeshPhongMaterial( { color: 0xffffff, specular: 0x111111, map: groundTexture } );
+
+				var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
+				mesh.position.y = - 250;
+				mesh.rotation.x = - Math.PI / 2;
+				mesh.receiveShadow = true;
+				scene.add( mesh );
+				**/
+
+
+
+
+
+
+				// controls
+				// var controls = new THREE.OrbitControls( camera, renderer.domElement );
+				// controls.maxPolarAngle = Math.PI * 0.5;
+				// controls.minDistance = 1000;
+				// controls.maxDistance = 7500;
+
+
+
+
+
+
+				// CONTROLS
+				
+				cameraControls = new THREE.OrbitControls( camera, renderer.domElement );
+				cameraControls.maxPolarAngle = Math.PI * 0.4;//rotate camera vertically
+				// cameraControls.setAzimuthalAngle = -0.029893144818949887;
+				cameraControls.target.set( 0, 150, 0 );
+				cameraControls.maxDistance = 2000;
+				cameraControls.update();
+				
+
+				/*
+				controls = new THREE.TrackballControls( camera );
+				controls.rotateSpeed = 1.0;
+				controls.zoomSpeed = 1.2;
+				controls.panSpeed = 0.8;
+				controls.noZoom = false;
+				controls.noPan = false;
+				controls.staticMoving = true;
+				controls.dynamicDampingFactor = 0.3;
+				*/
+
+
+
+
+
+				createPanel();
+
+
+
+
+
+
+
+				// performance monitor
+				stats = new Stats();
+				stats.showPanel(0);// 0: fps, 1: ms, 2: mb, 3+: custom
+				/*
+				stats.dom.style.bottom = '15px';
+				stats.dom.style.top = null;*/
+				stats.dom.style.left = '62.5%';
+				// stats.dom.style.position = 'relative';
+				$("#stats").append( stats.dom );
+				// window.addEventListener( 'resize', onWindowResize, false );
+
+
+
+
+				events = {
+					init: [],
+					start: [],
+					stop: [],
+					keydown: [],
+					keyup: [],
+					mousedown: [],
+					mouseup: [],
+					mousemove: [],
+					touchstart: [],
+					touchend: [],
+					touchmove: [],
+					update: []
+				};
+
+
+
+
+				var scriptWrapParams = 'player,renderer,scene,camera';
+				var scriptWrapResultObj = {};
+
+				for ( var eventKey in events ) {
+
+					scriptWrapParams += ',' + eventKey;
+					scriptWrapResultObj[ eventKey ] = eventKey;
+
+				}
+
+
+
+
+				var scriptWrapResult = JSON.stringify( scriptWrapResultObj ).replace( /\"/g, '' );
+
+				for ( var uuid in json.scripts ) {
+
+					var object = scene.getObjectByProperty( 'uuid', uuid, true );
+
+					if ( object === undefined ) {
+
+						console.warn( 'APP.Player: Script without object.', uuid );
+						continue;
+
+					}
+
+					var scripts = json.scripts[ uuid ];
+
+					for ( var i = 0; i < scripts.length; i ++ ) {
+
+						var script = scripts[ i ];
+
+						var functions = ( new Function( scriptWrapParams, script.source + '\nreturn ' + scriptWrapResult + ';' ).bind( object ) )( this, renderer, scene, camera );
+
+						for ( var name in functions ) {
+
+							if ( functions[ name ] === undefined ) continue;
+
+							if ( events[ name ] === undefined ) {
+
+								console.warn( 'APP.Player: Event type not supported (', name, ')' );
+								continue;
+
+							}
+
+							events[ name ].push( functions[ name ].bind( object ) );
+
+						}
+
+					}
+
+				}
+
+				dispatch( events.init, arguments );
+
+
+
+				
+
+				scene.traverse(function(child){
+		            if (child instanceof THREE.SkinnedMesh){  
+						child.skeleton.bones[0].position.set(0, 3, 0);
+					}
+				});
+
+				// test_drag_and_drop();
+				// init_angle();
+
+				// add_timeliner();
+
+				// animate_walk();
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			var objects = [];
+			function test_drag_and_drop(){
+				// / https://threejs.org/examples/webgl_interactive_draggablecubes.html
+				var dragControls = new THREE.DragControls( objects, camera, renderer.domElement );
+				
+				dragControls.addEventListener( 'dragstart', function ( event ) {
+					controls.enabled = false; 
+				});
+
+				dragControls.addEventListener( 'dragend', function ( event ) {
+					controls.enabled = true;
+				} );
+
+
+				
+				for( i=0; i < scene.children.length; i++){
+					objects.push(scene.children[i]);
+				}				
+				console.log(objects);
+
+
+				/*
+				var geo = new THREE.BoxGeometry( 20, 20, 20 );
+				for ( var i = 0; i < 15; i ++ ) {
+
+					var object = new THREE.Mesh( geo, new THREE.MeshLambertMaterial( { color: Math.random() * 0xffffff } ) );
+
+					object.position.x = Math.random() * 1000 - 500;
+					object.position.y = Math.random() * 600 - 300;
+					object.position.z = Math.random() * 800 - 400;
+
+					object.rotation.x = Math.random() * 2 * Math.PI;
+					object.rotation.y = Math.random() * 2 * Math.PI;
+					object.rotation.z = Math.random() * 2 * Math.PI;
+
+					object.scale.x = Math.random() * 2 + 1;
+					object.scale.y = Math.random() * 2 + 1;
+					object.scale.z = Math.random() * 2 + 1;
+
+					object.castShadow = true;
+					object.receiveShadow = true;
+
+					scene.add( object );
+
+					objects.push( object );
+				}
+				*/
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+			/*
+			function detectCollision() {
+				THREE.Collisions.colliders.push(
+  					THREE.CollisionUtils.MeshOBB( cube )
+  				);
+			  	var vector = controls.target.clone().subSelf( controls.object.position ).normalize();
+			  	var ray = new THREE.Ray(controls.object.position, vector);
+			  	var intersects = ray.intersectObjects(walls);
+
+			  	if (intersects.length > 0) {
+			    	if (intersects[0].distance < 5) {
+			      	console.log(intersects);
+			    	}
+			  	}
+			}
+			*/
+
+
+
+
+
+
+
+
+
+			function set_scene(value){
+				scene = value;
+				scene.background = new THREE.Color( 0xffffff );
+				scene.fog = new THREE.Fog( 0xffffff, 1000, 4000 );
+				// scene.fog = new THREE.Fog( 0xcce0ff, 500, 10000 );
+			}
+
+
+
+
+
+
+
+
+
+
+			/*
+			function add_timeliner(){
+				var trackInfo = [
+					{
+						type: THREE.VectorKeyframeTrack,
+						propertyPath: 'MyBox.position',
+						initialValue: [ 0, 0, 0 ],
+						interpolation: THREE.InterpolateSmooth
+					},
+
+					{
+						type: THREE.QuaternionKeyframeTrack,
+						propertyPath: 'MyBox.quaternion',
+						initialValue: [ 0, 0, 0, 1 ],
+						interpolation: THREE.InterpolateLinear
+
+					}
+
+				]; 
+				new Timeliner( new THREE.TimelinerController( scene, trackInfo, renderer ) );
+			}
+			*/
+
+
+
+
+
+
+
+
+
+
+
+			function set_camera(value){
+				camera = value;
+				camera.aspect = this.width / this.height;
+				camera.updateProjectionMatrix();
+
+				// if ( isVR === true ) {
+
+					// cameraVR = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
+					cameraVR = new THREE.PerspectiveCamera(60, canvas_width / canvas_height, 1, 10000);
+
+					cameraVR.projectionMatrix = camera.projectionMatrix;
+					camera.position.set( 0, 120, 500 );//1000, 50, 1500 => h rotate, v rotate, camera pos
+					camera.add( cameraVR );
+
+
+					// CAMERA
+					// camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 4000 );
+					// camera.position.set( 0, 150, 1300 );
+
+
+
+
+					// controls = new THREE.VRControls( cameraVR );
+					// effect = new THREE.VREffect( renderer );
+
+					// if ( WEBVR.isAvailable() === true ) {
+
+					// 	this.dom.appendChild( WEBVR.getButton( effect ) );
+
+					// }
+
+					// if ( WEBVR.isLatestAvailable() === false ) {
+
+					// 	this.dom.appendChild( WEBVR.getMessage() );
+
+					// }
+
+				// }
+			}
+
+
+
+
+
+
+
+
+
+			function set_size(h, w){
+				this.width = w;
+				this.height = h;
+
+				if ( camera ) {
+
+					camera.aspect = w / h;
+					camera.updateProjectionMatrix();
+
+				}
+
+				if ( renderer ) {
+
+					renderer.setSize( w, h );
+
+				}
+			}
+
+
+
+
+
+
+
+
+
+
+			function dispatch( array, event ) {
+
+				for ( var i = 0, l = array.length; i < l; i ++ ) {
+
+					array[ i ]( event );
+
+				}
+			}
+
+
+
+
+
+
+
+
+			/**
+			http://localhost:8181/threejs_dev/examples/webgl_loader_obj2_ww.html
+
+			http://localhost:8181/threejs_dev/examples/misc_animation_authoring.html
+
+
+			http://localhost:8181/threejs_dev/examples/webgl_loader_md2_control.html
+
+
+			http://localhost:8181/threejs_dev/examples/webgl_materials_compile.html
+
+
+
+			http://localhost:8181/threejs_dev/examples/webgl_animation_skinning_morph.html
+			MeshBasicMaterial
+			**/
+
+
+
+
+
+
+
+
+
+
+
+			function createPanel() {
+				// var panel = new dat.GUI( { width: 200, autoPlace: false } );
+				// var panel = new dat.GUI( { width: 300 } );
+
+				var panel = new dat.GUI({ width: 220, autoPlace: false });
+
+				var customContainer = $('#dat').append($(panel.domElement));
+
+				// var datDiv = document.getElementById( 'dat' );
+				// datDiv.appendChild(panel.domElement);
+
+				var folder1 = panel.addFolder( 'Basic GUI' );
+
+				var folder2 = panel.addFolder( 'DoF Controls' );
+
+				var folder3 = panel.addFolder( 'Test Rig Controls' );
+
+
+				settings = {
+					'show model'		: true,
+					'show skeleton'		: false,
+					'function 1'	 	: function1,
+					'function 2'		: 45,
+
+					// 'Bone 0' 			: 0.0,
+					// 'Bone 1' 			: 0.0,
+					// 'Bone 2' 			: 0.0,
+					// 'Bone 3' 			: 0.0,
+					// 'Bone 4' 			: 0.0,
+					// 'Bone 5' 			: 0.0,
+					// 'Bone 6' 			: 0.0,
+					'Thigh L' 			: 0.0,
+					'Knee L' 			: 0.0,
+					'Angkle L' 			: 0.0,
+					'Shoulder L' 		: 0.0,
+					'Arm L' 			: 0.0,
+					// 'Bone 12' 			: 0.0,
+					'Thigh R' 			: 0.0,
+					'Knee R' 			: 0.0,
+					'Angkle R' 			: 0.0,
+					'Shoulder R' 		: 0.0,
+					'Arm R' 			: 0.0,
+
+					"Bone_IK": 0.0,
+
+					// "Set Motion"        : setMotion
+
+				};
+
+
+				folder1.add( settings, 'show model' ).onChange( showModel );
+				folder1.add( settings, 'show skeleton' ).onChange( showSkeleton );
+				folder1.add( settings, 'function 1' );
+				folder1.add( settings, 'function 2' , 0, 90, 15 ).listen().onChange( function ( val ) {
+					// console.log(val);
+				});
+
+
+				// folder2.add( settings, 'Bone 0' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(0, val);});
+				// folder2.add( settings, 'Bone 1' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(1, val);});
+				// folder2.add( settings, 'Bone 2' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(2, val);});
+				// folder2.add( settings, 'Bone 3' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(3, val);});
+				// folder2.add( settings, 'Bone 4' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(4, val);});
+				// folder2.add( settings, 'Bone 5' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(5, val);});
+				// folder2.add( settings, 'Bone 6' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(6, val);});
+				folder2.add( settings, 'Thigh L' , -1, 1, 0.1 ).listen().onChange(function (val) {pos_update(7, val);});
+				folder2.add( settings, 'Knee L' , -1, 1, 0.1 ).listen().onChange(function (val) {pos_update(8, val);});
+
+				folder2.add( settings, 'Angkle L' , -0.25, 0.25, 0.01 ).listen().onChange(function (val) {pos_update(9, val);});
+				folder2.add( settings, 'Shoulder L' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(10, val);});
+				folder2.add( settings, 'Arm L' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(11, val);});
+				// folder2.add( settings, 'Bone 12' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(12, val);});
+				folder2.add( settings, 'Thigh R' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(13, val);});
+				folder2.add( settings, 'Knee R' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(14, val);});
+				folder2.add( settings, 'Angkle R' , -0.25, 0.25, 0.01 ).listen().onChange(function (val) {pos_update(15, val);});
+				folder2.add( settings, 'Shoulder R' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(16, val);});
+				folder2.add( settings, 'Arm R' , -1, 1, 0.01 ).listen().onChange(function (val) {pos_update(17, val);});
+
+
+				// folder2.add( settings, 'Set Motion');
+
+
+				folder3.add( settings, 'Bone_IK' , -1, 1, 0.01 ).listen().onChange(function (val) {test_rig(val);});//test_rig
+
+				// folder1.open();
+			}
+
+
+			function showModel( visibility ) {
+
+			}
+
+
+			function showSkeleton( visibility ) {
+
+			}
+
+
+			function function1() {
+				// animate_walk();
+				// animate_walk();
+			}
+
+
+			function function2() {
+
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			var prevTime, request;
+			function animate( time ) {
+
+				request = requestAnimationFrame( animate );
+
+				try {
+
+					dispatch( events.update, { time: time, delta: time - prevTime } );
+
+				} catch ( e ) {
+
+					console.error( ( e.message || e ), ( e.stack || "" ) );
+
+				}
+
+				if ( isVR === true ) {
+
+					camera.updateMatrixWorld();
+
+					controls.update();
+					effect.render( scene, cameraVR );
+
+				} else {
+
+					renderer.render( scene, camera );
+
+				}
+
+				prevTime = time;
+
+
+				// console.log(cameraControls.getAzimuthalAngle ());
+
+
+				stats.update();
+			}
+
+			
+
+
+
+			function onWindowResize() {
+
+				// camera.aspect = window.innerWidth / window.innerHeight;
+				amera.aspect = canvas_width / canvas_height;
+				camera.updateProjectionMatrix();
+
+				// renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+
+
+
+
+
+
+
+
+
+			function play(){
+				document.addEventListener( 'keydown', onKeyDown );
+				document.addEventListener( 'keyup', onDocumentKeyUp );
+				document.addEventListener( 'mousedown', onDocumentMouseDown );
+				document.addEventListener( 'mouseup', onDocumentMouseUp );
+				document.addEventListener( 'mousemove', onDocumentMouseMove );
+				document.addEventListener( 'touchstart', onDocumentTouchStart );
+				document.addEventListener( 'touchend', onDocumentTouchEnd );
+				document.addEventListener( 'touchmove', onDocumentTouchMove );
+
+				document.addEventListener( 'SocketMouseRotate', onSocketMouseRotate );
+
+
+				dispatch( events.start, arguments );
+
+				request = requestAnimationFrame( animate );
+				prevTime = performance.now();
+			}
+
+
+
+
+
+
+
+
+			function stop(){
+				document.removeEventListener( 'keydown', onDocumentKeyDown );
+				document.removeEventListener( 'keyup', onDocumentKeyUp );
+				document.removeEventListener( 'mousedown', onDocumentMouseDown );
+				document.removeEventListener( 'mouseup', onDocumentMouseUp );
+				document.removeEventListener( 'mousemove', onDocumentMouseMove );
+				document.removeEventListener( 'touchstart', onDocumentTouchStart );
+				document.removeEventListener( 'touchend', onDocumentTouchEnd );
+				document.removeEventListener( 'touchmove', onDocumentTouchMove );
+
+				dispatch( events.stop, arguments );
+
+				cancelAnimationFrame( request );
+			}
+
+
+
+
+
+
+
+
+
+
+			function dispose(){
+				while ( this.dom.children.length ) {
+
+					this.dom.removeChild( this.dom.firstChild );
+
+				}
+
+				renderer.dispose();
+
+				camera = undefined;
+				scene = undefined;
+				renderer = undefined;
+			}
+
+
+
+
+
+
+			function onDocumentKeyDown( event ) {
+
+				dispatch( events.keydown, event );
+			}
+
+
+
+			function onDocumentKeyUp( event ) {
+
+				dispatch( events.keyup, event );
+			}
+
+
+
+			function onDocumentMouseDown( event ) {
+
+				dispatch( events.mousedown, event );
+			}
+
+
+			function onDocumentMouseUp( event ) {
+
+				dispatch( events.mouseup, event );
+			}
+
+
+			function onDocumentMouseMove( event ) {
+
+				dispatch( events.mousemove, event );
+			}
+
+
+
+
+			function onSocketMouseRotate( event ) {
+				// socket.on('mouseRotate', function (data) {
+				// 	dispatch( data, event );
+				// 	// console.log(data);
+				// });
+			}
+
+
+
+			function onDocumentTouchStart( event ) {
+
+				dispatch( events.touchstart, event );
+
+				//socket.emit('rotateCanvas', { data: events.mousemove }); 
+
+				// console.log(events.mousemove);
+			}
+
+
+
+
+			function onDocumentTouchEnd( event ) {
+
+				dispatch( events.touchend, event );
+			}
+
+
+
+
+			function onDocumentTouchMove( event ) {
+
+				dispatch( events.touchmove, event );
+			}
+
+
+
+
+
+
+
+
+
+
+
+			/*
+			function getUserIP(onNewIP) { //  onNewIp - your listener function for new IPs
+	   			//compatibility for firefox and chrome
+			    var myPeerConnection = window.RTCPeerConnection || window.mozRTCPeerConnection || window.webkitRTCPeerConnection;
+			    var pc = new myPeerConnection({
+			        iceServers: []
+			    }),
+			    noop = function() {},
+			    localIPs = {},
+			    ipRegex = /([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/g,
+			    key;
+
+			    function iterateIP(ip) {
+			        if (!localIPs[ip]) onNewIP(ip);
+			        localIPs[ip] = true;
+			    }
+
+			     //create a bogus data channel
+			    pc.createDataChannel("");
+
+			    // create offer and set local description
+			    pc.createOffer().then(function(sdp) {
+			        sdp.sdp.split('\n').forEach(function(line) {
+			            if (line.indexOf('candidate') < 0) return;
+			            line.match(ipRegex).forEach(iterateIP);
+			        });
+			        
+			        pc.setLocalDescription(sdp, noop, noop);
+			    }).catch(function(reason) {
+			        // An error occurred, so handle the failure to connect
+			    });
+
+			    //listen for candidate events
+			    pc.onicecandidate = function(ice) {
+			        if (!ice || !ice.candidate || !ice.candidate.candidate || !ice.candidate.candidate.match(ipRegex)) return;
+			        ice.candidate.candidate.match(ipRegex).forEach(iterateIP);
+			    };
+			}
+			*/
+			
+
+
+
+
+
+
+
+
+
+
+
+			function onKeyDown ( event ) {
+
+				event.stopPropagation();
+
+				switch( event.keyCode ) {
+
+					case 38: /*up*/
+					case 87: /*W*/ 	controls.moveForward = true; break;
+
+					case 40: /*down*/
+					case 83: /*S*/ 	 controls.moveBackward = true; break;
+
+					case 37: /*left*/
+					case 65: /*A*/   controls.moveLeft = true; break;
+
+					case 39: /*right*/
+					case 68: /*D*/    controls.moveRight = true; break;
+
+					//case 67: /*C*/     controls.crouch = true; break;
+					//case 32: /*space*/ controls.jump = true; break;
+					//case 17: /*ctrl*/  controls.attack = true; break;
+
+				}
+			}
+
+
+
+
+
+
+
+
+			function onKeyUp ( event ) {
+
+				event.stopPropagation();
+
+				switch( event.keyCode ) {
+
+					case 38: /*up*/
+					case 87: /*W*/ controls.moveForward = false; break;
+
+					case 40: /*down*/
+					case 83: /*S*/ 	 controls.moveBackward = false; break;
+
+					case 37: /*left*/
+					case 65: /*A*/ 	 controls.moveLeft = false; break;
+
+					case 39: /*right*/
+					case 68: /*D*/ 	  controls.moveRight = false; break;
+
+					//case 67: /*C*/     controls.crouch = false; break;
+					//case 32: /*space*/ controls.jump = false; break;
+					//case 17: /*ctrl*/  controls.attack = false; break;
+
+				}
+			}
+
+
+
+
+
+			/**
+			function animate() {
+
+			 	requestAnimationFrame( animate );
+
+			 	render();
+			 	stats.update();
+			}
+
+
+
+
+			function render() {
+			 	camera.lookAt( scene.position );
+
+			 	renderer.render( scene, camera );
+			}
+			**/
+
+
+
+
+
+
+
+
+
+
+			/*
+			function forward_kinematics(c){
+				l3 = 2.48 * 2.54;
+				l2 = 1.49 * 2.54;
+				l1 = 4.67 * 2.54;
+				
+				c1 = c3 = c;
+				c2 = 0;
+
+				d1 = 0;
+				d3 = 0;
+
+				Px = (l3  * math.cos(math.unit(c3, 'deg'))) + (l2  * math.cos(math.unit(c2, 'deg'))) + (l1  * math.cos(math.unit(c1, 'deg')));
+
+				Py = ((l3 * math.sin(math.unit(c3, 'deg'))) * (math.cos(math.unit(c1, 'deg')) * math.cos(math.unit(c2, 'deg')) - math.sin(math.unit(c1, 'deg')) * math.sin(math.unit(c2, 'deg')))) - (d3 * (math.sin(math.unit(c2, 'deg')) * math.cos(math.unit(c1, 'deg')) + math.sin(math.unit(c1, 'deg')) * math.cos(math.unit(c2, 'deg')))) + 
+					 (l2 * math.cos(math.unit(c1, 'deg')) * math.sin(math.unit(c2, 'deg'))) + (l1 * math.sin(math.unit(c1, 'deg')));
+
+				Pz = ((l3 * math.sin(math.unit(c3, 'deg'))) * (math.sin(math.unit(c1, 'deg')) * math.cos(math.unit(c2, 'deg')) - math.cos(math.unit(c1, 'deg')) * math.sin(math.unit(c2, 'deg')))) - (d3 * (math.cos(math.unit(c1, 'deg')) * math.cos(math.unit(c2, 'deg')) - math.sin(math.unit(c1, 'deg')) * math.sin(math.unit(c2, 'deg')))) + 
+					 (l2 * math.sin(math.unit(c1, 'deg')) * math.sin(math.unit(c2, 'deg'))) + d1;
+
+				ik_data = Px+"|"+Py+"|"+Pz;
+
+				return ik_data;
+			}
+
+
+
+			function inverse_kinematics(){
+				a1 = 4.67 * 2.54;
+				a2 = 1.49 * 2.54;
+				a3 = 2.48 * 2.54;
+
+				Px = a2 * math.cos(trigono(t, b, "c", "+")) + a1 * math.cos(t);
+				Py = a2 * math.sin(trigono(t, b, "s", "+")) + a1 * math.sin(t);
+				t = math.atan2(Py, Px);//tetha
+
+
+
+				cb = ( (Px * math.cos(t) + Py * math.sin(t) - a1 * math.sin(t)) * a2 ) - ( a3 * (Py * math.cos(t) - Px * math.sin(t) ) );
+				sb = ( a2 * (-Px * math.sin(t) + Py * math.cos(t)) ) + ( a3 * (Px * math.cos(t) + Py * math.sin(t) - a1 * math.sin(t)) );
+				b =  math.atan2(sb, cb);
+
+
+
+
+				M = -math.sin(b) * (a3) + a2 * math.cos(b);
+				N = math.cos(b) * (a3) + a2 * math.sin(b);
+
+				M2 = (math.sin(b)^2) * (a3^2) + (math.cos(b)^2) * (a2^2) - (2 * math.sin(b) * math.cos(b) * a2 * a3);
+				N2 = (math.cos(b)^2) * (a3^2) + (math.sin(b)^2) * (a2^2) + (2 * math.sin(b) * math.cos(b) * a2 * a3);
+
+				cg = ( (M^2) * (N^2) - (a2^2) - (a3^2) ) / (2 * a2 * a3);
+				sg = math.sqrt(1-(cg^2));
+				g = math.atan2(sg, g);//gamma
+
+
+				return t + " => " + b + " => " + g;
+
+
+
+				/**
+					http://www.realitymeltdown.com/WebGL3/js/CharacterControllerGui.js
+					http://www.realitymeltdown.com/WebGL3/js/CharacterController.js
+					http://www.realitymeltdown.com/WebGL3/js/SpeedBlendCharacter.js
+					view-source:http://www.realitymeltdown.com/WebGL3/character-controller.html
+					http://www.realitymeltdown.com/WebGL3/character-controller.html
+					http://schteppe.github.io/ammo.js-demos/demos/RagdollDemo/three.html
+					http://unboring.net/workflows/animation.html
+
+					view-source:http://localhost:8181/threejs_dev/examples/webgl_loader_md2_control.html
+					http://localhost:8181/threejs_dev/examples/webgl_loader_md2_control.html
+				**
+			}
+			*/
+
+
+
+
+			//FOLLOW JULPRI THESIS FOLLOW JULPRI THESIS FOLLOW JULPRI THESIS FOLLOW JULPRI THESIS
+			//var angles = [0, 0, 0];//alpha, betha, gamma
+			var L0=0; L1= 4.67 * 2.54, L2 = 1.49 * 2.54, L3 = 2.48 * 2.54;//inch to cm
+			var phi = 3.1415;
+			var walk_dly = 300, motion_dly = 2500;
+
+
+			var ref_ang_1  = [90, 0]; // ref_left_hand 90 for arm, 0 for shoulder
+			var ref_ang_2  = [90, 0]; // ref_right_hand
+			var ref_ang_3  = [90, 0, 0]; // ref_left_foot 90 for tight, 0 for knee, 0 for angkle
+			var ref_ang_4  = [0, 0, 90]; // ref_right_foot
+
+
+			var ang_1 = [0, 0]; var ang_3 = [0, 0, 0];
+			var ang_2 = [0, 0]; var ang_4 = [0, 0, 0];
+
+			//init pins leg and join
+
+			function generate_ik_params_3dof(px, py, pz){
+				alpha = math.atan2(py, px);
+				// angles[0] = (alpha*180)/phi;
+
+				M = px * math.cos(alpha) + py * math.sin(alpha) - L1 * math.sin(alpha);
+				N = py * math.cos(alpha) - px * math.sin(alpha);
+				A = ( (M*M) + (N*N) - ((L2*2) + (L3*2)) ) / ( 2 * L2 * L3); // cos gamma
+				if((A*A) > 1){
+					B = math.sqrt((A*A) - 1);
+					gamma = - math.atan2(B, A);
+				}else{
+					B = math.sqrt(1 - (A*A));
+					gamma = math.atan2(B, A);
+				}
+				// angles[2] = (gamma*180)/phi;
+
+				C = L2 * M - L3 * N;
+				D = L2 * N + L3 * M;
+				betha = math.atan2(D, C);
+				// angles[1] = (betha*180)/phi;
+
+				return (alpha*180)/phi+"|"+(betha*180)/phi+"|"+(gamma*180)/phi;
+			}
+
+
+
+
+
+
+
+			var a1 = 2.5 * 2.54, a2 = 4.7 * 2.54;
+			function generate_ik_params_2dof(px, py){
+				A = ( (px*px) + (py*py) - ((a1*a1) + (a2*a2)) ) / ( 2 * a1 * a2); // cos betha
+				if((A*A) > 1){
+					B = math.sqrt((A*A) - 1);
+					betha = - math.atan2(B, A);
+				}else{
+					B = math.sqrt(1 - (A*A));
+					betha = math.atan2(B, A);
+				}
+
+				P = - px * (a2 * math.sin(betha)) + py * (a1 + a2 * math.cos(betha))
+				Q = py * a2 * math.sin(betha) + px * (a1 + a2 * math.cos(betha));
+				R = P/Q;
+				if((R*R) > 1){
+					S = math.sqrt((R*R) - 1);
+					alpha = - math.atan2(S, R);
+				}else{
+					S = math.sqrt(1 - (R*R));
+					alpha = math.atan2(S, R);
+				}
+
+				return (alpha*180)/phi+"|"+(betha*180)/phi;
+			}
+			//FOLLOW JULPRI THESIS FOLLOW JULPRI THESIS FOLLOW JULPRI THESIS FOLLOW JULPRI THESIS
+
+
+
+
+
+
+
+
+			function trigono(a, b, t, s){
+				if(t == "c"){
+					if(s == "+"){
+						return math.cos(a) * math.cos(b) - math.sin(a) * math.sin(b);
+					}else{
+						return math.cos(a) * math.cos(b) + math.sin(a) * math.sin(b);
+					}
+				}else{
+					if(s == "-"){
+						return math.sin(a) * math.cos(b) - math.cos(a) * math.sin(b);
+					}else{
+						return math.sin(a) * math.cos(b) + math.cos(a) * math.sin(b);
+					}
+				}
+			}	
+
+
+
+
+
+
+
+
+
+
+			function find_resultant(){
+				x1 = scene.children[0].skeleton.bones[a].position.x;
+				y1 = scene.children[0].skeleton.bones[a].position.y;
+				z1 = scene.children[0].skeleton.bones[a].position.z;
+				x2 = scene.children[0].skeleton.bones[b].position.x;
+				y2 = scene.children[0].skeleton.bones[b].position.y;
+				z2 = scene.children[0].skeleton.bones[b].position.z;
+
+				dx = (x1-x2);
+				dy = (y1-y2);
+				dz = (z1-z2);
+
+				return math.sqrt( (dx*dx) + (dy*dy) + (dz*dz));
+			}	
+
+
+
+
+
+
+
+
+
+
+
+
+			function test_rig(val){
+				scene.traverse(function(child){
+		            if (child instanceof THREE.SkinnedMesh){  
+
+		            	/*
+		                left_leg_pos = generate_ik_params_3dof(0, 0, -20).split("|");
+			            right_leg_pos = generate_ik_params_3dof(val, val*0.2, val*0.3).split("|");
+			            left_hand_pos = generate_ik_params_2dof(val*0.01, val).split("|");
+			            right_hand_pos = generate_ik_params_2dof(val, val*0.03).split("|");
+						*/
+
+
+						/*
+			            //SWING LEFT RIGHT
+						if(val < 0.275 && val > -0.275){
+							cons = 4;
+							swingMovement = (10.7373*2.54) * val * cons;
+							child.skeleton.bones[0].position.set(swingMovement, 3, 0);
+							child.skeleton.bones[5].rotation.set(0, 0, -val);
+							if(val < 0){
+			            		child.skeleton.bones[15].rotation.set(0, 0, val);
+			            	}else{
+			            		child.skeleton.bones[9].rotation.set(0, 0, val);
+			            	}
+							// console.log(child.skeleton.bones[0].position);
+						}
+						
+
+
+						if(val < 0){
+			            	child.skeleton.bones[7].rotation.set(val, 0, 0); //knee
+			            	child.skeleton.bones[8].rotation.set(-val, 0, 0); //thigh
+
+			            	child.skeleton.bones[13].rotation.set(0, 0, 0); //knee
+			            	child.skeleton.bones[14].rotation.set(0, 0, 0); //thigh
+			            }else{
+			            	child.skeleton.bones[13].rotation.set(-val, 0, 0); //knee
+			            	child.skeleton.bones[14].rotation.set(val, 0, 0); //thigh
+
+			            	child.skeleton.bones[7].rotation.set(0, 0, 0); //knee
+			            	child.skeleton.bones[8].rotation.set(0, 0, 0); //thigh
+			            }
+			           
+						*/
+
+
+
+
+
+
+
+
+						child.skeleton.bones[10].rotation.set(-val, 0, 0); //shoulder
+			            child.skeleton.bones[11].rotation.set(0, 0, -val); //arm
+
+			            child.skeleton.bones[16].rotation.set(-val, 0, 0); //shoulder
+			            child.skeleton.bones[17].rotation.set(0, 0, val); //arm
+
+
+
+
+
+			            
+		                //Swipe UP DOWN
+		                add = val + 0.5;
+		                h = 128.585;
+		                sdt =math.asin(val)*180/math.pi;//to deg
+		                // x = (4.43488* 2.54 * math.cos(sdt) ) + (1.48893 * 2.54 * trigono(sdt, sdt, "c", "+")); //(math.atan2(0.25, -0.31) / math.pi)
+		                // y = (4.43488* 2.54 * math.sin(sdt) ) + (1.48893 * 2.54 * trigono(sdt, sdt, "s", "+"));
+		                // x = (4.43488* 2.54 * math.cos(sdt)) + (1.48893 * 2.54 * math.cos(sdt));
+		                // y = (4.43488* 2.54 * math.sin(sdt)) - (1.48893 * 2.54 * math.sin(sdt));
+		                // res = math.sqrt((x*x)+(y*y));
+		                // child.skeleton.bones[5].position.set(0, h-res, 0);
+
+		                if(val >= 0){
+		                	//swipe fwr bwd
+							//swingMovement = h * val * 0.325;				
+
+			                cons = 0;
+			                
+			                if(val <= 0.1){
+			                	cons = 2;
+			                }else{
+			                	if(val > 0.1 && val <= 0.2){
+				                	cons += 5.5;
+				                }if(val > 0.2 && val <= 0.3){
+				                	cons += 8.3;
+				                }if(val > 0.3 && val <= 0.4){
+				                	cons += 12;
+				                }if(val > 0.4 && val <= 0.5){
+				                	cons += 15.5;
+				                }if(val > 0.5 && val <= 0.6){
+				                	cons += 18.5;
+				                }if(val > 0.6 && val <= 0.7){
+				                	cons += 21.5;
+				                }if(val > 0.7 && val <= 0.8){
+				                	cons += 24.5;
+				                }if(val > 0.8 && val <= 0.9){
+				                	cons += 27.5;
+				                }if(val > 0.9 && val <= 1){
+				                	cons += 30;
+				                }
+			                }
+			                child.skeleton.bones[5].position.set(0, h - (val * cons), 0);
+			                // console.log(h+" :: "+child.skeleton.bones[5].position.y+ "::"+ (val * cons));
+
+			                swingMovement = (10.7373*2.54) * val * 1.5;
+							child.skeleton.bones[0].position.set(0, 3, swingMovement);
+
+			                child.skeleton.bones[7].rotation.set(add, 0, 0); //knee
+				            child.skeleton.bones[8].rotation.set(-add, 0, 0); //thigh
+
+				            child.skeleton.bones[13].rotation.set(add, 0, 0); //knee
+				            child.skeleton.bones[14].rotation.set(-add, 0, 0); //thigh                
+		            	}
+		            				
+
+
+
+
+
+			            var bones_data = {
+			                	"FK_params" : {
+			                		"BD" : {
+										rotation : child.skeleton.bones[5].rotation,
+										position : child.skeleton.bones[5].position
+			                		},
+			                		"GND" : {
+										rotation : child.skeleton.bones[0].rotation,
+										position : child.skeleton.bones[0].position
+			                		},
+			                		"Arm" : {
+			                			"L": child.skeleton.bones[11].rotation.z,
+			                			"R" : child.skeleton.bones[17].rotation.z,
+			                		}, //Arm
+				       				"Shoulder" : {
+					       				"L" : child.skeleton.bones[10].rotation.x, //L Shoulder
+					       				"R" : child.skeleton.bones[16].rotation.x, //R Shoulder
+					       			},
+					       			"Thigh" : {
+					       				"L" : child.skeleton.bones[7].rotation.x, //L Shoulder
+					       				"R" : child.skeleton.bones[13].rotation.x, //R Shoulder
+					       			},
+					       			"Calves" : {
+					       				"L" : child.skeleton.bones[8].rotation.x, //L Shoulder
+					       				"R" : child.skeleton.bones[14].rotation.x, //R Shoulder
+					       			},
+					       			"Ankle" : {
+					       				"L" : child.skeleton.bones[9].rotation.z, //L Shoulder
+					       				"R" : child.skeleton.bones[15].rotation.z, //R Shoulder
+					       			}
+			                	},
+
+
+			                	"IK_params" : {
+									"Left_Leg" : {
+			                			"Px" : null,
+			                			"Py" : null,
+			                			"Pz" : null,
+			                		},
+			                		"Right_Leg" : {
+			                			"Px" : null,
+			                			"Py" : null,
+			                			"Pz" : null,
+			                		},
+			                		"Left_Hand" : {
+			                			"Px" : null,
+			                			"Py" : null,
+			                			"Pz" : null,
+			                		},
+			                		"Right_Hand" : {
+			                			"Px" : null,
+			                			"Py" : null,
+			                			"Pz" : null,
+			                		},
+			                	},
+
+			       				"velo" : 4096, // 0 - 4096
+			       				"mpg_step" : 0,
+			       				"data_status" : 1,
+
+			       				"users":{
+			       					"status" : 1,
+			       					"IP": '192.168.0.5'
+			       				},
+			       				"server":{
+			       					"status" : 1,
+			       					"IP": '10.9.12.145:1400'
+			       				}
+			       				
+			       		}
+
+
+			       		
+		                // socket.emit('bones_params', bones_data);
+			            
+		            }
+		            else if  (child instanceof THREE.SkeletonHelper){
+		                child.update();
+		            }
+		        }); 
+			}
+			/**
+				2 rot x bhul
+				3 rot z bhbl
+				4 rot x bful
+				5 rot x bfml
+				6 rot z bfbl
+				4 rot x bhbl
+				4 rot x bhbl
+			**/
+
+
+
+
+
+
+			function pos_update(srv, val){
+				scene.traverse(function(child){
+		            if (child instanceof THREE.SkinnedMesh){
+		            	child.skeleton.bones[0].position.set(0, 3, 0);
+
+		            	if($.inArray(srv, [6, 11, 12, 17]) > -1){
+							child.skeleton.bones[srv].rotation.set(0, 0, val);
+						}
+						if($.inArray(srv, [7, 8, 10, 13, 14, 16])  > -1){
+							child.skeleton.bones[srv].rotation.set(val, 0, 0);
+						}
+						if(srv==9){
+							child.skeleton.bones[5].rotation.set(0, 0, -val);
+							child.skeleton.bones[srv].rotation.set(0, 0, val);
+							child.skeleton.bones[15].rotation.set(0, 0, 0);
+						}
+						if(srv==15){
+							child.skeleton.bones[5].rotation.set(0, 0, -val);
+							child.skeleton.bones[srv].rotation.set(0, 0, val);
+							child.skeleton.bones[9].rotation.set(0, 0, 0);
+						}
+		            }else if  (child instanceof THREE.SkeletonHelper){
+		                child.update();
+		            }
+		        });
+			}
+
+
+
+
+
+
+
+
+
+			
+			function ws_service(velo, srv, min, max){
+				var aws = new WebSocket("ws://localhost:2208");	
+			    aws.onopen = function() {			    	
+					myDict = {
+								"client_type"	: 1,
+								"data_status" 	: 1,
+								"velo" 			: velo, // 0 - 4096
+			       				"mpg_step" 		: 0,
+			       				"data_status" 	: 1,
+						    	"server": {
+			       					"status" 	: 1,
+			       					"IP"		: localStorage.getItem("my_ip")
+			       				},
+			       				"servo_data":{
+			                        "servo_no" : srv,
+			                        "min"      : min,
+			                        "max"      : max,
+			                    }
+					}
+					aws.send(JSON.stringify(myDict));
+					// console.log(myDict);			
+				};
+
+				aws.onmessage = function(e) {
+					setTimeout(function timeout() {
+						if(JSON.parse(e.data).client_type == 0){
+							// aws.send(JSON.stringify(myDict)); 
+							console.log(JSON.parse(e.data));
+						}
+					}, 1000);
+				};
+
+				aws.onerror = function (error) {
+				  console.error('WebSocket Error ' + error);
+				};
+
+
+				aws.onclose = function() {};
+
+
+				init_angle(velo, srv, min, max);
+
+
+				model_service("all", null)
+
+			}
+
+
+
+			
+			function model_service(method, id){
+
+			}
+
+
+
+
+
+
+			
+			var rightElbow, rightShoulder, righthandIK, 
+			    rightAngkle, rightCalves, rightThigh, rightLegIK;
+			var leftElbow, leftShoulder, lefthandIK,
+			    leftAngkle, leftCalves, leftThigh, leftLegIK;
+			var bodyAngle, controlAngleZ, controlAngleX, controlPosY, is_swr=0;
+
+			function init_angle(velo, srv, min, max){
+
+				scene.traverse(function(child){
+		            if (child instanceof THREE.SkinnedMesh){
+		            	// console.log(child.skeleton.bones);
+						rightElbow		= child.skeleton.bones[17].rotation.z;
+						rightShoulder	= child.skeleton.bones[16].rotation.x;
+						righthandIK     = child.skeleton.bones[3].position;
+
+						rightAngkle		= child.skeleton.bones[15].rotation.z;
+						rightCalves		= child.skeleton.bones[14].rotation.x;
+						rightThigh		= child.skeleton.bones[13].rotation.x;
+						rightLegIK      = child.skeleton.bones[4].position;
+
+						leftElbow		= child.skeleton.bones[11].rotation.z;
+						leftShoulder	= child.skeleton.bones[10].rotation.x;
+						lefthandIK      = child.skeleton.bones[1].position;
+
+						leftAngkle		= child.skeleton.bones[9].rotation.z;
+						leftCalves		= child.skeleton.bones[8].rotation.x;
+						leftThigh		= child.skeleton.bones[7].rotation.x;
+						leftLegIK       = child.skeleton.bones[2].position;
+
+						bodyAngle		= child.skeleton.bones[5].rotation.z;
+						controlAngleZ	= child.skeleton.bones[0].rotation.z;
+						controlAngleX	= child.skeleton.bones[0].rotation.x;
+						controlPosY		= 0;
+						child.skeleton.bones[0].position.y = controlPosY;
+					}else if  (child instanceof THREE.SkeletonHelper){
+		                child.update();
+		            }
+		        });
+
+
+				handsUp(velo, srv, min, max);
+
+
+
+				/*
+				step_forward();
+				
+				for (p = 0;p < 3; p++){
+			    	(function(p) {
+			    		setTimeout(function() { 
+			    			if(p === 0){
+			    				handWave();
+			    			}
+			    			if(p === 1){
+			    				step_forward();
+			    			}
+			    			if(p === 2){
+			    				hello();
+			    			}
+			    		}, 2000 * p);
+					})(p);
+				}
+				*/
+				
+			}
+
+
+
+
+
+
+			/*HANDS*/ /*HANDS*/ /*HANDS*/ /*HANDS*/ /*HANDS*/ /*HANDS*/
+
+			function handsUp(velo, srv, min, max){ 
+			  //   for(i = 0; i < 20; i++)  {
+			  //   	(function(i) {
+			  //   		setTimeout(function() { 
+					//         rightShoulder -= 1;
+					//         leftShoulder -= 1;
+
+					//         set_pos("leftShoulder", leftShoulder);
+					//         set_pos("rightShoulder", rightShoulder);
+					//     }, velo * i);
+					// })(i);
+			  //   }
+
+			  	console.log(velo+"::"+min+"::"+max);
+			  // 	for(pos = min; pos < max; pos++){
+			  //   	(function(pos) {
+			  //   		setTimeout(function() { 
+					//     	rightShoulder += pos/max;
+					// 		leftShoulder += pos/max;
+
+					// 		// console.log(pos/max);
+
+					//     	set_pos("leftShoulder", leftShoulder);
+					// 		set_pos("rightShoulder", rightShoulder);
+					// 	}, velo * pos / 10);
+					// })(pos);
+			  //   }
+
+
+			    console.log(velo+"::"+min+"::"+max);
+			    for(pos = max; pos > min; pos--){
+			    	(function(pos) {
+			    		setTimeout(function() { 
+					    	rightShoulder -= pos/max;
+							leftShoulder -= pos/max;
+
+					    	// set_pos("leftShoulder", leftShoulder);
+							set_pos("rightShoulder", rightShoulder);
+						}, velo * pos/30);
+					})(pos);
+			    }
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			function leftHandsUp(){
+			    for(i = 0; i < 18; i++){
+			    	(function(i) {
+			    		setTimeout(function() { 
+					        leftShoulder -= 9;   
+					        set_pos("leftShoulder", leftShoulder);
+			        	}, 60 * i);
+					})(i);
+			    } 
+			}
+
+
+			function leftHandsDown(){ 
+			    for(i = 0; i < 18; i++){
+			    	(function(i) {
+			    		setTimeout(function() {  
+					        leftShoulder += 9;   
+					        set_pos("leftShoulder", leftShoulder);
+				        }, 60 * i);
+					})(i);
+			    } 
+			}
+
+
+			function rightHandsUp(){
+			    for(i = 0; i < 18; i++){
+			    	(function(i) {
+			    		setTimeout(function() {  
+					        rightShoulder -= 9;
+					        set_pos("rightShoulder", rightShoulder);
+			        	}, 60 * i);
+					})(i);
+			    } 
+			}
+
+
+			function rightHandsDown(){ 
+			    for(i = 0; i < 18; i++){
+			    	(function(i) {
+			    		setTimeout(function() {  
+					        rightShoulder += 9;
+					        set_pos("rightShoulder", rightShoulder);
+			        	}, 60 * i);
+					})(i);
+			    }
+			}
+
+
+			function handsHalf(){
+			    for(i = 0; i < 9; i++){
+			    	(function(i) {
+			    		setTimeout(function() {  
+					        rightShoulder -= 9;
+					        leftShoulder -= 9;   
+					        set_pos('leftShoulder', leftShoulder);
+					        set_pos('rightShoulder', rightShoulder);
+					    }, 60 * i);
+					})(i);
+			    } 
+			}
+
+
+			function handsHalfdown(){
+			    for(i = 0; i < 9; i++){
+			    	(function(i) {
+			    		setTimeout(function() {   
+					        rightShoulder += 9;
+					        leftShoulder += 9;   
+					        set_pos('leftShoulder', leftShoulder);
+					        set_pos('rightShoulder', rightShoulder);
+					    }, 60 * i);
+					})(i);
+			    } 
+			}
+
+
+			function handsDown(){
+			    for(i = 0; i < 18; i++){
+			    	(function(i) {
+			    		setTimeout(function() {  
+					        rightShoulder += 9;
+					        leftShoulder += 9;  
+					        set_pos('leftShoulder', leftShoulder);
+					        set_pos('rightShoulder', rightShoulder);
+					    }, 60 * i);
+					})(i);
+			    }   
+			}
+
+
+
+			function handWave(){
+			    // leftThigh.write(75);
+			    // rightThigh.write(90);
+			    // setTimeout(function() {handsUp();}, 1000);
+
+			    for (i = 2;i < 100; i++){
+			    	(function(i) {
+			    		setTimeout(function() { 
+			    			if(i % 2 === 0){
+			    				handsUp();
+			    			}
+			    			if(i % 3 === 0){
+			    				handsDown();
+			    			}
+			    			if(i % 4 === 0){
+			    				handsLeft();
+			    			}
+			    			if(i % 5 === 0){
+			    				handsRight();
+			    			}
+					    }, 100 * i);
+					})(i);
+			    }
+
+			    // setTimeout(function() {handsDown();}, 1000);
+			}
+
+
+
+			function handsRight(){
+			    for(i = 0; i < 9; i++){
+			    	(function(i) {
+			    		setTimeout(function() {  
+					        rightElbow += 7;
+					        leftElbow += 7;  
+					        set_pos('leftElbow', leftElbow);
+					        set_pos('rightElbow', rightElbow);
+			        	}, 60 * i);
+					})(i);
+			    }
+			}
+
+
+
+			function handsLeft(){
+			    for(i = 0; i < 18; i++){
+			    	(function(i) {
+			    		setTimeout(function() {  
+					        rightElbow -= 7;
+					        leftElbow -= 7;  
+					        set_pos('leftElbow', leftElbow);
+					        set_pos('rightElbow', rightElbow);
+			        	}, 60 * i);
+					})(i);
+			    }   
+			}
+
+
+
+			function hello(){
+				for (i = 2;i < 30; i++){
+			    	(function(i) {
+			    		setTimeout(function() { 
+			    			if(i % 2 === 0){
+			    				handsUp();
+			    				delay(1000);
+			    			}
+
+			    			if(i % 3 === 0){
+			    				for (j = 2;j < 100; j++){
+							    	(function(j) {
+							    		setTimeout(function() { 
+							    			if(j % 2 === 0){
+										        for(k = 0; k < 9; k++){
+										        	(function(i) {
+										    			setTimeout(function() { 
+												            leftElbow += 7;  
+												            set_pos('leftElbow', leftElbow);
+											            }, 100 * k);
+													})(k);
+										        }
+										    	delay(500);
+									    	}
+
+									    	if(j % 3 === 0){
+										        for(k = 0; k < 9; k++){
+										        	(function(i) {
+										    			setTimeout(function() { 
+												            leftElbow -= 7;  
+												            set_pos('leftElbow', leftElbow);
+										            	}, 100 * k);
+													})(k);
+										        }
+										        delay(500);
+										    }
+
+										    if(j % 5 === 0){
+										        for(k = 0; k < 9; k++){
+										        	(function(k) {
+										    			setTimeout(function() { 
+												            leftElbow -= 7;  
+												            set_pos('leftElbow', leftElbow);
+											            }, 100 * k);
+													})(k);
+										        }
+										        delay(500);										    }
+
+										    if(j % 7 === 0){
+										        for(k = 0; k < 9; k++){
+										        	(function(k) {
+										    			setTimeout(function() { 
+												            leftElbow += 7;  
+												            set_pos('leftElbow', leftElbow);
+										            	}, 100 * k);
+													})(k);
+										        }
+										        delay(500);
+										    }
+
+									    }, 100 * j);
+									})(j);
+
+							    }
+							    delay(1000);
+			    			}
+
+			    			if(i % 7 === 0){
+			    				leftHandsDown();
+			    			}
+			    		}, 1000 * i);
+					})(i);
+				}		    
+			}
+
+			/*HANDS*/ /*HANDS*/ /*HANDS*/ /*HANDS*/ /*HANDS*/ /*HANDS*/
+
+
+
+
+
+
+
+
+
+
+
+			function animate_walk(){
+				for (var i = 1; i < 100; i++) {
+				    (function(i) {
+				        setTimeout(function() {
+							walk(i);
+						}, 1000 * i);
+				    })(i);
+				}
+			}
+
+
+
+
+
+			
+			function walk(mod){
+				dly = 65;
+				ang = 15;
+
+				if(mod % 2 === 0){
+					for (var i = 1; i < ang; i++) {
+						    (function(i) {
+						        setTimeout(function() {
+						        	walk_step_right(math.sin(math.unit(i, 'deg')));
+						        	hands(math.sin(i));
+						        }, dly * i);
+						    })(i);
+					}	
+				}else{
+					for (var i = 1; i < ang; i++) {
+						    (function(i) {
+						        setTimeout(function() {
+						        	// hands(math.sin(i));
+						        	walk_step_left(math.sin(math.unit(i, 'deg')));
+						        }, dly * i);
+						    })(i);
+					}
+				}	
+			}
+
+
+
+			function walk_step_right(val){
+				scene.traverse(function(child){
+		            if (child instanceof THREE.SkinnedMesh){
+		            	child.skeleton.bones[0].rotation.set(val*1.5, 0, val);
+		            	child.skeleton.bones[11].rotation.set(0, 0, -val);
+		            	child.skeleton.bones[0].position.set(0, val*25, 0);
+
+		            	child.skeleton.bones[4].rotation.set(-val, 0, 0);
+		            	child.skeleton.bones[6].rotation.set(0, 0, -val);
+
+		            	child.skeleton.bones[10].rotation.set(-val, 0, 0);
+			       	}else if  (child instanceof THREE.SkeletonHelper){
+		                child.update();
+		            }
+			    });
+			}
+
+
+
+			function hands(val){
+				scene.traverse(function(child){
+		            if (child instanceof THREE.SkinnedMesh){
+		            	child.skeleton.bones[3].rotation.set(0, 0, child.skeleton.bones[3].rotation.z - val);
+		            	child.skeleton.bones[2].rotation.set(child.skeleton.bones[2].rotation.x - val, 0, 0);
+
+		            	child.skeleton.bones[8].rotation.set(0, 0, val + child.skeleton.bones[8].rotation.z);
+		            	child.skeleton.bones[7].rotation.set(child.skeleton.bones[7].rotation + val, 0, 0);
+			       	}else if  (child instanceof THREE.SkeletonHelper){
+		                child.update();
+		            }
+			    });
+			}
+
+
+
+
+			function walk_step_left(val){
+				scene.traverse(function(child){
+		            if (child instanceof THREE.SkinnedMesh){
+		            	child.skeleton.bones[0].rotation.set(val*1.5, 0, -val);
+		            	child.skeleton.bones[6].rotation.set(0, 0, val);
+		            	child.skeleton.bones[0].position.set(0, val*25, 0);
+
+		            	child.skeleton.bones[9].rotation.set(-val, 0, 0);
+		            	child.skeleton.bones[11].rotation.set(0, 0, val);
+
+		            	child.skeleton.bones[5].rotation.set(-val, 0, 0);
+			       	}else if  (child instanceof THREE.SkeletonHelper){
+		                child.update();
+		            }
+			    });
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			var delayVal2 = 60, delayVal = 160;
+			var time = true; 
+			/*LEGS*/ /*LEGS*/ /*LEGS*/ /*LEGS*/ /*LEGS*/ /*LEGS*/
+			function legs(){
+				for (p = 2;p < 10; p++){
+			    	(function(p) {
+			    		setTimeout(function() { 
+			    			if(p === 2){
+			    				left_angkle();
+			    			}
+			    			if(p === 3){
+							    right_angkle();
+			    			}
+			    			if(p === 4){
+							    right_angkle();
+			    			}
+			    			if(p === 5){
+			    				left_angkle();
+			    			}
+
+			    			if(p === 6){
+			    				swing_left_angkle();
+			    			}
+			    			if(p === 7){
+							    swing_right_angkle();
+			    			}
+			    			if(p === 8){
+							    swing_right_angkle();
+			    			}
+			    			if(p === 9){
+			    				swing_left_angkle();
+			    			}
+			    		}, 800 * p);
+					})(p);
+			    }
+			}
+
+
+
+
+
+			/*FORWARD*/ /*FORWARD*/ /*FORWARD*/ /*FORWARD*/ /*FORWARD*/ /*FORWARD*/
+			function step_forward(){
+			    for (p = 0;p < 9; p++){
+			    	(function(p) {
+			    		setTimeout(function() { 
+			    			if(p === 0){
+			    				left_knee_thigh_forward();
+			    			}
+			    			if(p === 1){
+			    				swing_left_angkle();
+			    			}
+			    			if(p === 2){
+			    				left_knee_thigh_backward();
+			    			}
+			    			if(p === 3){
+			    				right_knee_thigh_backward();
+			    			}
+			    			if(p === 4){
+			    				swing_right_angkle();
+			    			}
+			    			if(p === 5){
+			    				swing_right_angkle();
+			    			}
+			    			if(p === 6){
+			    				right_knee_thigh_forward();
+			    			}
+			    			if(p === 7){
+			    				left_knee_thigh_backward();
+			    			}
+			    			if(p === 8){
+			    				swing_left_angkle();
+			    			}
+			    		}, 800 * p);
+					})(p);
+				}
+			    // time = false;
+			}
+
+			function left_knee_thigh_forward(){
+				for(i = 0; i < 10; i++){
+			    	(function(i) {
+						setTimeout(function() {  
+					        if (time){
+					            leftThigh -= 2;               
+					            leftKnee += 2;
+					            set_pos('leftThigh', leftThigh); 
+								set_pos('leftKnee', leftKnee); 
+					            delay(delayVal2);
+					        }
+			        	}, delayVal2 * i);
+					})(i);
+			    }	
+			}
+
+
+			function left_knee_thigh_backward(){
+				for(i = 0; i < 10; i++){
+			    	(function(i) {
+						setTimeout(function() {  
+					        if (time){
+					            leftThigh += 2;               
+					            leftKnee -= 2;
+					            set_pos('leftThigh', leftThigh); 
+								set_pos('leftKnee', leftKnee); 
+					            delay(delayVal2);
+					        }
+			        	}, delayVal2 * i);
+					})(i);
+			    }	
+			}
+
+
+
+			function right_knee_thigh_backward(){
+				for(i = 0; i < 10; i++){
+			    	(function(i) {
+						setTimeout(function() {  
+					        if (time){
+					            rightKnee -= 2;               
+					            rightThigh += 2;
+					            set_pos('rightKnee', rightKnee); 
+								set_pos('rightThigh', rightThigh); 
+					            delay(delayVal2);
+					        }
+			        	}, delayVal2 * i);
+					})(i);
+			    }		
+			}
+
+
+			function right_knee_thigh_forward(){
+				for(i = 0; i < 10; i++){
+			    	(function(i) {
+						setTimeout(function() {  
+					        if (time){
+					            rightKnee += 2;               
+					            rightThigh -= 2;
+					            set_pos('rightKnee', rightKnee); 
+								set_pos('rightThigh', rightThigh); 
+					            delay(delayVal2);
+					        }
+			        	}, delayVal2 * i);
+					})(i);
+			    }		
+			}
+
+
+			/*ANGKLE*/ /*ANGKLE*/ /*ANGKLE*/ /*ANGKLE*/ /*ANGKLE*/ /*ANGKLE*/
+			function left_angkle(){
+				for(i = 0; i < 10; i++){
+					(function(i) {
+						setTimeout(function() { 
+							leftAngkle += 2;
+							rightAngkle -= 2;
+
+							set_pos('leftAngkle', leftAngkle); 
+							set_pos('rightAngkle', rightAngkle); 
+
+						}, delayVal2 * i);
+					})(i);
+				}
+			}
+
+
+			function swing_left_angkle(){
+				for(i = 0; i < 10; i++){
+					(function(i) {
+						setTimeout(function() {
+							controlAngleZ += 2;
+							set_pos('controlAngleZ', controlAngleZ);
+							is_swr = 0;
+
+							leftAngkle += 2;
+							rightAngkle += 2;
+
+							set_pos('leftAngkle', leftAngkle); 
+							set_pos('rightAngkle', -rightAngkle); 
+
+						}, delayVal2 * i);
+					})(i);
+				}
+			}
+
+
+
+			function right_angkle(){
+				for(i = 0; i < 10; i++){
+					(function(i) {
+						setTimeout(function() {  
+							leftAngkle -= 2;
+							rightAngkle += 2;
+
+							set_pos('leftAngkle', leftAngkle); 
+							set_pos('rightAngkle', rightAngkle); 
+
+						}, delayVal2 * i);
+					})(i);
+				}
+			}
+
+
+			function swing_right_angkle(){
+				for(i = 0; i < 10; i++){
+					(function(i) {
+						setTimeout(function() {
+							controlAngleZ -= 2;
+							set_pos('controlAngleZ', controlAngleZ);
+							is_swr = 1;
+
+							leftAngkle -= 2;
+							rightAngkle -= 2;
+
+							set_pos('leftAngkle', -leftAngkle); 
+							set_pos('rightAngkle', rightAngkle); 
+
+						}, delayVal2 * i);
+					})(i);
+				}
+			}
+			/*ANGKLE*/ /*ANGKLE*/ /*ANGKLE*/ /*ANGKLE*/ /*ANGKLE*/ /*ANGKLE*/
+
+			/*FORWARD*/ /*FORWARD*/ /*FORWARD*/ /*FORWARD*/ /*FORWARD*/ /*FORWARD*/
+
+
+
+
+
+
+
+
+			/*TURN LEFT*/ /*TURN LEFT*/ /*TURN LEFT*/ /*TURN LEFT*/ /*TURN LEFT*/ /*TURN LEFT*/
+			function turnLeft(){
+				left_knee_thigh_forward();
+				swing_left_angkle();
+				//left hip
+				swing_right_angkle();
+				swing_right_angkle();//with hip
+				//right hip
+			}
+			/*TURN LEFT*/ /*TURN LEFT*/ /*TURN LEFT*/ /*TURN LEFT*/ /*TURN LEFT*/ /*TURN LEFT*/
+
+
+
+
+
+
+
+
+			/*TURN RIGHT*/ /*TURN RIGHT*/ /*TURN RIGHT*/ /*TURN RIGHT*/ /*TURN RIGHT*/ /*TURN RIGHT*/
+			/*TURN RIGHT*/ /*TURN RIGHT*/ /*TURN RIGHT*/ /*TURN RIGHT*/ /*TURN RIGHT*/ /*TURN RIGHT*/
+
+
+
+
+
+
+
+
+
+
+			function set_pos(type, val){
+				scene.traverse(function(child){
+		            if (child instanceof THREE.SkinnedMesh){
+						if(type == 'leftShoulder'){
+							child.skeleton.bones[10].rotation.x = math.sin(math.unit(val, 'deg'));
+						}
+						else if(type == 'rightShoulder'){
+							child.skeleton.bones[16].rotation.x = math.sin(math.unit(val, 'deg'));
+						}
+						else if(type == 'leftElbow'){
+							child.skeleton.bones[11].rotation.z = math.sin(math.unit(val, 'deg'));
+						}
+						else if(type == 'rightElbow'){
+							child.skeleton.bones[17].rotation.z = math.sin(math.unit(val, 'deg'));
+						}
+						else if(type == 'leftAngkle'){
+							child.skeleton.bones[9].rotation.z = math.sin(math.unit(val, 'deg'));
+						}
+						else if(type == 'leftCalves'){
+							child.skeleton.bones[8].rotation.x = math.sin(math.unit(val, 'deg'));
+						}
+						else if(type == 'leftThigh'){
+							child.skeleton.bones[7].rotation.x = math.sin(math.unit(val, 'deg'));
+						}
+						else if(type == 'rightAngkle'){
+							child.skeleton.bones[15].rotation.z = math.sin(math.unit(val, 'deg'));
+						}
+						else if(type == 'rightCalves'){
+							child.skeleton.bones[14].rotation.x = math.sin(math.unit(val, 'deg'));
+						}
+						else if(type == 'rightThigh'){
+							child.skeleton.bones[13].rotation.x = math.sin(math.unit(val, 'deg'));
+						}
+						else{
+							child.skeleton.bones[0].rotation.z = math.sin(math.unit(val, 'deg'));
+							if(is_swr == 1){
+								child.skeleton.bones[0].position.set(0, -val*0.6, 0);
+							}else{
+								child.skeleton.bones[0].position.set(0, val*0.6, 0);
+							}
+						}
+					}else if  (child instanceof THREE.SkeletonHelper){
+		                child.update();
+		            }
+		        });
+			}
+
+
+
+			function delay(val){
+				setTimeout(function() {/**/}, val);
+			}
+
+
+
+
+		</script>
+
+
+	</body>
+
+</html>

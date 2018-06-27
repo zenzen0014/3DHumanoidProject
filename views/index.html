@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AJAX API Tutorial</title>
+</head>
+<body>
+    <h1>AJAX API Tutorial</h1>
+    <button id="get-button">READ/GET Products</button>
+    <form>
+        <input type="text" id="create-input">
+        <button id="create-form">Create/POST</button>
+    </form>
+    <hr>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <script src="static/js/jquery.js"></script>
+    <!-- <script src="scripts.js"></script> -->
+
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            get_all_data();
+        });
+
+
+        function get_all_data(){
+            $.ajax({
+                url: '/products',
+                contentType: 'application/json',
+                success: function(response) {
+                    console.log(response);
+                    var tbodyEl = $('tbody');
+
+                    tbodyEl.html('');
+
+                    response.products.forEach(function(product) {
+                        tbodyEl.append('\
+                            <tr>\
+                                <td class="id">' + product.id + '</td>\
+                                <td><input type="text" class="name" value="' + product.name + '"></td>\
+                                <td>\
+                                    <button class="update-button">UPDATE/PUT</button>\
+                                    <button class="delete-button">DELETE</button>\
+                                </td>\
+                            </tr>\
+                        ');
+                    });
+                }
+            });
+        }
+
+
+            // CREATE/POST
+        $('#create-form').on('click', function(event) {
+            event.preventDefault();
+
+            var createInput = $('#create-input');
+
+            if(createInput!=null || createInput!=''){
+                $.ajax({
+                    url: '/products',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ name: createInput.val() }),
+                    success: function(response) {
+                        console.log(response);
+                        createInput.val('');
+                        $('#get-button').click();
+
+                        get_all_data(); 
+                    }
+                });
+            }
+        });
+
+
+        // UPDATE/PUT
+        $('table').on('click', '.update-button', function() {
+            var rowEl = $(this).closest('tr');
+            var id = rowEl.find('.id').text();
+            var newName = rowEl.find('.name').val();
+
+            $.ajax({
+                url: '/products/' + id,
+                method: 'PUT',
+                contentType: 'application/json',
+                data: JSON.stringify({ newName: newName }),
+                success: function(response) {
+                    console.log(response);
+                    $('#get-button').click();
+                    get_all_data();
+                }
+            });
+        });
+
+        // DELETE
+        $('table').on('click', '.delete-button', function() {
+            var rowEl = $(this).closest('tr');
+            var id = rowEl.find('.id').text();
+
+            $.ajax({
+                url: '/products/' + id,
+                method: 'DELETE',
+                contentType: 'application/json',
+                success: function(response) {
+                    console.log(response);
+                    $('#get-button').click();
+                    get_all_data();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

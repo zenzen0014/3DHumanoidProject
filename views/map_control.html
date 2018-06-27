@@ -1,0 +1,4223 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<title><%= title %></title>
+  	<link rel="icon" href="static/img/icon.jpg">
+  	
+  	<!-- Tell the browser to be responsive to screen width -->
+  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+	<!-- Bootstrap 3.3.7 -->
+  	<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+  	<!-- Font Awesome -->
+	<link rel="stylesheet" href="static/bootstrap/plugin/font-awesome/css/font-awesome.css">
+
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="static/bootstrap/plugin/Ionicons/css/ionicons.min.css">
+
+  	<!-- bootstrap slider -->
+  	<link rel="stylesheet" href="static/bootstrap/plugin/bootstrap-slider/slider.css">
+
+	<!-- Theme style -->
+	<link rel="stylesheet" href="static/bootstrap/dist/css/AdminLTE.min.css">
+
+	<!-- AdminLTE Skins. Choose a skin from the css/skins
+	       folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="static/bootstrap/dist/css/skins/_all-skins.min.css">
+
+
+	<link rel="stylesheet" href="static/js/toast/toastr.css">
+	<link rel="stylesheet" href="static/js/sweetalert/sweetalert.css">
+
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+	<style>
+			body {
+				/*background-color: #000;
+				color: #000;*/
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				padding: 10px;
+				width: 100%;
+				text-align: center;
+			}
+
+			a {
+				/*text-decoration: underline;*/
+				cursor: pointer;
+				/*color: #bbb;*/
+			}
+			
+			.ac {  /* prevent dat-gui from being selected */
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			.no-pointer-events {
+				pointer-events: none;
+			}
+			.control-disabled {
+				color: #888;
+				text-decoration: line-through;
+			}
+
+			#dat {
+				left: 10;
+				position: absolute;
+				top: 0;
+				z-Index: 200;
+			}
+
+
+			#stats{
+				position: fixed;
+			    bottom: 0px;
+			    left: 0px;
+			    cursor: pointer;
+			    opacity: 0.9;
+			    z-index: 10000;
+			}
+
+	</style>
+</head>
+
+
+
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+
+	<div class="wrapper">
+
+
+
+
+
+	  	<header class="main-header">
+	    	<!-- Logo -->
+	    	<a href="#" class="logo">
+	      		<span class="logo-mini"><b>3</b>DH</span>
+	      		<span class="logo-lg"><b>Humanoid</b>3D</span>
+	    	</a>
+
+		    <nav class="navbar navbar-static-top">
+		     	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" id="mb_tb_btn">
+		        	<span class="sr-only">Toggle navigation</span>
+		      	</a>
+
+
+		      	<div class="navbar-custom-menu">
+	        		<ul class="nav navbar-nav">
+	          			<li>
+	            			<a href="#" data-toggle="control-sidebar" id="sb_tb_btn">
+	            			<i class="fa fa-bars" id="ic_sb_tb_tb"></i></a>
+	          			</li>
+	        		</ul>
+	      		</div>
+
+		    </nav>
+	  	</header>
+
+
+
+
+
+
+
+	  	<!-- Left side column. contains the logo and sidebar -->
+	  	<aside class="main-sidebar" id="ms">
+	    	<!-- sidebar: style can be found in sidebar.less -->
+	   		<section class="sidebar">
+	   			<!-- sidebar menu: : style can be found in sidebar.less -->
+	      		<ul class="sidebar-menu" data-widget="tree">
+	        		<li class="header">MAIN NAVIGATION</li>
+	        		
+	        		<li id="mb_1">
+	          			<a href="/boolean_animation">
+	            			<i class="fa fa-dashboard"></i> <span>Boolean Animation</span>
+	            			<!-- <span class="pull-right-container">
+	              				<i class="fa fa-angle-left pull-right"></i>
+	            			</span> -->
+	          			</a>
+	        		</li>
+
+
+	        		<li id="mb_2">
+	          			<a href="/map_control">
+	            			<i class="fa fa-gg"></i> <span>Interactive Motion</span>
+	          			</a>
+	        		</li>
+
+
+	        		<li id="mb_3">
+	          			<a href="/custom_motion">
+	            			<i class="fa fa-object-ungroup"></i> <span>Custom Motion</span>
+	          			</a>
+	        		</li>
+
+
+	        		<!--
+	        		<li>
+	          			<a href="#">
+	            			<i class="fa fa-th"></i> <span>Widgets</span>
+				            <span class="pull-right-container">
+				              	<small class="label pull-right bg-green">new</small>
+				            </span>
+	          			</a>
+	        		</li>
+
+	        		<li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-edit"></i> <span>Forms</span>
+				            <span class="pull-right-container">
+				              	<i class="fa fa-angle-left pull-right"></i>
+				            </span>
+				        </a>
+				        <ul class="treeview-menu">
+				            <li>
+				            	<a href="pages/forms/general.html">
+				            		<i class="fa fa-circle-o"></i> General Elements
+				            	</a>
+				            </li>
+				            <li>
+				            	<a href="pages/forms/advanced.html">
+				            		<i class="fa fa-circle-o"></i> Advanced Elements
+				            	</a>
+				            </li>
+				        </ul>
+			        </li>
+			        -->
+	        	</ul>
+	   		</section>
+	   	</aside>
+
+
+
+
+
+
+
+
+	  	<div class="content-wrapper" id="wrapper">
+	  		<div class="row">
+	  			<div class="col-lg-12" style="padding-left: 0px;">
+					<div class="row">
+						<div id="container" class="col-md-12" style="padding-left: -15px;">
+							<div id="info" class="col-md-3" style="font-family: Monospace;color:#c5c2c2">
+									<%= title %> <br/> <%= name %> <br/>
+									<strong><font size="5"> <%= content %> </font></strong><br/> *Turn on The Robot First and elect the Map in the Left Side Bar*
+							</div>
+							<!-- <div class="col-md-3"></div> -->
+							<div id="dat" class="col-md-3"></div>
+							<div id="stats" class="col-md-3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+
+
+
+
+
+
+	    <!-- <footer class="main-footer">
+		    <div class="pull-right hidden-xs">
+		      	<b>Version</b> 1.0.0
+		    </div>
+	    	<strong>
+	    		Copyright &copy; 2018 <a href="#">ZenZen</a>.
+	    	</strong> All rights reserved.
+	  	</footer> -->
+
+
+
+
+
+
+
+
+	  	<!-- Control Sidebar -->
+	 	<aside class="control-sidebar control-sidebar-dark" id="navbar">
+		    <!-- Create the tabs -->
+		    <!-- <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+		      	<li class="active">
+		      		<a href="#control-sidebar-home-tab" data-toggle="tab">
+		      			<i class="fa fa-puzzle-piece"></i>
+		      		</a>
+		      	</li>
+		      	<!-- <li>
+		      		<a href="#control-sidebar-settings-tab" data-toggle="tab">
+		      			<i class="fa fa-history"></i>
+		      		</a>
+		      	</li> --
+		    </ul> -->
+
+		    <!-- Tab panes -->
+		    <div class="tab-content">
+
+	      		<!-- Home tab content -->
+	      		<div class="tab-pane active" id="control-sidebar-home-tab">
+	      			<h3 class="control-sidebar-heading" style="margin-top:0px"><i class="fa fa-puzzle-piece"></i> Map Options</h3>
+	      			<div class="col-lg-12 ct_slider" style="overflow-y: scroll;">
+                        
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="1">
+                        	<img class="img-responsive" src="static/img/maze_11.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Map 1</strong>
+                        </button>
+
+                        <br>
+
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="2" >
+                        	<img class="img-responsive" src="static/img/maze_21.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Map 2</strong>
+                        </button>
+                        <br>
+
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="3">
+                        	<img class="img-responsive" src="static/img/maze_31.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Map 3</strong>
+                        </button>
+                        <br>
+
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="4">
+                        	<img class="img-responsive" src="static/img/maze_4.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Map 4</strong>
+                        </button>
+                        <br>
+
+
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="5">
+                        	<img class="img-responsive" src="static/img/maze_0.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Random Map</strong>
+                        </button>
+
+	      			</div>		
+	      		</div>
+
+
+	      		<!-- Settings tab content -->
+	      		<!-- <div class="tab-pane" id="control-sidebar-settings-tab">
+	      			<h3 class="control-sidebar-heading">Recent Activity</h3>
+	        		<ul class="control-sidebar-menu" id="motion_history_content">
+			         
+	       			</ul>
+	        		<!-- /.control-sidebar-menu --
+	      		</div> -->
+	     		 <!-- /.tab-pane -->
+	    	</div>
+	  	</aside>
+		<!-- /.control-sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+		       immediately after the control sidebar -->
+	  	<div class="control-sidebar-bg"></div>
+
+
+
+
+
+
+	</div>
+
+
+
+		<!-- THREE JS PLUGIN -->
+	<script src="static/js/three.js/three.min.js"></script>
+	<script src="static/js/three.js/Detector.js"></script>
+	<script src="static/js/three.js/OrbitControls.js"></script>
+	<script src="static/js/three.js/stats.min.js"></script>
+	<script src="static/js/three.js/dat.gui.min.js"></script>
+	<script src="static/js/three.js/DragControls.js"></script>
+	<script src="static/js/three.js/TrackballControls.js"></script>
+	<!-- <script src="static/js/three.js/AnimationUtils.js"></script> -->
+
+	<!-- <script src="static/js/timeliner/timeliner_gui.min.js"></script>
+	<script src="static/js/timeliner/TimelinerController.js"></script> -->
+
+
+
+	<!-- THREE JS PLUGIN -->
+	<script src="static/js/app/app.js"></script>
+
+
+	<!-- jQuery 3 -->
+	<script src="static/bootstrap/plugin/jquery/dist/jquery.min.js"></script>
+  	
+	<!-- Bootstrap 3.3.7 -->
+	<script src="static/bootstrap/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Slimscroll -->
+	<script src="static/bootstrap/plugin/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- FastClick -->
+	<script src="static/bootstrap/plugin/fastclick/lib/fastclick.js"></script>
+
+	<script src="static/bootstrap/plugin/moment/min/moment.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="static/bootstrap/dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="static/bootstrap/dist/js/demo.js"></script>
+	<!-- 
+	<script src="static/bootstrap/plugin/bootstrap-slider/bootstrap-slider.js"></script>
+	<script>
+	  	$(function () {
+	    	/* BOOTSTRAP SLIDER */
+	    	$('.slider').slider()
+	  	})
+	</script>
+	-->
+
+
+
+	<!-- JAVASCRIPT LIBRARY-->
+	<script src="static/js/toast/toastr.min.js"></script>
+	<script src="static/js/sweetalert/sweetalert.min.js"></script>
+	<script src="static/js/mathjs/math.js"></script>
+	<!-- <script src="static/js/web_socket.js"></script> -->
+	<script src="static/js/underscore-min.js"></script>
+
+	<script src="static/bootstrap/plugin/pace.min.js"></script>
+
+	<script src="/socket.io/socket.io.js"></script>
+
+	<script src="static/js/pso.js"></script>
+
+
+				
+	<!-- JAVASCRIPT LIBRARY-->
+
+
+
+
+
+
+
+		<script>
+
+			if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+			var container = document.getElementById( 'container' );
+
+			var scene, renderer, camera, controls, stats, pointLight, mainLight;
+			var light = [2];
+			var raycaster = new THREE.Raycaster();
+			var INTERSECTED;
+			var mesh, skeleton, mixer;
+
+			var crossFadeControls = [];
+
+			var idleAction, walkAction, runAction, swingRightAction, swingLeftAction,
+				danceAction_1, danceAction_2, danceAction_3;
+
+			var idleWeight, walkWeight, runWeight, sLWeight, sRWeight,
+				danceWeight_1, danceWeight_2, danceWeight_3;
+			var actions;
+			var settings;
+
+
+			var isPlay = false, lastestAction;
+
+			var clock = new THREE.Clock();
+
+			var singleStepMode = false;
+			var sizeOfNextStep = 0;
+
+
+			var url = 'static/json/FinalModelDancesOKE.json';  //FinalModel marine_anims FinalModelDance FinalModel3Dance fmd FinalModel3Dance fmd.json FinalModelDanceIK FinalModelDancesOKE
+			//modelsize 126,789 KB (3756993 Lines)
+
+
+
+
+			var arr = window.location.href.split("/");
+			var result = arr[0] + "//" + arr[2];
+			var socket = io.connect(result);
+
+
+
+			
+
+
+
+
+
+
+			$(document).ready(function() {
+
+	            toast_options= {
+			        "closeButton": true,
+			        "debug": false,
+			        "newestOnTop": false,
+			        "progressBar": true,
+			        "positionClass": "toast-top-right",
+			        "preventDuplicates": true,
+			        "onclick": null,
+			        "showDuration": "300",
+			        "hideDuration": "300",
+			        "timeOut": "1500",
+			        "extendedTimeOut": "1000",
+			        "showEasing": "swing", //easeOutBounce swing
+			        "hideEasing": "linear", //easeInBack linear
+			        "closeEasing": "linear",
+			        "showMethod": "fadeIn",//slideDown fadeIn
+			        "hideMethod": "fadeOut", //slideUp fadeOut
+			        "closeMethod": "fadeOut"
+			    }
+
+
+
+			    socket_service();
+
+
+	            init_stat();
+
+
+	            toastr.success('Welcome to The Interactive Control', 'Success', toast_options);
+
+
+
+
+	            if(window.innerHeight > 740){
+	            	document.getElementsByClassName("ct_slider")[0].style.height = (window.innerHeight* 5/6) + "px";
+	            	// document.getElementsByClassName("control-sidebar-dark")[0].style.opacity = 1;
+	        	}else{
+	        		document.getElementsByClassName("ct_slider")[0].style.height = (window.innerHeight* 3/4) + "px";
+	        		// document.getElementsByClassName("control-sidebar-dark")[0].style.opacity = 0.5;
+	        	}
+
+
+
+
+	        	$("#mb_2").addClass("active");
+
+
+	   			//dt = {
+				// 	"status" 	: 1,//when message coming
+				// 	"menu_type" : 1, //1 for interactive control, 2 for custom motion
+				// 	"type_con"  : 1,//direct control
+				// 	"action" 	: "walk",//action name
+				// 	"name" 		: "ankle.L",//bone / object name
+				// 	"tetha"  	: 10,//theta value //xval.toString(),
+				// 	"ref_min" 	: 10,//reference tetha max
+				// 	"ref_max" 	: -10,//refrence tetha min
+				// 	"snum"  	: 4,	//servo number
+				// }
+				// socket.emit('bind_json_data', dt); //emitting data to teh sever
+        	});
+
+
+
+
+
+			
+
+			init_scene(); // Initialize scene, light and renderer
+			
+			
+
+			init_renderer();
+			
+
+
+
+
+
+			// Load skinned mesh
+			new THREE.ObjectLoader().load(url,function(JSONModel){
+
+				JSONModel.traverse(function(child){
+
+					if(child instanceof THREE.SkinnedMesh){
+
+						mesh = child;
+
+					}
+
+				});
+
+
+
+				if(mesh === undefined){
+
+					console.log( 'Unable to find a SkinnedMesh in this place:: ' + url);
+					return;
+
+				}
+
+
+
+
+
+				// Add mesh and skeleton helper to scene
+				init_model(mesh);
+
+
+				
+
+				set_light();
+	
+
+
+
+				init_camera_control();
+
+
+
+				init_ground(0);
+
+
+				// Listen on window resizing and start the render loop
+				window.addEventListener( 'resize', onWindowResize, false );
+
+
+
+
+
+				animate();			
+			});
+
+
+
+
+
+
+
+			
+
+			var is_wemos_connected = 0;
+			function socket_service(){
+				socket.emit('connection', "client connected"); 
+
+				socket.on('message', function (data) {
+				});
+
+
+				socket.emit('disconnect', "client disconnected"); 
+
+
+				socket.on("msg_brc", function(data){
+					// console.log(data);
+				});
+
+
+				socket.on("wemos_connected", function(data){
+					// console.log(data);
+					toastr.success('Wemos connected', 'Success', toast_options);
+					is_wemos_connected = 1;
+					stopAllActions();
+					activateAllActions(0);
+				});
+
+				
+				socket.emit("check_wemos", "");
+
+				socket.on("check_wemos_feedback", function(data){
+					if(data.is_wemos_connected == 1){
+						is_wemos_connected = 1;
+					}
+				});
+
+			}
+
+
+
+
+
+
+
+
+
+			function init_model(json) {
+				
+				scene.add( json );
+				scene.rotation.y = - Math.PI / 90;
+				// camera.target = scene;
+				
+
+				init_skeleton(json);
+
+				// Initialize mixer and clip actions
+				init_mixer(json);
+
+
+
+				// init_aabb("hmd", mesh);
+			}
+
+
+
+
+
+
+
+
+
+			function init_skeleton(json) {
+				skeleton = new THREE.SkeletonHelper( json );
+				skeleton.visible = false;
+				scene.add( skeleton );
+				// console.log(scene);
+			}
+
+
+
+
+
+
+
+
+
+			function init_mixer(json) {
+				mixer = new THREE.AnimationMixer( json );
+
+				idleAction = mixer.clipAction( 'idle' );
+				lastestAction = idleAction;
+
+				walkAction = mixer.clipAction( 'walk' );
+				swingRightAction = mixer.clipAction( 'swing_right' );
+				swingLeftAction = mixer.clipAction( 'swing_left' );
+
+				runAction = mixer.clipAction( 'run' );
+
+				danceAction_1 = mixer.clipAction( 'dance_1' );
+				danceAction_2 = mixer.clipAction( 'dance_2' );
+				danceAction_3 = mixer.clipAction( 'dance_4' );
+
+				// walkAction.setLoop( THREE.LoopOnce )
+
+				actions = [ idleAction, walkAction, runAction, swingRightAction, swingLeftAction,
+							danceAction_1, danceAction_2, danceAction_3 ];
+
+				activateAllActions(0);
+				pauseAllActions();
+
+				// console.log(mixer);	
+			}
+
+
+
+
+
+
+
+
+
+			var cam_x=0; cam_z=0, light_x = [0, 0, 0], light_z = [0, 0, 0];
+			function init_camera_control(){
+				// Initialize camera and camera controls
+				var radius = mesh.geometry.boundingSphere.radius;
+
+				var aspect = window.innerWidth / window.innerHeight;
+				camera = new THREE.PerspectiveCamera( 45, aspect, 1, 10000 );
+				camera.position.set( 0, 300, 400 );
+				camera.updateMatrix();				
+
+				cam_x = camera.position.x;
+				cam_z = camera.position.z;
+				// console.log(camera);
+
+				controls = new THREE.OrbitControls( camera, renderer.domElement );
+				controls.maxPolarAngle = Math.PI * 0.35;//rotate camera vertically
+				controls.target.set( 0, 200, 200 );
+				controls.maxDistance = 2000;
+				// console.log(controls.position0);
+				controls.update();
+			}
+
+
+
+
+
+
+
+
+
+			function init_stat(){
+				stats = new Stats();
+				stats.showPanel(1);
+				// stats.dom.style.top = '50px';
+				stats.dom.style.left = (window.innerWidth/2)+'px';
+				container.appendChild( stats.dom );
+			}
+			
+
+
+
+
+
+
+
+
+			function init_scene() {
+				scene = new THREE.Scene();
+				scene.background = new THREE.Color( 0x000000 );
+				scene.fog = new THREE.Fog( 0x000000, 1000, 2500 );
+				// scene.add( new THREE.AmbientLight( 0xffffff ) );
+			}
+			
+
+
+
+
+
+
+
+			function init_renderer() {
+				renderer = new THREE.WebGLRenderer( { antialias: true } );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setClearColor( 0x000000 );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				renderer.shadowMap.enabled = true;
+
+				container.appendChild( renderer.domElement );
+			}
+
+
+
+
+
+
+
+
+
+			function set_light() {
+				//LIGHT
+				scene.add( new THREE.AmbientLight( 0x151515 ) );
+
+				mainLight = new THREE.DirectionalLight( 0xdfebff, 0.8 ); //color , intensity
+				mainLight.position.set( 200, 300, 200 );//intencity, v pos, sh pos
+				// light.position.set( 50, 200, 100 ); 
+				mainLight.castShadow = true;
+				mainLight.shadow.mapSize.width = 1024;
+				mainLight.shadow.mapSize.height = 1024;//1024 512
+
+				mainLight.shadow.camera.near = 500;
+				mainLight.shadow.camera.far = 4000;
+				// mainLight.shadow.camera.left = -1000;
+				// mainLight.shadow.camera.right = 1000;
+				// mainLight.shadow.camera.top = 350;
+				// mainLight.shadow.camera.bottom = -350;
+				scene.add( mainLight );
+
+
+				light[0] = new THREE.DirectionalLight( 0xdfebff, 0.7 , 200 );
+				light[0].position.set( -200, 300, 200 );
+				scene.add( light[0] );
+
+
+				light[1] = new THREE.DirectionalLight( 0xdfebff, 0.4 , 500 );
+				light[1].position.set( 0, 400, -300 );
+				scene.add( light[1] );
+
+
+				pointLight = new THREE.SpotLight( 0x666666 );
+				pointLight.position.set(400, 600, 400);
+				pointLight.castShadow = true;
+				pointLight.shadow.mapSize.width = 1024;
+				pointLight.shadow.mapSize.height = 1024;
+
+				pointLight.shadow.camera.near = 500;
+				pointLight.shadow.camera.far = 4000;
+				// pointLight.shadow.camera.fov = 30;
+				pointLight.penumbra = 1;
+				pointLight.decay = 1;
+				scene.add( pointLight );
+			}
+
+
+
+
+
+
+
+
+			function init_ground(maze_id) {
+				//  GROUND
+				var gt = new THREE.TextureLoader().load( "static/img/grasslight-big.jpg" );
+				var gg = new THREE.PlaneBufferGeometry(3500, 5000);
+				var gm = new THREE.MeshPhongMaterial( { color: 0xffffff, map: gt } );
+
+				var gmm = new THREE.MeshLambertMaterial( { color: 0xffffff, map: gt } ); 
+
+				// Set the "world" modelisation object
+	        	// scene = new THREE.Object3D();
+		        var mesh = new THREE.Mesh();
+		        mesh.receiveShadow = true;
+				mesh.castShadow = true;
+				mesh.name = "plane_mesh";
+
+
+				var ground = new THREE.Mesh( gg, gm );
+				ground.rotation.x = - Math.PI / 2;
+				ground.material.map.repeat.set( 20, 20 );
+				ground.material.map.wrapS = THREE.RepeatWrapping;
+				ground.material.map.wrapT = THREE.RepeatWrapping;
+				// note that because the ground does not cast a shadow, .castShadow is left false
+				
+				ground.receiveShadow = true;
+				ground.castShadow = true;
+				ground.name = "plane_ground";
+
+				mesh.add( ground );	
+
+				maze_generator(maze_id, mesh, gg, gmm);
+
+		        scene.add(mesh);
+
+
+		        // rayCastTest();
+
+			}
+
+
+
+
+
+
+
+
+			var dc_bx_cf = [];//mid h w x z
+			function maze_generator(maze_id, mesh, gg, gm){
+
+				var height = 350, i;
+				var walls = [
+			                new THREE.PlaneGeometry(gg.parameters.height, height),
+			                new THREE.PlaneGeometry(gg.parameters.width, height),
+			                new THREE.PlaneGeometry(gg.parameters.height, height),
+			                new THREE.PlaneGeometry(gg.parameters.width, height)
+			    ];
+			    var wallss = [];
+		        for (i = 0; i < walls.length; i += 1) {
+		            wallss.push(new THREE.Mesh(walls[i], gm));
+		            wallss[i].position.y = height / 2;
+		            wallss[i].name = "wall_"+i;
+		            wallss[i].receiveShadow = true;
+					wallss[i].castShadow = true;
+					wallss[i].material.map.wrapT = THREE.RepeatWrapping;
+		            mesh.add(wallss[i]);
+		        }
+		        wallss[0].rotation.y = -Math.PI / 2;
+		        wallss[0].position.x = gg.parameters.width / 2;
+		        wallss[1].rotation.y = Math.PI;
+		        wallss[1].position.z = gg.height / 2;
+		        wallss[2].rotation.y = Math.PI / 2;
+		        wallss[2].position.x = -gg.parameters.width / 2;
+			    wallss[3].position.z = -gg.parameters.height / 2;
+
+
+
+				if(maze_id == 1){
+
+					var obstacles = [
+			                new THREE.CubeGeometry(1600, 300, 64),//panjang, tinggi, lebar
+			                new THREE.CubeGeometry(1600, 300, 64),
+			                new THREE.CubeGeometry(1200, 300, 64),
+			                new THREE.CubeGeometry(1200, 300, 64),
+			                new THREE.CubeGeometry(1200, 300, 64),
+			                new THREE.CubeGeometry(800, 300, 64),
+			                new THREE.CubeGeometry(800, 300, 64),
+			                new THREE.CubeGeometry(860, 300, 64),
+			                new THREE.CubeGeometry(1100, 300, 64),
+			                new THREE.CubeGeometry(600, 300, 64),
+			                // new THREE.CubeGeometry(900, 1, 30)
+			        ];
+
+			        // // Set and add the obstacles
+			        obstacless = [];
+			        for (i = 0; i < obstacles.length; i += 1) {
+			            obstacless.push(new THREE.Mesh(obstacles[i], gm));
+			            obstacless[i].name = "obstacles_"+[i];
+			            obstacless[i].receiveShadow = true;
+						obstacless[i].castShadow = true;
+						obstacless[i].material.map.wrapT = THREE.RepeatWrapping;
+			            mesh.add(obstacless[i]);
+
+			        }
+			        obstacless[0].position.set(-950, 32, -200);
+			        obstacless[1].position.set(950, 32, -200);
+
+			        obstacless[2].position.set(0, 32, -800);
+
+			        obstacless[3].position.set(1150, 32, -1600);
+
+			        obstacless[4].position.set(-1150, 32, -1400);
+
+			        obstacless[5].position.set(1150, 32, -600);
+			        obstacless[5].rotation.y = -Math.PI / 2;
+
+			        obstacless[6].position.set(-1150, 32, -600);
+			        obstacless[6].rotation.y = -Math.PI / 2;
+
+			        obstacless[7].position.set(575, 32, -1200);
+			        obstacless[7].rotation.y = -Math.PI / 2;
+
+			        obstacless[8].position.set(0, 32, -2000);
+			        obstacless[8].rotation.y = -Math.PI / 2;
+
+			        obstacless[9].position.set(-1150, 32, -1680);
+			        obstacless[9].rotation.y = -Math.PI / 2;
+
+			        // obstacless[10].position.set(1150, 32, -2100);
+			        // obstacless[10].rotation.y = -Math.PI / 2;
+			        // obstacless[10].geometry.colors = 0xff0000;
+
+			        dc_bx = new THREE.Mesh(new THREE.CubeGeometry(1000, 0.2, 1000), new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5}) );
+			        dc_bx.name = "dc_bx";
+					// dc_bx.material.map.wrapT = THREE.RepeatWrapping;
+		            mesh.add(dc_bx);
+		            dc_bx.position.set(1300, 0.1, -2100);
+
+		            dc_bx_cf[0] = 1;
+		            dc_bx_cf[1] = 1000; dc_bx_cf[2] = 1000;
+		            dc_bx_cf[3] = 1300; dc_bx_cf[4] = -2100;
+
+				}else if(maze_id == 2){
+
+					var obstacles = [
+			                new THREE.CubeGeometry(1600, 300, 64),//panjang, tinggi, lebar
+			                new THREE.CubeGeometry(1600, 300, 64),
+			                new THREE.CubeGeometry(1600, 300, 64),
+			                new THREE.CubeGeometry(1400, 300, 64),
+			                new THREE.CubeGeometry(1400, 300, 64),
+
+			                new THREE.CubeGeometry(1400, 300, 64),
+			                new THREE.CubeGeometry(1400, 300, 64),
+			                new THREE.CubeGeometry(1400, 300, 64),
+			                new THREE.CubeGeometry(500, 300, 64),
+			                new THREE.CubeGeometry(500, 300, 64)
+			        ];
+			        // // Set and add the obstacles
+			        obstacless = [];
+			        for (i = 0; i < obstacles.length; i += 1) {
+			            obstacless.push(new THREE.Mesh(obstacles[i], gm));
+			            obstacless[i].name = "obstacles_"+[i];
+			            obstacless[i].receiveShadow = true;
+						obstacless[i].castShadow = true;
+						obstacless[i].material.map.wrapT = THREE.RepeatWrapping;
+			            mesh.add(obstacless[i]);
+			        }
+
+			        obstacless[0].position.set(-950, 32, -200);
+			        obstacless[1].position.set(950, 32, -200);
+
+			        obstacless[2].position.set(0, 32, -1100);
+
+			        obstacless[3].position.set(-1250, 32, -900);
+			        obstacless[3].rotation.y = -Math.PI / 2;
+
+			        obstacless[4].position.set(1250, 32, -1300);
+			        obstacless[4].rotation.y = -Math.PI / 2;
+
+
+			        obstacless[5].position.set(-800, 32, -1300);
+			        obstacless[5].rotation.y = -Math.PI / 2;
+
+			        obstacless[6].position.set(0, 32, -1300);
+			        obstacless[6].rotation.y = -Math.PI / 2;
+
+			        obstacless[7].position.set(800, 32, -900);
+			        obstacless[7].rotation.y = -Math.PI / 2;
+
+			        obstacless[8].position.set(-1020, 32, -2000);
+
+			        obstacless[9].position.set(1500, 32, -630);
+
+			        dc_bx = new THREE.Mesh(new THREE.CubeGeometry(800, 0.2, 900), new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5}) );
+			        dc_bx.name = "dc_bx";
+					// dc_bx.material.map.wrapT = THREE.RepeatWrapping;
+		            mesh.add(dc_bx);
+		            dc_bx.position.set(-400, 0.1, -1550);
+
+		            dc_bx_cf[0] = 2;
+		            dc_bx_cf[1] = 800; dc_bx_cf[2] = 900;
+		            dc_bx_cf[3] = -400; dc_bx_cf[4] = -1550;
+					
+				}else if(maze_id == 3){
+					
+					var obstacles = [
+			                new THREE.CubeGeometry(1600, 300, 64),//panjang, tinggi, lebar
+			                new THREE.CubeGeometry(1600, 300, 64),
+			                new THREE.CubeGeometry(2000, 300, 64),
+
+			                new THREE.CubeGeometry(800, 300, 64),
+			                new THREE.CubeGeometry(900, 300, 64),
+			                new THREE.CubeGeometry(900, 300, 64),
+
+			                new THREE.CubeGeometry(780, 300, 64),
+			                new THREE.CubeGeometry(850, 300, 64),
+
+			                new THREE.CubeGeometry(400, 300, 64),
+			                new THREE.CubeGeometry(400, 300, 64),
+			                new THREE.CubeGeometry(400, 300, 64),
+			        ];
+			        // // Set and add the obstacles
+			        obstacless = [];
+			        for (i = 0; i < obstacles.length; i += 1) {
+			            obstacless.push(new THREE.Mesh(obstacles[i], gm));
+			            obstacless[i].name = "obstacles_"+[i];
+			            obstacless[i].receiveShadow = true;
+						obstacless[i].castShadow = true;
+						obstacless[i].material.map.wrapT = THREE.RepeatWrapping;
+			            mesh.add(obstacless[i]);
+			        }
+
+			        obstacless[0].position.set(-950, 32, -200);
+			        obstacless[1].position.set(950, 32, -200);
+
+			        obstacless[2].position.set(0, 32, -1600);
+
+			        obstacless[3].rotation.y = -Math.PI / 2;
+			        obstacless[3].position.set(-182, 32, -600);
+
+			        obstacless[4].rotation.y = -Math.PI / 2;
+			        obstacless[4].position.set(-1000, 32, -1180);
+
+			        obstacless[5].rotation.y = -Math.PI / 2;
+			        obstacless[5].position.set(1000, 32, -1180);
+
+			        obstacless[6].position.set(-1380, 32, -760);
+			        obstacless[7].position.set(600, 32, -760);
+
+			        obstacless[8].position.set(0, 32, -1800);
+			        obstacless[8].rotation.y = -Math.PI / 2;
+
+			        obstacless[9].rotation.y = -Math.PI / 2;
+			        obstacless[9].position.set(-600, 32, -2300);
+
+			        obstacless[10].rotation.y = -Math.PI / 2;
+			        obstacless[10].position.set(600, 32, -2300);
+
+
+			        dc_bx = new THREE.Mesh(new THREE.CubeGeometry(1200, 0.2, 900), new THREE.MeshBasicMaterial({color:0xff0000, transparent:true, opacity:0.5}) );
+			        dc_bx.name = "dc_bx";
+					// dc_bx.material.map.wrapT = THREE.RepeatWrapping;
+		            mesh.add(dc_bx);
+		            dc_bx.position.set(-1200, 0.1, -2050);
+
+		            dc_bx_cf[0] = 3;
+		            dc_bx_cf[1] = 1200; dc_bx_cf[2] = 900;
+		            dc_bx_cf[3] = -1200; dc_bx_cf[4] = -2050;
+
+
+				}else if(maze_id == 4){
+					
+					var obstacles = [
+			                new THREE.CubeGeometry(1600, 300, 64),//panjang, tinggi, lebar
+			                new THREE.CubeGeometry(1600, 300, 64),
+
+			                new THREE.CubeGeometry(900, 300, 64),
+			                new THREE.CubeGeometry(2000, 300, 64),
+			                new THREE.CubeGeometry(900, 300, 64),
+			                new THREE.CubeGeometry(900, 300, 64),
+			                new THREE.CubeGeometry(1200, 300, 64),
+
+			                new THREE.CubeGeometry(450, 300, 64),
+			                new THREE.CubeGeometry(450, 300, 64),
+
+			                new THREE.CubeGeometry(400, 300, 64),
+			                new THREE.CubeGeometry(400, 300, 64),
+			        ];
+			        // // Set and add the obstacles
+			        obstacless = [];
+			        for (i = 0; i < obstacles.length; i += 1) {
+			            obstacless.push(new THREE.Mesh(obstacles[i], gm));
+			            obstacless[i].name = "obstacles_"+[i];
+			            obstacless[i].receiveShadow = true;
+						obstacless[i].castShadow = true;
+						obstacless[i].material.map.wrapT = THREE.RepeatWrapping;
+			            mesh.add(obstacless[i]);
+			        }
+
+			        obstacless[0].position.set(-950, 32, -200);
+			        obstacless[1].position.set(950, 32, -200);
+
+			        obstacless[2].position.set(0, 32, -900);
+			        obstacless[3].position.set(0, 32, -1700);
+
+
+			        obstacless[4].position.set(1000, 32, -650);
+			        obstacless[4].rotation.y = -Math.PI / 2;
+
+			        obstacless[5].position.set(-1000, 32, -650);
+			        obstacless[5].rotation.y = -Math.PI / 2;
+
+			        obstacless[6].position.set(0, 32, -1500);
+			        obstacless[6].rotation.y = -Math.PI / 2;
+
+			        obstacless[7].position.set(650, 32, -2300);
+			        obstacless[7].rotation.y = -Math.PI / 2;
+
+			        obstacless[8].position.set(-650, 32, -2300);
+			        obstacless[8].rotation.y = -Math.PI / 2;
+
+			        obstacless[9].position.set(1550, 32, -1100);
+			        obstacless[10].position.set(-1550, 32, -1100);
+
+				}else if(maze_id == 5){
+
+					var obstacles = [];
+
+
+			        for(i = 0; i < 50; i++){
+			        	var random = Math.random()*500 - 150;
+				        if(random > 100){
+				        	obstacles.push(new THREE.CubeGeometry(random, 300, 64));
+				        }
+			        }
+
+			        // // Set and add the obstacles
+			        obstacless = [];
+			        for (i = 0; i < obstacles.length; i += 1) {
+			            obstacless.push(new THREE.Mesh(obstacles[i], gm));
+			            obstacless[i].name = "obstacles_"+[i];
+			            obstacless[i].receiveShadow = true;
+						obstacless[i].castShadow = true;
+						obstacless[i].material.map.wrapT = THREE.RepeatWrapping;
+			            mesh.add(obstacless[i]);
+
+			            mran_1 = Math.random()*1200;
+
+			            if(mran_1 > 300){
+				            if(i%2 === 0){
+				            	obstacless[i].position.set(-mran_1, 32, mran_1);
+				            }else{
+				            	obstacless[i].position.set(mran_1, 32, -mran_1);
+				            }
+				        }
+				        obstacless[i].position.set(Math.random()*800-55, 32, Math.random()*900-85);
+				        obstacless[i].rotation.set(0, Math.random()*2*Math.PI, 0);
+
+				        // obstacless[i].userData.velocity = new THREE.Vector3();
+				        // obstacless[i].userData.velocity.set(Math.random()*2*Math.PI-0.075, Math.random()*2*Math.PI, Math.random()*2*Math.PI+0.035);
+			        }
+				}else{
+
+				}
+
+				generate_rooms(mesh);
+				// console.log(mesh);
+
+				// init_aabb("wall");
+			}
+
+
+
+
+
+
+
+
+
+			var rooms = [];
+			function generate_rooms(mesh){
+				rooms = [];
+
+        		for(i=1; i<mesh.children.length;i++){
+        			if(mesh.children[i].name != "dc_bx"){
+        				rooms.push(mesh.children[i]);
+        			}        			
+        		}
+
+		        scene.traverse(function(child){
+					if(child instanceof THREE.Mesh){
+						rooms.push(child);	
+					}
+					if(child instanceof THREE.LineSegments){
+						if(child.name == "hmd_aabb"){
+							console.log(child);
+							// rooms.push(child);
+						}if(child.name == "plane_mesh"){
+							rooms.push(child);
+						}		
+					}
+				});
+
+				// console.log(rooms);
+			}
+
+
+
+
+
+
+
+
+
+			/*
+			function rayCastTest(){
+				var originPoint = mesh.position.clone();
+
+				rooms = [];
+
+		        scene.traverse(function(child){
+					if(child instanceof THREE.Mesh){
+						rooms.push(child);					
+					}
+
+					if(child instanceof THREE.SkinnedMesh){
+						rooms.push(child);
+					}
+				});
+				
+				console.log(mesh.geometry.vertices.length);
+				
+				for (var vertexIndex = 0; vertexIndex < mesh.geometry.vertices.length; vertexIndex++){
+					var localVertex = mesh.geometry.vertices[vertexIndex].clone();
+					var globalVertex = localVertex.applyMatrix4( mesh.matrix );
+					var directionVector = globalVertex.sub( mesh.position );
+
+					
+					var ray = new THREE.Raycaster( originPoint, directionVector.clone().normalize() );
+					var collisionResults = ray.intersectObjects( rooms );
+
+					if ( collisionResults.length > 0 && collisionResults[0].distance < directionVector.length() ){
+							console.log(collisionResults);
+					}
+				}	
+			}
+			*/
+
+
+
+
+
+
+
+
+
+
+
+			function showModel( visibility ) {
+
+				mesh.visible = visibility;
+			}
+
+
+
+
+
+
+			function showSkeleton( visibility ) {
+
+				skeleton.visible = visibility;
+			}
+
+
+
+
+
+
+			function modifyTimeScale( speed ) {
+
+				mixer.timeScale = speed;
+			}
+
+
+
+
+
+
+			function deactivateAllActions() {
+
+				actions.forEach( function ( action ) {
+
+					action.stop();
+
+				} );
+
+			}
+
+
+
+
+
+			function activateAllActions(id) {
+
+				//setWeight( idleAction, 0 ); //0.0, 1.0, 0.01
+
+				if(id == 0){
+					setWeight( idleAction, 1 ); //0.0, 1.0, 0.01
+					lastestAction = idleAction;
+				}
+
+				if(id == 1){
+					setWeight( walkAction, 1 ); //0.0, 1.0, 0.01
+					lastestAction = walkAction;
+				}
+				if(id == 2){
+					setWeight( runAction, 1 ); //0.0, 1.0, 0.01
+					lastestAction = runAction;
+				}
+				if(id == 3){
+					setWeight( swingRightAction, 1 ); //0.0, 1.0, 0.01
+					lastestAction = swingRightAction;
+				}
+				if(id == 4){
+					setWeight( swingLeftAction, 1 ); //0.0, 1.0, 0.01
+					lastestAction = swingLeftAction;
+				}
+				if(id == 5){
+					setWeight( danceAction_1, 1 ); //0.0, 1.0, 0.01
+					lastestAction = danceAction_1;
+				}
+				if(id == 6){
+					setWeight( danceAction_2, 1 ); //0.0, 1.0, 0.01
+					lastestAction = danceAction_2;
+				}
+				if(id == 7){
+					setWeight( danceAction_3, 1 ); //0.0, 1.0, 0.01
+					lastestAction = danceAction_3;
+				}
+
+				actions[id].play();
+				isPlay = true;
+
+				// actions.forEach( function ( action ) {
+
+				// 	action.play();
+					
+				// });
+				
+
+				// isWalk = isWalk();
+				// console.log(actions);
+
+				
+				// action_frame_values();
+
+				// rayCastTest();
+			}
+
+
+
+
+
+
+			/*
+			function action_frame_values(){
+				for(i = 0; i < actions.length; i++){
+					
+					for(j = 0; j < actions[i]._clip.tracks.length; j++){
+						if(actions[i]._clip.tracks[j].name.split(".")[1] != "bones[Bone]" && actions[i]._clip.tracks[j].name.split(".")[2] == "position"){
+							console.log(actions[i]._clip.tracks[j].times);
+							console.log(actions[i]._clip.tracks[j].values);
+						}
+					}
+				}
+			}
+			*/
+
+
+
+
+
+
+			function pauseContinue() {
+
+				if ( singleStepMode ) {
+
+					singleStepMode = false;
+					unPauseAllActions();
+
+				} else {
+
+					if ( idleAction.paused ) {
+
+						unPauseAllActions();
+
+					} else {
+
+						pauseAllActions();
+
+					}
+
+				}
+			}
+
+
+
+
+
+
+			function stopAllActions(){
+				actions.forEach( function ( action ) {
+
+					action.stop();
+					// console./log(action.isRunning());
+					
+				});
+
+				isPlay = false;
+			}
+
+
+
+
+
+
+
+			function pauseAllActions() {
+
+				actions.forEach( function ( action ) {
+
+					action.paused = true;
+
+				} );
+			}
+
+
+
+
+
+
+			function unPauseAllActions() {
+
+				actions.forEach( function ( action ) {
+
+					action.paused = false;
+
+				} );
+			}
+
+
+
+
+
+
+			function toSingleStepMode() {
+
+				unPauseAllActions();
+
+				singleStepMode = true;
+				
+				modify_step_size = 0.05;//0.01, 0.1, 0.001
+
+				sizeOfNextStep = modify_step_size; 
+			}
+
+
+
+
+
+
+
+
+			function prepareCrossFade( startAction, endAction, defaultDuration ) {
+				// Switch default / custom crossfade duration (according to the user's choice)
+				var duration = setCrossFadeDuration( defaultDuration );
+
+				// Make sure that we don't go on in singleStepMode, and that all actions are unpaused
+				singleStepMode = false;
+				unPauseAllActions();
+
+				// If the current action is 'idle' (duration 4 sec), execute the crossfade immediately;
+				// else wait until the current action has finished its current loop
+				if ( startAction === idleAction ) {
+					executeCrossFade( startAction, endAction, duration );
+				} else {
+					synchronizeCrossFade( startAction, endAction, duration );
+				}
+			}
+
+
+
+
+
+
+
+
+
+
+
+			var use_default_duration =  true;
+			var set_custom_duration = 3.5
+			function setCrossFadeDuration( defaultDuration ) {
+				// Switch default crossfade duration <-> custom crossfade duration
+				if ( use_default_duration ) {
+					return defaultDuration;
+
+				} else {
+					return set_custom_duration;
+
+				}
+			}
+
+
+
+
+
+
+
+
+			function synchronizeCrossFade( startAction, endAction, duration ) {
+				mixer.addEventListener( 'loop', onLoopFinished );
+
+				function onLoopFinished( event ) {
+					if ( event.action === startAction ) {
+						mixer.removeEventListener( 'loop', onLoopFinished );
+						executeCrossFade( startAction, endAction, duration );//yang bikin stop ditengah (BUGS)
+					}
+
+				}
+			}
+
+
+
+
+
+
+
+
+			function executeCrossFade( startAction, endAction, duration ) {
+				// Not only the start action, but also the end action must get a weight of 1 before fading
+				// (concerning the start action this is already guaranteed in this place)
+				setWeight( endAction, 1 );
+				endAction.time = 0;
+
+				// Crossfade with warping - you can also try without warping by setting the third parameter to false
+				startAction.crossFadeTo( endAction, duration, true );
+			}
+
+
+
+
+
+
+
+			// This function is needed, since animationAction.crossFadeTo() disables its start action and sets
+			// the start action's timeScale to ((start animation's duration) / (end animation's duration))
+			function setWeight( action, weight ) {
+				action.enabled = true;
+				action.setEffectiveTimeScale( 1 );
+				action.setEffectiveWeight( weight );
+
+			}
+
+
+
+
+
+
+
+
+
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+			}
+
+
+
+
+
+
+
+
+
+
+
+			var mesh_box = [];
+			var iter = 0, direct_angle = 0, loop_start = 0;
+			function animate() {
+
+				document.addEventListener( 'keydown', onKeyDown );
+				document.addEventListener( 'keyup', onKeyUp );
+
+
+				// Render loop
+				requestAnimationFrame( animate );
+
+
+				idleWeight = idleAction.getEffectiveWeight();
+
+				walkWeight = walkAction.getEffectiveWeight();
+				sLWeight = swingLeftAction.getEffectiveWeight();
+				sRWeight = swingRightAction.getEffectiveWeight();
+
+				runWeight = runAction.getEffectiveWeight();
+
+				danceWeight_1 = danceAction_1.getEffectiveWeight();
+				danceWeight_2 = danceAction_2.getEffectiveWeight();
+				danceWeight_3 = danceAction_3.getEffectiveWeight();
+
+
+
+
+
+
+				// Update the panel values if weights are modified from "outside" (by crossfadings)
+				// updateWeightSliders();
+
+
+
+				// Enable/disable crossfade controls according to current weight values
+				// updateCrossFadeControls();
+
+				// Get the time elapsed since the last frame, used for mixer update (if not in single step mode)
+
+				var mixerUpdateDelta = clock.getDelta();
+
+				// If in single step mode, make one step and then do nothing (until the user clicks again)
+				if ( singleStepMode ) {
+					mixerUpdateDelta = sizeOfNextStep;
+					sizeOfNextStep = 0;
+				}
+
+				// Update the animation mixer, the stats panel, and render this frame
+
+				mixer.update( mixerUpdateDelta );
+
+
+
+
+				// aabb_update(mixerUpdateDelta);
+
+
+				scene.updateMatrix(); 
+				// scene.geometry.applyMatrix( scene.matrix );
+				// scene.matrix.identity();
+
+
+
+				stats.update();
+
+
+
+
+				// var delta = 10 * clock.getDelta();
+				// console.log(delta);
+
+
+
+
+				//parsing animation keyframe
+				iter++;
+				
+
+				if(direct_angle == 1){
+					in_loop = 0;
+					if(loop_start == 0){
+						loop_start = 1;
+					}else{
+						mixer.addEventListener( 'loop', function( e ) {//finished
+							
+							if(direct_angle == 1){
+								if(in_loop == 0){
+									clip_data = e.action.getClip();
+									parse_animation_keyframe(99, clip_data);
+									in_loop = 1;
+								}
+							}
+							
+						});
+					}
+				}
+
+
+
+
+				// var timer = Date.now() * 0.0002;
+				// camera.position.x = Math.cos( timer ) * 1500;
+				// camera.position.z = Math.sin( timer ) * 1500;
+				// camera.lookAt( scene.position );
+
+
+
+				renderer.render( scene, camera );
+			}
+
+
+
+
+
+			/*
+			function init_aabb(type, mesh){
+				// console.log(scene);
+				if(type == "hmd"){
+					mesh_box[0] = new THREE.BoxHelper(mesh, 0x00ff00);
+				 	mesh_box[0].update();
+				 	mesh_box[0].visible = false;
+				 	mesh_box[0].name = "hmd_aabb";
+				 	scene.add(mesh_box[0]);
+				}else{
+										
+				}
+				// console.log(scene);
+			}
+
+
+
+			function aabb_update(delta){
+				for(i=0; i < mesh_box.length; i++){
+					mesh_box[i].update();
+				}   				
+			}
+			*/
+
+
+
+
+
+
+			
+			var y_rot= 0, z_pos=0, x_pos=0, side = null, pLx = 400, pLz = 400, mLx = 200, mLz=200, is_allowed=1, loop_start__=0;
+			var act_run='';
+
+			function onKeyDown ( event ) {
+				event.stopPropagation();
+
+				key = event.keyCode;
+				console.log("onKeyDown:: "+key);
+
+
+				if(key == 37){//L
+					cam_x-=20;
+					camera.position.x = cam_x;	
+				}//cr
+				if(key == 38){//B
+					cam_z-=20;
+					camera.position.z = cam_z;			
+				}//cu
+				if(key == 39){//R
+					cam_x+=20;
+					camera.position.x = cam_x;	
+				}//cl
+				if(key == 40){//U
+					cam_z+=20;
+					camera.position.z = cam_z;
+				}//cd
+
+				if(isPlay == true && is_wemos_connected == 1){
+
+					// chech_dance_box(x_pos, z_pos);
+
+					//CTRL show skeleton 17
+					if(key == 17){
+						if(is_allowed == 1){
+							showSkeleton(true);
+						}
+						
+					}
+
+					//SPACE pause 32
+					if(key == 18){
+						pauseContinue();
+					}
+
+
+
+
+					if(key == 16){//Lshift
+						modifyTimeScale(1.15);//0.0, 1.5, 0.01
+						console.log("modify time scale");
+					}
+
+
+					
+
+					
+					ang = (y_rot * 360)/ (2*Math.PI);
+
+					if(ang > 184){
+						ang = 180;
+						y_rot = Math.PI;
+					}
+					if(ang < -184){
+						ang = -180;
+						y_rot = -Math.PI;
+					}
+
+					if(key == 87){//W
+						if(walkAction.isRunning() == false){
+							modifyTimeScale(1.2);
+							prepareCrossFade(lastestAction, idleAction, 0.5 );
+							setTimeout(function() {
+								stopAllActions();
+								activateAllActions(1);
+								ref_min_max_ak(1);
+								// if(direct_angle == 1){
+								// 	parse_animation_keyframe(1, null);
+								// }
+								act_run = "walkAction";
+								if(loop_start__ == 0){
+									dt = {
+										"status" 	: 1,
+										"type_con"  : 2,//by analysis on arduino;
+										"menu_type" : 1,
+										"action" 	: act_run
+									}
+									socket.emit('bind_json_data', dt);
+								}
+							}, 300);
+							loop_start = 0;
+						}else if(walkAction.isRunning() == true){
+
+							unPauseAllActions();
+							collide = collision_detector();
+
+							// console.log("collide ("+side+"): "+collide);
+
+	            			if(ang >= -3 && ang <= 3){
+	            				side = "bwd";	            				
+	            				if(collide == 1){
+	            					z_pos +=0.5;
+		            				cam_z += 0.5;
+		            				pLz += 0.5;
+		            				mLz += 0.5;
+		            				y_rot = 0;	            				
+	            				}
+	            			}else if(ang >= 87 && ang <= 93){
+	            				side = "rgt";
+	            				if(collide == 1){
+	            					x_pos +=0.5;
+		            				cam_x += 0.5;
+		            				pLx += 0.5;
+		            				mLx += 0.5;
+		            				y_rot = Math.PI/2;
+	            				}	            				      				
+	            			}else if(ang <= -87 && ang >= -93){
+	            				side = "lft";
+	            				if(collide == 1){
+	            					x_pos -=0.5;
+		            				cam_x -= 0.5;
+		            				pLx -= 0.5;
+		            				mLx -= 0.5;
+		            				y_rot = -Math.PI/2;
+	            				}
+	            			}else if(ang >= 177 && ang <= 183){
+	            				side = "fwd";
+	            				if(collide == 1){
+	            					z_pos -=0.5;
+		            				cam_z -= 0.5;
+		            				pLz -= 0.5;
+		            				mLz -= 0.5;
+		            				y_rot = Math.PI;
+	            				}	            				
+	            			}else if(ang >= -183 && ang <= -177){
+	            				side = "fwd";
+	            				if(collide == 1){
+	            					z_pos -=0.5;
+		            				cam_z -= 0.5;
+		            				pLz -= 0.5;
+		            				mLz -= 0.5;
+		            				y_rot = -Math.PI;
+	            				}
+	            			}else if(ang > -87 && ang < -3){/////////////////
+	            				z_pos +=0.5;
+	            				cam_z += 0.5;
+	            				pLz += 0.5;
+	            				mLz += 0.5;
+
+	            				x_pos -=0.5;
+	            				cam_x -= 0.5;
+	            				pLx -= 0.5;
+	            				mLx -= 0.5;
+	            			}else if(ang > -177 && ang < -93){
+	            				x_pos -=0.5;
+	            				cam_x -= 0.5;
+	            				pLx -= 0.5;
+	            				mLx -= 0.5;
+
+	            				z_pos -=0.5;
+	            				cam_z -= 0.5;
+	            				pLz -= 0.5;
+	            				mLz -= 0.5;
+	            			}else if(ang > 3 && ang < 87){
+	            				x_pos +=0.5;
+	            				cam_x += 0.5;
+	            				pLx += 0.5;
+	            				mLx += 0.5;
+
+	            				z_pos +=0.5;
+	            				cam_z += 0.5;
+	            				pLz += 0.5;
+	            				mLz += 0.5;
+	            			}else if(ang > 93 && ang < 177){///////////////////
+	            				x_pos +=0.5;
+	            				cam_x += 0.5;
+	            				pLx += 0.5;
+	            				mLx += 0.5;
+
+	            				z_pos -=0.5;
+	            				cam_z -= 0.5;
+	            				pLz -= 0.5;
+	            				mLz -= 0.5;
+	            			}else{
+
+	            			}
+	            			mesh.position.z = z_pos;
+	            			mesh.position.x = x_pos; 
+
+	            			camera.position.z = cam_z;  
+	            			camera.position.x = cam_x;
+
+	            			pointLight.position.x = pLx;
+	            			pointLight.position.z = pLz;
+
+	            			mainLight.position.x = mLx;
+	            			mainLight.position.z = mLz;
+
+
+	            			if(direct_angle == 0){
+
+								in_loop__ = 0;
+								if(loop_start__ == 0){
+									loop_start__ = 1;
+								}else{
+									mixer.addEventListener( 'loop', function( e ) {//finished
+										if(in_loop__ == 0){
+											dt = {
+												"status" 	: 1,
+												"type_con"  : 2,//by analysis on arduino;
+												"menu_type" : 1,
+												"action" 	: act_run
+											}
+											socket.emit('bind_json_data', dt);
+											in_loop__ = 1;
+										}
+										
+									});
+								}
+
+							}
+
+			            }
+					}
+
+
+
+
+
+
+
+					//S bwd 83
+					if(key == 83){
+						
+					}
+
+
+
+
+					scene.traverse(function(child){
+						if(child instanceof THREE.SkinnedMesh){
+							if(child.name == "hmd_full"){
+								
+
+								if(key == 65){//A LEFT
+									if(swingLeftAction.isRunning() == false){
+										modifyTimeScale(1);
+										prepareCrossFade(lastestAction, idleAction, 0.5 );
+										setTimeout(function() {
+											// stopAllActions();
+											activateAllActions(4);
+											ref_min_max_ak(4);
+
+											// if(direct_angle == 1){
+											// 	parse_animation_keyframe(4, null);
+											// }
+											act_run = "swingLeftAction";
+											if(loop_start__ == 0){
+												dt = {
+													"status" 	: 1,
+													"type_con"  : 2,//by analysis on arduino;
+													"menu_type" : 1,
+													"action" 	: act_run
+												}
+												socket.emit('bind_json_data', dt);
+											}
+										}, 300);
+										loop_start = 0;
+									}else if(swingLeftAction.isRunning() == true){
+										unPauseAllActions();
+										y_rot -= 0.5 * Math.PI / 360;//										
+										child.rotation.set(0, y_rot, 0);
+
+										/*
+										if(direct_angle == 0){
+											dt = {
+												"status" 	: 1,
+												"type_con"  : 2,//by analysis on arduino;
+												"menu_type" : 1,
+												"action" 	: "swingLeftAction"
+											}
+											setTimeout(function() {
+												socket.emit('bind_json_data', dt);
+											}, 500);
+										}
+										*/
+
+										if(direct_angle == 0){
+											in_loop__ = 0;
+											if(loop_start__ == 0){
+												loop_start__ = 1;
+											}else{
+												mixer.addEventListener( 'loop', function( e ) {//finished
+													
+													if(in_loop__ == 0){
+														dt = {
+															"status" 	: 1,
+															"type_con"  : 2,//by analysis on arduino;
+															"menu_type" : 1,
+															"action" 	: act_run
+														}
+														socket.emit('bind_json_data', dt);
+														in_loop__ = 1;
+													}
+													
+												});
+											}
+										}
+
+									}		
+									
+								}
+
+								
+								if(key == 68){//D Right 68					
+									if(swingRightAction.isRunning() == false){
+										modifyTimeScale(1);
+										prepareCrossFade(lastestAction, idleAction, 0.5 );
+										setTimeout(function() {
+											// stopAllActions();
+											activateAllActions(3);
+											ref_min_max_ak(3);
+											// if(direct_angle == 1){
+											// 	parse_animation_keyframe(3, null);
+											// }
+											act_run = "swingRightAction";
+											if(loop_start__ == 0){
+												dt = {
+													"status" 	: 1,
+													"type_con"  : 2,//by analysis on arduino;
+													"menu_type" : 1,
+													"action" 	: act_run
+												}
+												socket.emit('bind_json_data', dt);
+											}
+										}, 300);
+										loop_start = 0;
+									}else if(swingRightAction.isRunning() == true){
+										unPauseAllActions();
+										y_rot += 0.5 * Math.PI / 360;//
+										child.rotation.set(0, y_rot, 0);
+
+										if(direct_angle == 0){
+											/*
+											dt = {
+												"status" 	: 1,
+												"type_con"  : 2,//by analysis on arduino;
+												"menu_type" : 1,
+												"action" 	: "swingRightAction"
+											}
+											setTimeout(function() {
+												socket.emit('bind_json_data', dt);
+											}, 500);
+											*/
+											in_loop__ = 0;
+											if(loop_start__ == 0){
+												loop_start__ = 1;
+											}else{
+												mixer.addEventListener( 'loop', function( e ) {//finished
+													if(in_loop__ == 0){
+														dt = {
+															"status" 	: 1,
+															"type_con"  : 2,//by analysis on arduino;
+															"menu_type" : 1,
+															"action" 	: act_run
+														}
+														socket.emit('bind_json_data', dt);
+														in_loop__ = 1;
+													}
+													
+												});
+											}
+										}
+									}
+								}
+
+
+							}
+						}
+					});
+
+
+					
+					
+
+
+
+					if(key == 18){
+						stopAllActions();
+					}
+				
+
+
+
+
+					//1 dance Z
+					if(key == 90){
+
+						if(is_allowed == 1){
+							if(danceAction_1.isRunning() == false){
+								prepareCrossFade(lastestAction, idleAction, 1.0 );
+								setTimeout(function() {
+									stopAllActions();
+									modifyTimeScale(0.4);
+									activateAllActions(5);
+									ref_min_max_ak(5);
+									// if(direct_angle == 1){
+									// 	parse_animation_keyframe(5, null);
+									// }
+
+									act_run = "danceAction_1";
+									if(loop_start__ == 0){
+										dt = {
+											"status" 	: 1,
+											"type_con"  : 2,//by analysis on arduino;
+											"menu_type" : 1,
+											"action" 	: act_run
+										}
+										socket.emit('bind_json_data', dt);
+									}
+								}, 1000);
+								loop_start = 0;
+								//toastr.success('Dance Activated Press Z', 'Success', toast_options);
+							}else if(danceAction_1.isRunning() == true){
+								unPauseAllActions();
+								/*
+								if(direct_angle == 0){
+									dt = {
+										"status" 	: 1,
+										"type_con"  : 2,//by analysis on arduino;
+										"menu_type" : 1,
+										"action" 	: "danceAction_1"
+									}
+									setTimeout(function() {
+										socket.emit('bind_json_data', dt);
+									}, 500);
+								}
+								*/
+								if(direct_angle == 0){
+									in_loop__ = 0;
+									if(loop_start__ == 0){
+										loop_start__ = 1;
+									}else{
+										mixer.addEventListener( 'loop', function( e ) {//finished
+										
+											if(in_loop__ == 0){
+												dt = {
+													"status" 	: 1,
+													"type_con"  : 2,//by analysis on arduino;
+													"menu_type" : 1,
+													"action" 	: act_run
+												}
+												socket.emit('bind_json_data', dt);
+												in_loop__ = 1;
+											}
+										
+										});
+									}
+								}
+
+							}
+						}
+						
+					}
+
+					//2 dance X
+					if(key == 88){	
+						if(is_allowed == 1){
+							if(danceAction_2.isRunning() == false){
+								prepareCrossFade(lastestAction, idleAction, 1.0 );
+								setTimeout(function() {
+									stopAllActions();
+									modifyTimeScale(0.4);
+									activateAllActions(6);
+									ref_min_max_ak(6);
+									// if(direct_angle == 1){
+									// 	parse_animation_keyframe(6, null);
+									// }
+									act_run = "danceAction_2";
+									if(loop_start__ == 0){
+										dt = {
+											"status" 	: 1,
+											"type_con"  : 2,//by analysis on arduino;
+											"menu_type" : 1,
+											"action" 	: act_run
+										}
+										socket.emit('bind_json_data', dt);
+									}
+								}, 1000);
+								loop_start = 0;
+								toastr.success('Dance Activated Press X', 'Success', toast_options);
+							}else if(danceAction_2.isRunning() == true){
+								unPauseAllActions();
+								/*
+								if(direct_angle == 0){
+									dt = {
+										"status" 	: 1,
+										"type_con"  : 2,//by analysis on arduino;
+										"menu_type" : 1,
+										"action" 	: "danceAction_2"
+									}
+									setTimeout(function() {
+										socket.emit('bind_json_data', dt);
+									}, 500);
+								}
+								*/
+
+								if(direct_angle == 0){
+									in_loop__ = 0;
+									if(loop_start__ == 0){
+										loop_start__ = 1;
+									}else{
+										mixer.addEventListener( 'loop', function( e ) {//finished
+											if(in_loop__ == 0){
+												dt = {
+													"status" 	: 1,
+													"type_con"  : 2,//by analysis on arduino;
+													"menu_type" : 1,
+													"action" 	: act_run
+												}
+												socket.emit('bind_json_data', dt);
+												in_loop__ = 1;
+											}
+										
+										});
+									}
+								}
+
+							}
+						}
+					}
+
+					//3 dance C
+					if(key == 67){
+						
+						if(is_allowed == 1){
+							if(danceAction_3.isRunning() == false){
+								prepareCrossFade(lastestAction, idleAction, 1.0 );
+								setTimeout(function() {
+									stopAllActions();
+									modifyTimeScale(0.35);
+									activateAllActions(7);
+									ref_min_max_ak(7);
+									// if(direct_angle == 1){
+									// 	parse_animation_keyframe(7, null);
+									// }
+									act_run = "danceAction_3";
+									if(loop_start__ == 0){
+										dt = {
+											"status" 	: 1,
+											"type_con"  : 2,//by analysis on arduino;
+											"menu_type" : 1,
+											"action" 	: act_run
+										}
+										socket.emit('bind_json_data', dt);
+									}
+								}, 1000);
+								loop_start = 0;
+								toastr.success('Dance Activated Press C', 'Success', toast_options);
+							}else if(danceAction_3.isRunning() == true){
+								unPauseAllActions();
+
+								/*
+								if(direct_angle == 0){
+									dt = {
+										"status" 	: 1,
+										"type_con"  : 2,//by analysis on arduino;
+										"menu_type" : 1,
+										"action" 	: "danceAction_3"
+									}
+									setTimeout(function() {
+										socket.emit('bind_json_data', dt);
+									}, 500);
+								}
+								*/
+								
+								if(direct_angle == 0){
+									in_loop__ = 0;
+									if(loop_start__ == 0){
+										loop_start__ = 1;
+									}else{
+										mixer.addEventListener( 'loop', function( e ) {//finished
+											if(in_loop__ == 0){
+												dt = {
+													"status" 	: 1,
+													"type_con"  : 2,//by analysis on arduino;
+													"menu_type" : 1,
+													"action" 	: act_run
+												}
+												socket.emit('bind_json_data', dt);
+												in_loop__ = 1;
+											}
+										});
+									}
+								}
+
+							}
+						}
+					}
+
+
+
+
+
+
+					status__ = {
+						// "lastestAction" : lastestAction,
+						"walkAction" : walkAction.isRunning(),
+						"swingLeftAction" : swingLeftAction.isRunning(),
+						"swingRightAction" : swingRightAction.isRunning(),
+						"danceAction_1" : danceAction_1.isRunning(),
+						"danceAction_2" : danceAction_2.isRunning(),
+						"danceAction_3" : danceAction_3.isRunning()
+					}
+
+					// console.log(status__);
+
+
+
+
+				}else{//if true
+					if(key == 20){
+						// activateAllActions();
+					}
+				}
+			}
+
+
+
+
+
+
+
+			function onKeyUp( event ){
+				event.stopPropagation();
+				key = event.keyCode;
+				console.log("onKeyUp:: "+key);
+
+				// console.log(lastestAction);
+				// prepareCrossFade(lastestAction, idleAction, 0.1 );
+				pauseAllActions();
+				showSkeleton(false);
+
+				dt = {
+					"status" : 0,
+					"menu_type" : 1,
+				}
+				socket.emit('bind_json_data', dt); 
+
+				loop_start__ = 0;
+
+
+				// ref_min_max_ak(5);
+				// ref_min_max_ak(6);
+				// ref_min_max_ak(7);
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			function collision_detector() {
+				raycaster.setFromCamera( scene.position, camera );
+				
+				// mesh_box[0].geometry.computeBoundingBox();
+				// var bBox = mesh_box[0].geometry.boundingBox;
+				mesh.geometry.computeBoundingBox();
+				var bBox = mesh.geometry.boundingBox;
+				//bBox.min bBox.max
+				bb_xgt = bBox.max.x - bBox.min.x + 30;//delta bbx
+				bb_ygt = bBox.max.y - bBox.min.y;//delta bby
+				bb_zgt = bBox.max.z - bBox.min.z + 30;//delta bbz
+				// console.log("AABB Length: "+JSON.stringify(bBox));
+				// console.log("mesh.position: "+JSON.stringify(mesh.position));
+
+
+
+				var f_vector = new THREE.Vector3( 0, 0, -1 );
+				var b_vector = new THREE.Vector3( 0, 0, 1 );
+				var l_vector = new THREE.Vector3( -1, 0, 0 );
+				var r_vector = new THREE.Vector3( 1, 0, 0 );
+
+
+
+				var left  = new THREE.Vector3( mesh.position.x - (bb_xgt/2), mesh.position.y, mesh.position.z );
+				var right  = new THREE.Vector3( mesh.position.x + (bb_xgt/2), mesh.position.y, mesh.position.z);
+				var front  = new THREE.Vector3( mesh.position.x, mesh.position.y, mesh.position.z + (bb_zgt/2) );
+				var back  = new THREE.Vector3( mesh.position.x, mesh.position.y, mesh.position.z - (bb_zgt/2) );
+
+
+
+				//front movement
+				if(side == "fwd"){
+					var left_ray  = new THREE.Raycaster( left, f_vector ); 
+					var left_intersects  = left_ray.intersectObjects( rooms );
+					if ( left_intersects.length > 0 && left_intersects[0].distance < (bb_zgt/2) ) {
+						mesh.position.z = left_intersects[0].point.z+(bb_zgt/2)+1;
+						pauseAllActions();
+						return left_intersects[0].point.z+(bb_zgt/2)+1;
+					}else{
+						return 1;
+					}
+
+					var right_ray = new THREE.Raycaster( right, f_vector );
+					var right_intersects = right_ray.intersectObjects( rooms );
+					if ( right_intersects.length > 0 && right_intersects[0].distance < (bb_zgt/2) ) {
+						mesh.position.z = right_intersects[0].point.z+(bb_zgt/2)+1;
+						pauseAllActions();
+						return right_intersects[0].point.z+(bb_zgt/2)+1;
+					}else{
+						return 1;
+					}
+				}
+				
+
+
+
+				//back movement
+				if(side == "bwd"){
+					var left_ray = new THREE.Raycaster( left, b_vector );
+					var left_intersects = left_ray.intersectObjects( rooms );
+					if ( left_intersects.length > 0 && left_intersects[0].distance < (bb_zgt/2) ) {
+						mesh.position.z = left_intersects[0].point.z-(bb_zgt/2)-1;
+						pauseAllActions();
+						return left_intersects[0].point.z-(bb_zgt/2)-1;
+					}else{
+						return 1;
+					}
+					var right_ray = new THREE.Raycaster( right, b_vector );
+					var right_intersects = right_ray.intersectObjects( rooms );
+					if ( right_intersects.length > 0 && right_intersects[0].distance < (bb_zgt/2) ) {
+						mesh.position.z = right_intersects[0].point.z-(bb_zgt/2)-1;
+						pauseAllActions();
+						return right_intersects[0].point.z-(bb_zgt/2)-1;
+					}else{
+						return 1;
+					}
+				}
+				
+
+
+
+				//right movement
+				if(side == "rgt"){
+					var back_ray = new THREE.Raycaster( back, r_vector );
+					var back_intersects = back_ray.intersectObjects( rooms );
+					if ( back_intersects.length > 0 && back_intersects[0].distance < (bb_xgt/2) ) {
+						mesh.position.x = back_intersects[0].point.x-(bb_xgt/2)-1;
+						pauseAllActions();
+						return back_intersects[0].point.x-(bb_xgt/2)-1;
+					}else{
+						return 1;
+					}
+					var front_ray = new THREE.Raycaster( front, r_vector );
+					var front_intersects = front_ray.intersectObjects( rooms );
+					if ( front_intersects.length > 0 && front_intersects[0].distance < (bb_xgt/2) ) {
+						mesh.position.x = front_intersects[0].point.x-(bb_xgt/2)-1;
+						pauseAllActions();
+						return front_intersects[0].point.x-(bb_xgt/2)-1;
+					}else{
+						return 1;
+					}
+				}
+				
+
+
+
+				//left movement
+				if(side == "lft"){
+					var back_ray = new THREE.Raycaster( back, l_vector );
+					var back_intersects = back_ray.intersectObjects( rooms );
+					if ( back_intersects.length > 0 && back_intersects[0].distance < (bb_xgt/2) ) {
+						mesh.position.x = back_intersects[0].point.x+(bb_xgt/2)+1;
+						pauseAllActions();
+						return back_intersects[0].point.x+(bb_xgt/2)+1;
+					}else{
+						return 1;
+					}
+					var front_ray = new THREE.Raycaster( front, l_vector );
+					var front_intersects = front_ray.intersectObjects( rooms );
+					if ( front_intersects.length > 0 && front_intersects[0].distance < (bb_xgt/2) ) {
+						mesh.position.x = front_intersects[0].point.x+(bb_xgt/2)+1;
+						pauseAllActions();
+						return front_intersects[0].point.x+(bb_xgt/2)+1;	
+					}else{
+						return 1;
+					}
+				}
+				
+
+
+
+				mesh.updateMatrix();
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			function chech_dance_box(x_pos, z_pos){
+
+				if(dc_bx_cf[0] == 1){//map 1
+					if((z_pos <= (dc_bx_cf[4] + (dc_bx_cf[2]/2))) &&  (z_pos >= (dc_bx_cf[4] - (dc_bx_cf[2]/2)))){
+						console.log(z_pos);// if z_pos < or > dc_bx pos+ or pos- in z axis 
+						if((x_pos <= (dc_bx_cf[3] + (dc_bx_cf[1]/2))) && (x_pos >= (dc_bx_cf[3] - (dc_bx_cf[1]/2)))){
+							console.log(x_pos);// if z_pos < or > dc_bx pos+ or pos- in z axis
+
+							is_allowed = 1;
+
+						}else{
+							is_allowed = 0;
+						}
+					}else{
+						// is_allowed = 0;
+					}						
+				}
+
+
+				if(dc_bx_cf[0] == 2){//map 1
+					if((z_pos <= (dc_bx_cf[4] + (dc_bx_cf[2]/2))) && (z_pos >= (dc_bx_cf[4] - (dc_bx_cf[2]/2)))){
+						console.log(z_pos);// if z_pos < or > dc_bx pos+ or pos- in z axis 
+						if((x_pos >= (dc_bx_cf[3] - (dc_bx_cf[1]/2))) && (x_pos <= (dc_bx_cf[3] + (dc_bx_cf[1]/2))) ){
+							console.log(x_pos);// if z_pos < or > dc_bx pos+ or pos- in z axis
+
+							is_allowed = 1;
+
+						}else{
+							// is_allowed = 0;
+						}
+					}else{
+						is_allowed = 0;
+					}
+				}
+
+
+				if(dc_bx_cf[0] == 3){//map 1
+					if((z_pos <= (dc_bx_cf[4] + (dc_bx_cf[2]/2))) && (z_pos >= (dc_bx_cf[4] - (dc_bx_cf[2]/2)))){
+						console.log(z_pos);// if z_pos < or > dc_bx pos+ or pos- in z axis 
+						if((x_pos >= (dc_bx_cf[3] - (dc_bx_cf[1]/2))) && (x_pos <= (dc_bx_cf[3] + (dc_bx_cf[1]/2))) ){
+							console.log(x_pos);// if z_pos < or > dc_bx pos+ or pos- in z axis
+
+							is_allowed = 1;
+
+						}else{
+							is_allowed = 0;
+						}
+					}else{
+						// is_allowed = 0;
+					}
+				}
+
+
+				console.log("***************************");
+				console.log(dc_bx_cf[4] + (dc_bx_cf[2]/2));
+				console.log(z_pos);
+				console.log(dc_bx_cf[4] - (dc_bx_cf[2]/2));
+
+				console.log("***************************");
+				console.log(dc_bx_cf[3] + (dc_bx_cf[1]/2));
+				console.log(x_pos);
+				console.log(dc_bx_cf[3] - (dc_bx_cf[1]/2));
+				console.log("***************************");
+				console.log(is_allowed);
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			var ref_min_max = [], ref_min_max_hand = [];
+			function ref_min_max_ak(id){
+				clip_data = actions[id].getClip();
+				for(j=0; j < clip_data.tracks.length; j++){
+					cname  = clip_data.tracks[j].name;
+					spname = cname.split("[")[1].split("]")[0];
+
+					if( cname.split("]")[1] == ".position" && ( spname == "handIK.R" || spname == "handIK.L")){
+						ctimes = clip_data.tracks[j].times;
+						timeKfo = THREE.AnimationUtils.getKeyframeOrder( ctimes );
+						timeSa = THREE.AnimationUtils.sortedArray( ctimes, 1, timeKfo );//ctimes
+									// frame_sorting(timeKfo, timeSa);
+
+						cvalues = clip_data.tracks[j].values;
+						valKfo = THREE.AnimationUtils.getKeyframeOrder( cvalues );
+						valStride = clip_data.tracks[j].getValueSize();
+						valSa = THREE.AnimationUtils.sortedArray( cvalues, valStride, timeKfo );
+
+						// console.log(valSa);
+
+						var px, py, pz;
+						a1 = 2.7473, a2 = 4.6666;
+						max_min_arr_1 = []; max_min_arr_2 = [];
+
+						for(i=0; i < valSa.length; i++){
+							if((i+3) % 3 == 0){//4SSS
+								px = valSa[i];
+							}
+							if((i+3) % 3 == 1){//4
+								py = valSa[i];
+							}
+							if((i+3) % 3 == 2){//4
+								pz = valSa[i];
+
+								s2 = pz / a2;
+								c2 = math.sqrt(math.abs(1 - (s2 * s2)));
+								t2 = math.atan2(s2, c2) / 2 / math.PI * 360 ;
+								max_min_arr_2.push(t2);
+
+
+								aa = a1 + ( a2 *  sincos(t2, "s") );
+							    c1 = px / aa;
+							    s1 = py / aa;
+							    t1 = math.atan2(s1, c1) / 2 / math.PI * 360 ;
+							    max_min_arr_1.push(t1);
+
+							    // console.log({"nm":spname, "q1":t1, "q2":t2});
+
+								if(i == valSa.length - 1){
+									dt = {
+										"action" 	: clip_data.name,
+										"name" 		: spname,
+										"max"		: [
+														Math.max.apply(null, max_min_arr_1),
+														Math.max.apply(null, max_min_arr_2)
+													],
+										"min"		: [
+														Math.min.apply(null, max_min_arr_1),
+														Math.min.apply(null, max_min_arr_2)
+													]
+									}
+									ref_min_max_hand.push(dt);
+									// console.log(max_min_arr_1);
+									// console.log(max_min_arr_2);
+									// console.log(ref_min_max_hand);
+								}
+								
+							}
+						}
+					}
+
+
+					if( cname.split("]")[1] == ".quaternion" && (spname == "angkle.R" || spname == "knee.R" || spname == "thigh.R" || spname == "angkle.L" || spname == "knee.L" || spname == "thigh.L" || spname == "shoulder.L" || spname == "shoulder.R" || spname == "arm.R" || spname == "arm.L") ){ //shoulder spname == "shoulder.L" || spname == "shoulder.R"
+
+						ctimes = clip_data.tracks[j].times;
+						timeKfo = THREE.AnimationUtils.getKeyframeOrder( ctimes );
+						timeSa = THREE.AnimationUtils.sortedArray( ctimes, 1, timeKfo );//ctimes
+									// frame_sorting(timeKfo, timeSa);
+
+						cvalues = clip_data.tracks[j].values;
+						valKfo = THREE.AnimationUtils.getKeyframeOrder( cvalues );
+						valStride = clip_data.tracks[j].getValueSize();
+						valSa = THREE.AnimationUtils.sortedArray( cvalues, valStride, timeKfo );
+
+						var w, x, y, z;
+						
+						max_min_arr = [];
+
+						for(i=0; i < valSa.length; i++){
+							if((i+4) % 4 == 0){//4SSS
+								x = valSa[i];
+							}
+							if((i+4) % 4 == 1){//4
+								y = valSa[i];
+							}
+							if((i+4) % 4 == 2){//4
+								z = valSa[i];
+							}
+							if((i+4) % 4 == 3){//4
+								w = valSa[i];
+								
+								var eViaQ1 = new THREE.Euler().setFromQuaternion( new THREE.Quaternion( x, y, z, w ), "XYZ" );
+								xval = (eViaQ1._x * 180 / Math.PI).toFixed(0);		
+								
+								if(xval > 90){
+									xval = 180 - xval;
+								}
+								if(xval <= 90 && xval >= 0){
+									xval = xval;
+								}
+								if(xval < -90){
+									xval = -180 - xval;
+								}
+								if(xval <= 0 && xval >= -90){
+									xval = xval;
+								}
+
+								max_min_arr.push(xval);
+
+								// if(spname == "shoulder.L" || spname == "shoulder.R"){
+								// 	console.log({"nm":spname, "x":xval});
+								// }
+
+								if(i == valSa.length - 1){
+									dt = {
+										"action" 	: clip_data.name,
+										"name" 		: spname,
+										"max"		: Math.max.apply(null, max_min_arr),
+										"min"		: Math.min.apply(null, max_min_arr)
+									}
+									ref_min_max.push(dt);
+								}
+							}
+						}
+					}
+				}
+
+			}
+
+
+
+
+
+
+			var tracks_length = 0;
+			function parse_animation_keyframe(a_no, clip) {
+				clip_data = null;
+
+				if(a_no == 99){
+					clip_data = clip;
+				}else{
+					if(actions[a_no].isRunning() == true){
+						clip_data = actions[a_no].getClip();// .getClip() getRoot
+					}
+				}
+
+				console.log(clip_data);
+				// if(tracks_length != clip_data.tracks.length ){
+				if(clip_data!=null){
+					for(j=0; j < clip_data.tracks.length; j++){
+						
+						cname  = clip_data.tracks[j].name;
+						spname = cname.split("[")[1].split("]")[0];//(spname == "angkle.R" || spname == "knee.R") && quaternion
+
+						if( cname.split("]")[1] == ".position" && ( spname == "handIK.R" || spname == "handIK.L")){ //handIK.R handIK.L
+							// console.log(clip_data.tracks[j]);
+
+							ctimes = clip_data.tracks[j].times;
+							timeKfo = THREE.AnimationUtils.getKeyframeOrder( ctimes );
+							timeSa = THREE.AnimationUtils.sortedArray( ctimes, 1, timeKfo );//ctimes
+							// frame_sorting(timeKfo, timeSa);
+
+							cvalues = clip_data.tracks[j].values;
+							valKfo = THREE.AnimationUtils.getKeyframeOrder( cvalues );
+							valStride = clip_data.tracks[j].getValueSize();
+							valSa = THREE.AnimationUtils.sortedArray( cvalues, valStride, timeKfo );
+
+
+							frame_sorting_position(valSa, clip_data.name, spname);
+							// console.log(valSa.length);
+
+						}
+						
+
+						if( cname.split("]")[1] == ".quaternion" && (spname == "angkle.R" || spname == "knee.R" || spname == "thigh.R" || spname == "angkle.L" || spname == "knee.L" || spname == "thigh.L" || spname == "shoulder.L" || spname == "shoulder.R" || spname == "arm.R" || spname == "arm.L") ){
+
+							ctimes = clip_data.tracks[j].times;
+							timeKfo = THREE.AnimationUtils.getKeyframeOrder( ctimes );
+
+							cvalues = clip_data.tracks[j].values;
+							valStride = clip_data.tracks[j].getValueSize();
+							valSa = THREE.AnimationUtils.sortedArray( cvalues, valStride, timeKfo );
+
+							frame_sorting_quaternion(valSa, clip_data.name, spname);//pos x y z, quart w x  y z
+							// console.log(valSa.length);
+						}
+					}
+				}
+
+					// tracks_length = clip_data.tracks.length;
+				// }
+			}
+
+
+
+
+
+
+
+			var keyframe_track = []; var lnm = ''; var dt_lgt = 0;
+			var time_line_frame = [];
+			function frame_sorting_quaternion(b, clnm, nm){//quartenion
+				var w, x, y, z;
+				var json_dt = [];
+				for(i=0; i < b.length; i++){
+					(function(i) {
+						setTimeout(function() { 
+
+							if((i+4) % 4 == 0){//4SSS
+								x = b[i];
+							}
+							if((i+4) % 4 == 1){//4
+								y = b[i];
+							}
+							if((i+4) % 4 == 2){//4
+								z = b[i];
+							}
+							if((i+4) % 4 == 3){//4
+								w = b[i];
+
+								var eViaQ1 = new THREE.Euler().setFromQuaternion( new THREE.Quaternion( x, y, z, w ), "XYZ" );
+
+								snum = 0;
+								ref_min = 0;
+								ref_max = 0;
+
+								for(pp=0; pp<ref_min_max.length;pp++){
+									if(ref_min_max[pp].name == nm){
+										if(nm == "shoulder.R"){
+											snum = 8;
+										}
+										if(nm == "arm.R"){
+											snum = 9;
+										}
+										if(nm == "thigh.R"){
+											snum = 10;
+										}										
+										if(nm == "knee.R"){
+											snum = 11;
+										}	
+										if(nm == "angkle.R"){
+											snum = 12;
+										}
+
+
+										if(nm == "shoulder.L"){
+											snum = 0;
+										}
+										if(nm == "arm.L"){
+											snum = 1;
+										}
+										if(nm == "thigh.L"){
+											snum = 2;
+										}
+										if(nm == "knee.L"){
+											snum = 3;
+										}
+										if(nm == "angkle.L"){
+											snum = 4;
+										}
+										ref_min = ref_min_max[pp].min;
+										ref_max = ref_min_max[pp].max;
+									}
+								}
+
+								range = 0;
+								xval = (eViaQ1._x * 180 / Math.PI).toFixed(0);
+
+								if(xval > 90){
+									xval = 180 - xval;
+									range = ref_max;
+								}
+								if(xval <= 90 && xval >= 0){
+									xval = xval;
+									range = ref_max;
+								}
+								if(xval < -90){
+									xval = -180 - xval;
+									range = math.abs(ref_min);
+								}
+								if(xval <= 0 && xval >= -90){
+									xval = xval;
+									range = math.abs(ref_min);
+								}
+
+								dt = {
+									"name" 		: nm,//bone / object name
+									"tetha"  	: xval,//theta value //xval.toString(),
+									// "ref_min" 	: ref_min,//reference tetha max
+									// "ref_max" 	: ref_max,//refrence tetha min
+									"range"     : range,
+									"snum"  	: snum,	//servo number
+									"status" 	: 1,//when message coming
+									"menu_type" : 1, //1 for interactive control, 2 for custom motion
+									"type_con"  : 1,//direct control
+									"action" 	: clnm,//action name
+								}
+								socket.emit('bind_json_data', dt); //emitting data to teh sever
+								
+								json_dt.push(dt);
+
+							}
+
+							if(i+1 == b.length){
+								console.log(json_dt);
+							}
+
+						}, i*10);
+					})(i);
+				}
+		
+			}
+
+
+
+
+
+
+
+			function frame_sorting_position(b, clnm, nm){
+				var x, y, z;
+				var json_dt_1 = [], json_dt_2 = [];
+				for(i=0; i < b.length; i++){
+					(function(i) {
+						setTimeout(function() { 
+							if((i+3) % 3 == 0){//4SSS
+								x = b[i];
+							}
+							if((i+3) % 3 == 1){//4
+								y = b[i];
+							}
+							if((i+3) % 3 == 2){//4
+								z = b[i];
+
+								a1 = 2.7473, a2 = 4.6666;
+
+								px = x;
+								py = y;
+								pz = z;
+								
+								s2 = pz / a2;
+								c2 = math.sqrt(math.abs(1 - (s2 * s2)));
+								t2 = math.atan2(s2, c2) / 2 / math.PI * 360 ;
+
+
+								aa = a1 + ( a2 *  sincos(t2, "s") );
+							    c1 = px / aa;
+							    s1 = py / aa;
+							    t1 = math.atan2(s1, c1) / 2 / math.PI * 360 ;
+
+							    snum1 = 0; snum2=0;
+								ref_min1 = 0; ref_min2 = 0;
+								ref_max1 = 0; ref_max2 = 0;
+
+							    
+							    if(ref_min_max_hand.length > 0){
+								    for(pp=0; pp<ref_min_max_hand.length;pp++){
+										if(ref_min_max_hand[pp].name == nm){
+
+
+											if(nm.split(".")[1] == "R"){
+												snum1 = 8;
+												snum2 = 9;
+											}else{
+												snum1 = 0;
+												snum2 = 1;
+											}
+
+											// if(t1 < 0){
+											// 	t1 = t1 / math.abs(ref_min_max_hand[pp].min[0]);
+											// }else{
+											// 	t1 = t1 / ref_min_max_hand[pp].max[0];
+											// }
+
+											// if(t2 < 0){
+											// 	t2 = t2 / math.abs(ref_min_max_hand[pp].min[1]);
+											// }else{
+											// 	t2 = t2 / ref_min_max_hand[pp].max[1];
+											// }
+
+											ref_min1 = ref_min_max_hand[pp].min[0];
+											ref_max1 = ref_min_max_hand[pp].max[0];
+
+											ref_min2 = ref_min_max_hand[pp].min[1];
+											ref_max2 = ref_min_max_hand[pp].max[1];
+
+										}
+									}
+								}
+
+								range_1 = 0, range_2=0;;
+								if(t1 < 0){
+									// t1 = t1 / math.abs(ref_min1);
+									range_1 = math.abs(ref_min1);
+								}else{
+									// t1 = t1 / ref_max1;
+									range_1 = ref_max1;
+								}
+
+								if(t2 < 0){
+									// t2 = t2 / math.abs(ref_min2);
+									range_1 = math.abs(ref_min2);
+								}else{
+									// t2 = t2 / ref_max2;
+									range_2 = ref_max2;
+								}
+
+
+								dt1 = {
+									"status" 	: 1,
+									"menu_type" : 1,
+									"type_con"  : 1,
+									"action" 	: clnm,
+									"name" 	 	: "shoulder."+nm.split(".")[1],
+									"snum"  	: snum1,
+									"tetha"  	: t1,//xval.toString(),
+									"range"     : range_1,
+									// "ref_min" 	: ref_min1,
+									// "ref_max" 	: ref_max1
+
+								}
+								json_dt_1.push(dt1);
+
+								dt2 = {
+									"status" 	: 1,
+									"menu_type" : 1,
+									"type_con"  : 1,
+									"action" 	: clnm,
+									"name" 	 	: "elbow."+nm.split(".")[1],
+									"snum"  	: snum2,
+									"tetha"  	: t2,//xval.toString(),
+									"range"     : range_2,
+									// "ref_min" 	: ref_min2,
+									// "ref_max" 	: ref_max2
+
+								}
+								json_dt_2.push(dt2);
+
+								socket.emit('bind_json_data', dt1);							
+								socket.emit('bind_json_data', dt2);
+
+								if(i+1 == b.length){
+									// console.log(json_dt_1);
+									// console.log(json_dt_2);
+								}
+
+								// dt = {
+								// 	"status" : 1,
+								// 	"type_con"  : 1,
+								// 	"action" : clnm,
+								// 	"name" 	 : nm,
+								// 	"x" 	 : x,
+								// 	"y"  	 : y,
+								// 	"z" 	 : z
+								// }
+								// console.log(dt);					
+								// if(nm.split(".")[0] == "legIK"){
+								// 	legIK_to_Angular(dt);
+								// }
+								// if(nm.split(".")[0] == "handIK"){
+								// 	handIK_to_Angular(dt);
+								// }
+								
+							}
+						}, i*10);
+					})(i);
+				}
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+			/**
+			function convert_to_euler(nm, w, x, y, z){
+				var eulerOrder = "XYZ";
+
+				// known problematic quaternions
+				var q1 = new THREE.Quaternion( x, y, z, w );
+
+
+				// create Euler directly from a Quaternion
+				var eViaQ1 = new THREE.Euler().setFromQuaternion( q1, eulerOrder ); // there is likely a bug here
+				eViaQ1.name = nm;
+				eViaQ1.x = (eViaQ1._x * 180 / Math.PI).toFixed(1);
+				eViaQ1.y = (eViaQ1._y * 180 / Math.PI).toFixed(1);
+				eViaQ1.z = (eViaQ1._z * 180 / Math.PI).toFixed(1);
+
+				// create Euler from Quaternion via an intermediate Matrix4
+				// var mViaQ1 = new THREE.Matrix4().makeRotationFromQuaternion( q1 );
+				// var eViaMViaQ1 = new THREE.Euler().setFromRotationMatrix( mViaQ1, eulerOrder );
+
+
+				// the results here are different
+				console.log(eViaQ1);  // this result is wrong
+				// console.log( eViaMViaQ1 );  // this result is correct
+			}
+			
+
+
+
+
+
+
+
+
+			var idx =[];
+			function test_sort(valKfo, valSa){
+
+				for (var i = 0; i < valKfo.length; i++) {
+				    valKfo[i] = [valKfo[i], i];
+				}
+				valKfo.sort(function(left, right) {
+				   	return left[0] < right[0] ? -1 : 1;
+				});
+				valKfo.sortIndices = [];
+				for (var j = 0; j < valKfo.length; j++) {
+			    	valKfo.sortIndices.push(valKfo[j][1]);
+			    	valKfo[j] = valKfo[j][0];
+			  	}
+			  	console.log(valKfo.sortIndices);
+			  	for (var i = 0; i < valKfo.sortIndices.length; i++) {
+				    console.log(valSa[valKfo.sortIndices[i]]);
+				}
+			}
+			*/
+
+
+
+
+
+
+			function legIK_to_Angular(json){
+
+				l1 = 4.75, l2 = 1.85, l3 = 2.9;
+
+				px = json.x;
+				py = json.y;
+				pz = json.z;
+
+
+				s3 = (-pz)/l3; //console.log(s3);
+				c3 =  math.sqrt(math.abs(1 - (s3 * s3)));
+				t3 = math.atan2(s3, c3) / 2 / math.PI * 360; //console.log(t3);
+
+				mn = (l3*l3) + (l2*l2) + (2 * l2* l3 * c3);  //console.log(mn);
+				Q = ( (px*px) + (py*py) + (l1*l1) - mn ) / ( 2*l1 );
+				t1 = ( math.atan2(py, px)  -  math.atan2(math.sqrt((px*px) + (py*py) - (Q*Q)).im, Q) ) / 2 / math.PI * 360 ; //console.log(t1);
+
+				k = (px * sincos(t1, "c")) + (py * sincos(t1, "s")) - l1; 
+				n = (py * sincos(t1, "c")) - (px * sincos(t1, "s")); 
+				l = l3 * sincos(t3, "c") + l2; 
+
+
+				d = math.abs(1 / ( l*l ));
+				c2 = (k * l )/ d;
+				s2 = (n * l) / d;
+				t2 = math.atan2(s2, c2) / 2 / math.PI * 360;
+
+
+
+				dt = {
+					"status" : 1,
+					"action" : json.action,
+					"name" 	 : json.name,
+					"FK"     : {
+							"x" 	 : px,
+							"y"  	 : py,
+							"z" 	 : pz
+					},
+					"IK"     : {
+							"Q1" 	 : t1,
+							"Q2"  	 : t2,
+							"Q3" 	 : t3
+					}
+					
+				}
+
+			}
+
+
+
+
+
+
+
+
+			function handIK_to_Angular(json){
+				a1 = 2.7473, a2 = 4.6666;
+
+
+				px = json.x;
+				py = json.y;
+				pz = json.z;
+				
+				s2 = pz / a2;
+				c2 = math.sqrt(math.abs(1 - (s2 * s2)));
+				t2 = math.atan2(s2, c2) / 2 / math.PI * 360 ;
+
+
+				aa = a1 + ( a2 *  sincos(t2, "s") );
+			    c1 = px / aa;
+			    s1 = py / aa;
+			    t1 = math.atan2(s1, c1) / 2 / math.PI * 360 ;
+			    
+			    // console.log(ref_min_max_hand.length);
+
+			    var json_dt_1 = [], json_dt_2 = [];
+			    if(ref_min_max_hand.length > 0){
+				    for(pp=0; pp<ref_min_max_hand.length;pp++){
+						if(ref_min_max_hand[pp].name == json.name){
+
+
+							if(json.name.split(".")[1] == "R"){
+								snum1 = 8;
+								snum2 = 9;
+							}else{
+								snum1 = 0;
+								snum2 = 1;
+							}
+
+							// if(t1 < 0){
+							// 	t1 = t1 / math.abs(ref_min_max_hand[pp].min[0]);
+							// }else{
+							// 	t1 = t1 / ref_min_max_hand[pp].max[0];
+							// }
+
+							// if(t2 < 0){
+							// 	t2 = t2 / math.abs(ref_min_max_hand[pp].min[1]);
+							// }else{
+							// 	t2 = t2 / ref_min_max_hand[pp].max[1];
+							// }
+							
+							dt1 = {
+								"status" 	: 1,
+								"menu_type" : 1,
+								"type_con"  : 1,
+								"action" 	: json.action,
+								"name" 	 	: "shoulder."+json.name.split(".")[1],
+								"snum"  	: snum1,
+								"tetha"  	: t1,//xval.toString(),
+								"ref_min" 	: ref_min_max_hand[pp].min[0],
+								"ref_max" 	: ref_min_max_hand[pp].max[0]
+
+							}
+							json_dt_1.push(dt1);
+
+							dt2 = {
+								"status" 	: 1,
+								"menu_type" : 1,
+								"type_con"  : 1,
+								"action" 	: json.action,
+								"name" 	 	: "elbow."+json.name.split(".")[1],
+								"snum"  	: snum2,
+								"tetha"  	: t2,//xval.toString(),
+								"ref_min" 	: ref_min_max_hand[pp].min[1],
+								"ref_max" 	: ref_min_max_hand[pp].max[1]
+
+							}
+							json_dt_2.push(dt2);
+
+							socket.emit('bind_json_data', dt1);							
+							socket.emit('bind_json_data', dt2);
+						}
+
+						if(pp+1 == ref_min_max_hand.length){
+							console.log(json_dt_1);
+							console.log(json_dt_2);
+						}
+					}
+				}
+				// console.log(dt); 
+			}
+
+
+
+
+
+
+
+
+
+			function trigono(a, b, t, s){
+				if(t == "c"){
+					if(s == "+"){ //math.cos(math.unit(c1, 'deg'))
+						return math.cos(math.unit(a, 'deg')) * math.cos(math.unit(b, 'deg')) - math.sin(math.unit(a, 'deg')) * math.sin(math.unit(b, 'deg'));
+					}else{
+						return math.cos(math.unit(a, 'deg')) * math.cos(math.unit(b, 'deg')) + math.sin(math.unit(a, 'deg')) * math.sin(math.unit(b, 'deg'));
+					}
+				}else{
+					if(s == "-"){
+						return math.sin(math.unit(a, 'deg')) * math.cos(math.unit(b, 'deg')) - math.cos(math.unit(a, 'deg')) * math.sin(math.unit(b, 'deg'));
+					}else{
+						return math.sin(math.unit(a, 'deg')) * math.cos(math.unit(b, 'deg')) + math.cos(math.unit(a, 'deg')) * math.sin(math.unit(b, 'deg'));
+					}
+				}
+			}	
+
+
+
+
+
+
+			function sincos(val, tp){
+				if(tp == "c"){
+					return math.cos(math.unit(val, 'deg'));
+				}else{
+					return math.sin(math.unit(val, 'deg'));
+				}
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			function IK_to_FK(){
+
+				px = -3.24;
+				py = 7.99;
+				pz = 0.99;
+
+				s3 = (-pz)/l3; //console.log(s3);
+				c3 =  math.sqrt(math.abs(1 - (s3 * s3)));
+				t3 = math.atan2(s3, c3) / 2 / math.PI * 360; //console.log(t3);
+
+
+
+				mn = (l3*l3) + (l2*l2) + (2 * l2* l3 * c3);  //console.log(mn);
+				Q = ( (px*px) + (py*py) + (l1*l1) - mn ) / ( 2*l1 );
+				t1 = ( math.atan2(py, px)  -  math.atan2(math.sqrt((px*px) + (py*py) - (Q*Q)), Q) ) / 2 / math.PI * 360 ; //console.log(t1);
+
+
+				k = (px * sincos(t1, "c")) + (py * sincos(t1, "s")) - l1; 
+				n = (py * sincos(t1, "c")) - (px * sincos(t1, "s")); 
+				l = l3 * sincos(t3, "c") + l2; 
+
+
+				d = math.abs(1 / ( l*l ));
+				c2 = (k * l )/ d;
+				s2 = (n * l) / d;
+				t22 = math.atan2(s2, c2) / 2 / math.PI * 360;
+
+				dt = {
+					"IK" : {
+						"input": [px, py, pz],
+						"output": [t1, t22, t3]
+					}					
+				}
+				console.log(dt);
+			}
+
+
+
+
+
+
+
+
+			
+			// fk_ik_gen_hand("Right Hand", 0, 0);
+			// fk_ik_gen_hand("Left Hand", -30, 45);
+
+
+			// fk_ik_gen_leg("Right Leg", -60, -60, -30);
+			// fk_ik_gen_leg("Right Leg", -54, -54, -25);
+			// fk_ik_gen_leg("Left Leg", -45, -45, -20);
+			// fk_ik_gen_leg("Right Leg", -30, -30, -10);
+			// fk_ik_gen_leg("Left Leg", 0, 0, 0);
+			// fk_ik_gen_leg("Right Leg", 30, 30, 10);
+			// fk_ik_gen_leg("Left Leg", 45, 45, 20);
+			// fk_ik_gen_leg("Right Leg", 54, 54, 25);
+			// fk_ik_gen_leg("Right Leg", 60, 60, 30);
+			// fk_ik_gen_leg("Right Leg", 75, 75, 35);
+			// fk_ik_gen_leg("Left Leg", 90, 90, 45);
+
+			// fk_ik_gen_hand("Right Hand", -90, -90);
+			// fk_ik_gen_hand("Right Hand", -75, -75);
+			// fk_ik_gen_hand("Right Hand", -60, -60);
+			// fk_ik_gen_hand("Right Hand", -54, -54);
+			// fk_ik_gen_hand("Right Hand", -45, -45);
+			// fk_ik_gen_hand("Right Hand", -30, -30);
+			// fk_ik_gen_hand("Right Hand", 30, 30);
+			// fk_ik_gen_hand("Right Hand", 45, 45);
+			// fk_ik_gen_hand("Right Hand", 54, 54);
+			// fk_ik_gen_hand("Right Hand", 60, 60);
+			// fk_ik_gen_hand("Right Hand", 75, 75);
+			// fk_ik_gen_hand("Right Hand", 90, 90);
+			
+
+			function fk_ik_gen_leg(nm, q1, q2, q3){
+				var th = [q1, q2, q3];
+				l1 = 4.75;
+				l2 = 1.85;
+				l3 = 2.90;
+
+
+				c12 = trigono(th[0], th[1],  "c", "+");
+				s12 = trigono(th[0], th[1],  "s", "+");
+
+				px = ( l3 * c12 * sincos(th[2], "c") ) + ( l2 * c12 ) + (l1 * sincos(th[0], "c")) ;
+				py = ( l3 * s12 * sincos(th[2], "c") ) + ( l2 * s12 ) + (l1 * sincos(th[0], "s")) ;
+				pz = -l3 * sincos(th[2], "s");
+
+				s3 = (-pz)/l3; //console.log(s3);
+				c3 =  math.sqrt(math.abs(1 - (s3 * s3)));
+				t3 = math.atan2(s3, c3) / 2 / math.PI * 360; //console.log(t3);
+
+
+
+				mn = (l3*l3) + (l2*l2) + (2 * l2* l3 * c3);  //console.log(mn);
+				Q = ( (px*px) + (py*py) + (l1*l1) - mn ) / ( 2*l1 );
+
+				if(th[0] < 0 || th[1]<0){
+					t1 = ( math.atan2(py, px)  +  math.atan2(math.sqrt((px*px) + (py*py) - (Q*Q)), Q) ) / 2 / math.PI * 360 ; //console.log(t1);
+				}else{
+					t1 = ( math.atan2(py, px)  -  math.atan2(math.sqrt((px*px) + (py*py) - (Q*Q)), Q) ) / 2 / math.PI * 360 ; //console.log(t1);
+				}
+				
+
+
+				k = (px * sincos(t1, "c")) + (py * sincos(t1, "s")) - l1; 
+				n = (py * sincos(t1, "c")) - (px * sincos(t1, "s")); 
+				l = l3 * sincos(t3, "c") + l2; 
+
+
+				d = math.abs(1 / ( l*l ));
+				c2 = (k * l )/ d;
+				s2 = (n * l) / d;
+				t22 = math.atan2(s2, c2) / 2 / math.PI * 360;
+
+				dt = {
+						"input": th,
+						"nm":nm,
+						"FK": [px, py, pz],
+						"IK": [t1, t22, t3]
+					
+				}
+				console.log(dt);
+			}
+
+
+
+
+
+
+			function fk_ik_gen_hand(nm, t1, t2){
+				var th = [t1, t2];
+				a1 = 2.7473; a2 = 4.6666;
+				px = a2 * sincos(th[0], "c") * sincos(th[1], "c") + a1 * sincos(th[0], "c");
+				py = a2 * sincos(th[0], "s") * sincos(th[1], "c")+ a1 * sincos(th[0], "s");
+				pz = a2 * sincos(th[1], "s");
+
+				s2 = pz / a2;
+				c2 = math.sqrt(math.abs(1 - (s2 * s2)));
+				t2 = math.atan2(s2, c2) / 2 / math.PI * 360 ;
+
+
+				aa = a1 + ( a2 *  sincos(t2, "s") );
+			    c1 = px / aa;
+			    s1 = py / aa;
+			    t1 = math.atan2(s1, c1) / 2 / math.PI * 360 ;
+			    
+				dt = {
+						"input": th,
+						"nm":nm,
+						"FK": [px, py, pz],
+						"IK": [t1, t2]
+					
+				}
+				console.log(dt);
+				// console.log(JSON.stringify(dt));
+			}
+
+
+
+
+
+
+
+
+// int ref_right_hand_min[]  = {100, 250};
+// int ref_right_hand[]      = {300, 415};
+// int ref_right_hand_max[]  = {500, 500};
+// int ref_right_hand_step[] = {0, 0, 0, 0, 0, 0};
+
+// int ref_right_leg_min[]    = {150, 300, 270};//thigh, knee, angle
+// int ref_right_leg[]        = {250, 400, 300};//thigh, knee, angle
+// int ref_right_leg_max[]    = {350, 600, 330};//thigh, knee, angle
+// int ref_right_leg_step[]   = {0, 0, 0, 0, 0, 0, 0, 0, 0}; //mn nr mx
+
+
+
+// int ref_left_hand_min[]   = {150, 250};
+// int ref_left_hand[]       = {300, 375};//sholder elbow
+// int ref_left_hand_max[]   = {500, 500};
+// int ref_left_hand_step[]  = {0, 0, 0, 0, 0, 0};
+
+// int ref_left_leg_min[]   = {300, 275, 345};
+// int ref_left_leg[]       = {400, 400, 375};
+// int ref_left_leg_max[]   = {500, 600, 405};
+// int ref_left_leg_step[]  = {0, 0, 0, 0, 0, 0, 0, 0, 0}; //mn nr mx
+
+
+
+
+// int tetha_left_leg[] = {0, 0, 0};//thigh, knee, angle
+// int tetha_right_leg[] = {0, 0, 0};
+
+// int tetha_left_hand[] = {0, 0};//sholder elbow
+// int tetha_right_hand[] = {0, 0};
+
+
+// int lh_j1 = 0;
+// int lh_j2 = 1;
+// int ll_j1 = 2;
+// int ll_j2 = 3;
+// int ll_j3 = 4;
+
+// int rh_j1 = 8;
+// int rh_j2 = 9;
+// int rl_j1 = 10;
+// int rl_j2 = 11;
+// int rl_j3 = 12;
+
+
+//int pl = map(60, -90, 90, 150, 500);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			var nv_sd = 0;
+			$("#sb_tb_btn").click(function(){
+				if($("#navbar").css("right") == '-230px'){
+					nv_sd = 1;
+					$("#ic_sb_tb_tb").removeClass("fa-bars");
+					$("#ic_sb_tb_tb").addClass("fa-arrow-right");
+				}else{
+					nv_sd = 0;
+					$("#ic_sb_tb_tb").removeClass("fa-arrow-right");
+					$("#ic_sb_tb_tb").addClass("fa-bars");
+				}
+			});
+
+
+
+
+
+			$(".load_model").click(function(){
+				id = $(this).attr("dt-id");
+
+				for(i=0; i < scene.children.length; i++){
+					if(scene.children[i].name == "plane_mesh"){
+						scene.remove(scene.children[i]);
+
+						if(id == 1){
+							init_ground(1);
+						}else if(id == 2){
+							init_ground(2);
+						}else if(id == 3){
+							init_ground(3);
+						}else if(id == 4){
+							init_ground(4);
+						}else{
+							init_ground(5);
+						}
+					}
+				}
+				
+			});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			var pso1 = new pso.Optimizer(); var dt_pso1;
+			var pso2 = new pso.Optimizer(); var dt_pso2;
+			var pso3 = new pso.Optimizer(); var dt_pso3;
+
+
+
+			var initialPopulationSize = 20;
+    		var domain = [{ start: 0, end: 20 }, { start: 0, end: 20 }, { start: 0, end: 10 }];// init q1 q2 q3
+    		var iterations = 0,	maxIterations = 10;
+
+
+
+		    pso1.setObjectiveFunction(function(x, done) {
+		        setTimeout(function() {
+		            done(test_fk_solver(x[0], x[1], x[2], 1)); // q1, q2, q3
+		        }, Math.random() * 100);
+		    }, {
+		        async: true
+		    });
+
+
+
+		    pso2.setObjectiveFunction(function(x, done) {
+		        setTimeout(function() {
+		            done(test_fk_solver(x[0], x[1], x[2], 2)); // q1, q2, q3
+		        }, Math.random() * 100);
+		    }, {
+		        async: true
+		    });
+
+
+
+		    pso3.setObjectiveFunction(function(x, done) {
+		        setTimeout(function() {
+		            done(test_fk_solver(x[0], x[1], x[2], 3)); // q1, q2, q3
+		        }, Math.random() * 100);
+		    }, {
+		        async: true
+		    });
+
+
+
+
+
+
+    		pso1.init(initialPopulationSize, domain);
+    		pso2.init(initialPopulationSize, domain);
+    		pso3.init(initialPopulationSize, domain);
+
+
+
+
+
+        	function loop1() {
+        		// test_fk_solver(20, 20, -10);//(20 20 -10) (0 0 -10) (0 0 0) (-35 -35 0)
+        									//(FK (X, Y, Z):: 9.192871655685593; 4.354964863663037; 1.1116906492325158)
+        		
+        		if (iterations >= maxIterations) {
+        			var particles = pso1.getParticles(); //getBestPosition  getBestFitness (already staisfied)
+        			// particles.forEach(function(particle) {
+        			// 	dt = {
+        			// 		"bestFitness" : particle.bestFitness,
+        			// 		"bestPosition" : {
+					      //   					"X" : (particle.bestPosition[0] - domain[0].start),
+					      //   					"Y" : (particle.bestPosition[1] - domain[1].start),
+					      //   					"Z" : (particle.bestPosition[2] - domain[2].start)
+					      //   },
+					      //   "options" : optimizer._options
+        			// 	}
+        		 // 		// console.log(dt);
+        			// });
+
+                	dt_pso1 = pso1;
+                	iterations = 0;
+        			
+        		} else {
+            		iterations++;
+            		pso1.step(loop1);
+            	}
+    		}
+
+
+
+
+
+
+    		function loop2() {
+        		if (iterations >= maxIterations) {
+                	dt_pso2 = pso2;
+                	iterations = 0;
+        		} else {
+            		iterations++;
+            		pso2.step(loop2);
+            	}        		
+    		}
+
+
+
+
+
+    		function loop3() {
+        		if (iterations >= maxIterations) {
+                	dt_pso3 = pso3;
+                	iterations = 0;
+
+                	pso_ik_data = {
+                		"dt_pso1" : dt_pso1,
+                		"dt_pso2" : dt_pso2,
+                		"dt_pso3" : dt_pso3
+                	}
+
+                	console.log(pso_ik_data);
+        		} else {
+            		iterations++;
+            		pso3.step(loop3);
+            	}        		
+    		}
+
+
+
+
+
+    		// loop1();
+    		// loop2();
+    		// loop3();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			/*
+			 * We create a network with one input neuron (the sine functions takes one number as input),
+			 * twenty neurons in the hidden layer (you can play with number and see what happens)
+			 * and one output neuron (sine returns one number as an output).
+			 *
+			 */
+			const NN = NeuralNetwork(1, 20, 1, 0.3);
+			/*
+			 * Sine is a periodic function,
+			 * thus we only need to train on values in the range <-pi, pi>
+			 * That is still quite a big range so we will need a lot of training data.
+			 *
+			 * (This training might take a while)
+			 *
+			 */
+			for (let i = 0; i < 100; i++) {
+			    const x = Math.random();
+			    NN.train({
+			        input: x,
+			        expected: normalize(Math.sin(x))
+			    });
+			}
+			/*
+			 * We use the sigmoid function
+			 * as our activation function so we will have change our data a bit.
+			 *
+			 * Our sigmoid function returns values in range (0, 1),
+			 * but sine's range of values is <-1, 1>
+			 *
+			 * To overcome this, we will not give the network the actual value of sine(x),
+			 * but rather a value that has been normalized to be in range <0, 1>
+			 */
+			function normalize(x) {
+			    return 0.5 * (x + 1);
+			}
+			/*
+			 * Because the network will now be returning
+			 * the normalized values, we want to revert them back
+			 * to the actual values of sine(x).
+			 */
+			function revert(x) {
+			    return (2 * x) - 1;
+			}
+			/*
+			 * Let's how the network did..
+			 * When the training is done you should see something like this:
+			 *
+			 * Testing the neural network...
+			 * input: 0.987 | expected: 0.834 | actual: 0.842
+			 * input: -1.011 | expected: -0.847 | actual: -0.855
+			 * input: -2.731 | expected: -0.399 | actual: -0.451
+			 * input: 1.030 | expected: 0.858 | actual: 0.857
+			 * input: 3.028 | expected: 0.114 | actual: 0.126
+			 * input: 0.187 | expected: 0.186 | actual: 0.188
+			 * input: 1.658 | expected: 0.996 | actual: 0.908
+			 * input: 1.961 | expected: 0.925 | actual: 0.863
+			 * input: 1.218 | expected: 0.938 | actual: 0.899
+			 * input: -0.079 | expected: -0.079 | actual: -0.087
+			 *
+			 */
+			// console.log("Testing the neural network...");
+			for (let i = 0; i < 50; i++) {
+			    const x = Math.random();
+			    const result = NN.test([x]);
+			    // console.log("input:", x.toFixed(3), "| expected:", x.toFixed(3), "| actual:", revert(result).toFixed(3));
+			}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+			function NeuralNetwork(numInputs, numHidden, numOutputs, learningRate = 0.5, bias = 1) {
+			    let weightsIH = getStartingWeights(numInputs + 1, numHidden);
+			    let weightsHO = getStartingWeights(numHidden + 1, numOutputs);
+
+			    function feedForward(input) {
+			        let netH = multiply([input.concat([bias])], weightsIH)[0];
+			        let outH = netH.map(c => sigma(c));
+			        let netO = multiply([outH.concat([bias])], weightsHO)[0];
+			        let outO = netO.map(c => sigma(c));
+			        return {
+			            outH,
+			            outO
+			        };
+			    }
+
+			    /**
+			     * Feeds the network with the input and backpropagates the error
+			     * @memberof NeuralNetwork
+			     * @param {Object} data - the target file
+			     * @param {Array} data.input - the input vector
+			     * @param {Array} data.expected - the expected result
+			     */
+			    function train({
+			        input,
+			        expected
+			    }) {
+			        input = isArray(input) ? input : [input];
+			        expected = isArray(expected) ? expected : [expected];
+			        const {
+			            outH,
+			            outO
+			        } = feedForward(input);
+			        const errors = err(outO, expected);
+			        const totalError = errors.reduce((p, c) => {
+			            return p + c;
+			        }, 0);
+
+			        // console.log("total error", totalError);
+			        
+			        const dErrordOutH = [];
+			        for (let i = 0; i < numHidden; i++) {
+			            let sum = 0;
+			            for (let j = 0; j < numOutputs; j++) {
+			                sum += (outO[j] - expected[j]) * outO[j] * (1 - outO[j]) * weightsHO[i][j];
+			            }
+			            dErrordOutH.push(sum);
+			        }
+			        for (let i = 0; i < numHidden + 1; i++) {
+			            for (let j = 0; j < numOutputs; j++) {
+			                let deltaW = (outO[j] - expected[j]) * outO[j] * (1 - outO[j]);
+			                if (i !== numHidden) {
+			                    deltaW *= outH[i];
+			                } else {
+			                    deltaW *= bias;
+			                }
+			                weightsHO[i][j] -= deltaW * learningRate;
+			            }
+			        }
+			        for (let i = 0; i < numInputs + 1; i++) {
+			            for (let j = 0; j < numHidden; j++) {
+			                let deltaW = dErrordOutH[j] * outH[j] * (1 - outH[j]);
+			                if (i !== numInputs) {
+			                    deltaW *= input[i];
+			                } else {
+			                    deltaW *= bias;
+			                }
+			                weightsIH[i][j] -= deltaW * learningRate;
+			            }
+			        }
+			    }
+			    /**
+			     * Returns result of a test input
+			     * @memberof NeuralNetwork
+			     * @param {Array} input - the test input vector
+			     */
+			    function test(input) {
+			        const result = feedForward(isArray(input) ? input : [input]).outO;
+			        return result.length === 1 ? result[0] : result;
+			    }
+			    return {
+			        train,
+			        test
+			    };
+			}
+
+
+
+			/**
+			 * Returns an m x n matrix of random starting weights
+			 * @private
+			 * @param {integer} m - the number of rows
+			 * @param {integer} n -  the number of columns
+			 */
+			function getStartingWeights(m, n) {
+			    let matrix = [];
+			    for (let i = 0; i < m; i++) {
+			        let row = [];
+			        for (let j = 0; j < n; j++) {
+			            row.push(random_next(-1, 1));
+			        }
+			        matrix.push(row);
+			    }
+			    return matrix;
+			}
+
+
+
+			function isArray(subject) {
+			    return Array.isArray(subject);
+			}
+
+
+
+			/**
+			 * square error measure
+			 * @param {Array} actual - actual output vector
+			 * @param {Array} expected - expected output vector
+			 * @returns {Array} an array of squared error for each vector element
+			 */
+			function err(actual, expected) {
+			    return actual.map((c, i) => {
+			        return 0.5 * Math.pow((expected[i] - actual[i]), 2);
+			    });
+			}
+			/**
+			 * activation function
+			 * @param {number} x - the x value
+			 */
+			function sigma(x) {
+			    return 1 / (1 + Math.exp(-x));
+			}
+			/**
+			 * multiply two matrices
+			 * @param {Array} leftMatrix - the left matrix
+			 * @param {Array} rightMatrix - the right matrix
+			 * @returns {Array} a Matrix that is a result of the multiplication
+			 */
+			function multiply(leftMatrix, rightMatrix) {
+			    const rows = leftMatrix.length;
+			    const cols = rightMatrix[0].length;
+			    const dotLength = rightMatrix.length;
+			    let result = [];
+			    for (let i = 0; i < rows; i++) {
+			        let row = [];
+			        for (let j = 0; j < cols; j++) {
+			            let dot = 0;
+			            for (let k = 0; k < dotLength; k++) {
+			                dot += leftMatrix[i][k] * rightMatrix[k][j];
+			            }
+			            row.push(dot);
+			        }
+			        result.push(row);
+			    }
+			    return result;
+			}
+
+
+
+			function random_next(min, max) {
+				seed = 123;
+		        const x = Math.sin(seed++) * 10000;
+		        return (x - Math.floor(x)) * (max - min) + min;
+			}
+
+
+		</script>
+
+	</body>
+</html>

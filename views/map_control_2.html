@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html>
+<head>
+  	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<title><%= title %></title>
+  	<link rel="icon" href="static/img/icon.jpg">
+  	
+  	<!-- Tell the browser to be responsive to screen width -->
+  	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+	<!-- Bootstrap 3.3.7 -->
+  	<link rel="stylesheet" href="static/bootstrap/css/bootstrap.min.css">
+
+  	<!-- Font Awesome -->
+	<link rel="stylesheet" href="static/bootstrap/plugin/font-awesome/css/font-awesome.css">
+
+	<!-- Ionicons -->
+	<link rel="stylesheet" href="static/bootstrap/plugin/Ionicons/css/ionicons.min.css">
+
+  	<!-- bootstrap slider -->
+  	<link rel="stylesheet" href="static/bootstrap/plugin/bootstrap-slider/slider.css">
+
+	<!-- Theme style -->
+	<link rel="stylesheet" href="static/bootstrap/dist/css/AdminLTE.min.css">
+
+	<!-- AdminLTE Skins. Choose a skin from the css/skins
+	       folder instead of downloading all of them to reduce the load. -->
+	<link rel="stylesheet" href="static/bootstrap/dist/css/skins/_all-skins.min.css">
+
+
+	<link rel="stylesheet" href="static/js/toast/toastr.css">
+	<link rel="stylesheet" href="static/js/sweetalert/sweetalert.css">
+
+	<!-- <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic"> -->
+	<style>
+			body {
+				/*background-color: #000;
+				color: #000;*/
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				padding: 10px;
+				width: 100%;
+				text-align: center;
+			}
+
+			a {
+				/*text-decoration: underline;*/
+				cursor: pointer;
+				/*color: #bbb;*/
+			}
+			
+			.ac {  /* prevent dat-gui from being selected */
+				-webkit-user-select: none;
+				-moz-user-select: none;
+				-ms-user-select: none;
+				user-select: none;
+			}
+			.no-pointer-events {
+				pointer-events: none;
+			}
+			.control-disabled {
+				color: #888;
+				text-decoration: line-through;
+			}
+
+			#dat {
+				left: 10;
+				position: absolute;
+				top: 0;
+				z-Index: 200;
+			}
+
+
+			#stats{
+				position: fixed;
+			    bottom: 0px;
+			    left: 0px;
+			    cursor: pointer;
+			    opacity: 0.9;
+			    z-index: 10000;
+			}
+
+	</style>
+</head>
+
+
+
+<body class="hold-transition skin-blue sidebar-mini sidebar-collapse">
+
+	<div class="wrapper">
+
+
+
+
+
+	  	<header class="main-header">
+	    	<!-- Logo -->
+	    	<a href="#" class="logo">
+	      		<span class="logo-mini"><b>3</b>DH</span>
+	      		<span class="logo-lg"><b>Humanoid</b>3D</span>
+	    	</a>
+
+		    <nav class="navbar navbar-static-top">
+		     	<a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button" id="mb_tb_btn">
+		        	<span class="sr-only">Toggle navigation</span>
+		      	</a>
+
+
+		      	<div class="navbar-custom-menu">
+	        		<ul class="nav navbar-nav">
+	          			<li>
+	            			<a href="#" data-toggle="control-sidebar" id="sb_tb_btn">
+	            			<i class="fa fa-bars" id="ic_sb_tb_tb"></i></a>
+	          			</li>
+	        		</ul>
+	      		</div>
+
+		    </nav>
+	  	</header>
+
+
+
+
+
+
+
+	  	<!-- Left side column. contains the logo and sidebar -->
+	  	<aside class="main-sidebar" id="ms">
+	    	<!-- sidebar: style can be found in sidebar.less -->
+	   		<section class="sidebar">
+	   			<!-- sidebar menu: : style can be found in sidebar.less -->
+	      		<ul class="sidebar-menu" data-widget="tree">
+	        		<li class="header">MAIN NAVIGATION</li>
+	        		
+	        		<li id="mb_1">
+	          			<a href="/boolean_animation">
+	            			<i class="fa fa-dashboard"></i> <span>Boolean Animation</span>
+	            			<!-- <span class="pull-right-container">
+	              				<i class="fa fa-angle-left pull-right"></i>
+	            			</span> -->
+	          			</a>
+	        		</li>
+
+
+	        		<li id="mb_2">
+	          			<a href="/map_control">
+	            			<i class="fa fa-gg"></i> <span>Interactive Motion</span>
+	          			</a>
+	        		</li>
+
+
+	        		<li id="mb_3">
+	          			<a href="/custom_motion">
+	            			<i class="fa fa-object-ungroup"></i> <span>Custom Motion</span>
+	          			</a>
+	        		</li>
+
+
+	        		<!--
+	        		<li>
+	          			<a href="#">
+	            			<i class="fa fa-th"></i> <span>Widgets</span>
+				            <span class="pull-right-container">
+				              	<small class="label pull-right bg-green">new</small>
+				            </span>
+	          			</a>
+	        		</li>
+
+	        		<li class="treeview">
+				        <a href="#">
+				            <i class="fa fa-edit"></i> <span>Forms</span>
+				            <span class="pull-right-container">
+				              	<i class="fa fa-angle-left pull-right"></i>
+				            </span>
+				        </a>
+				        <ul class="treeview-menu">
+				            <li>
+				            	<a href="pages/forms/general.html">
+				            		<i class="fa fa-circle-o"></i> General Elements
+				            	</a>
+				            </li>
+				            <li>
+				            	<a href="pages/forms/advanced.html">
+				            		<i class="fa fa-circle-o"></i> Advanced Elements
+				            	</a>
+				            </li>
+				        </ul>
+			        </li>
+			        -->
+	        	</ul>
+	   		</section>
+	   	</aside>
+
+
+
+
+
+
+
+
+	  	<div class="content-wrapper" id="wrapper">
+	  		<div class="row">
+	  			<div class="col-lg-12" style="padding-left: 0px;">
+					<div class="row">
+						<div id="container" class="col-md-12" style="padding-left: -15px;">
+							<div id="info" class="col-md-3" style="font-family: Monospace;"><%= title %> <br/> <%= name %></div>
+							<!-- <div class="col-md-3"></div> -->
+							<div id="dat" class="col-md-3"></div>
+							<div id="stats" class="col-md-3"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+	    </div>
+
+
+
+
+
+
+	    <!-- <footer class="main-footer">
+		    <div class="pull-right hidden-xs">
+		      	<b>Version</b> 1.0.0
+		    </div>
+	    	<strong>
+	    		Copyright &copy; 2018 <a href="#">ZenZen</a>.
+	    	</strong> All rights reserved.
+	  	</footer> -->
+
+
+
+
+
+
+
+
+	  	<!-- Control Sidebar -->
+	 	<aside class="control-sidebar control-sidebar-dark" id="navbar">
+		    <!-- Create the tabs -->
+		    <!-- <ul class="nav nav-tabs nav-justified control-sidebar-tabs">
+		      	<li class="active">
+		      		<a href="#control-sidebar-home-tab" data-toggle="tab">
+		      			<i class="fa fa-puzzle-piece"></i>
+		      		</a>
+		      	</li>
+		      	<!-- <li>
+		      		<a href="#control-sidebar-settings-tab" data-toggle="tab">
+		      			<i class="fa fa-history"></i>
+		      		</a>
+		      	</li> --
+		    </ul> -->
+
+		    <!-- Tab panes -->
+		    <div class="tab-content">
+
+	      		<!-- Home tab content -->
+	      		<div class="tab-pane active" id="control-sidebar-home-tab">
+	      			<h3 class="control-sidebar-heading" style="margin-top:0px"><i class="fa fa-puzzle-piece"></i> Map Options</h3>
+	      			<div class="col-lg-12 ct_slider" style="overflow-y: scroll;">
+                        
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="1">
+                        	<img class="img-responsive" src="static/img/maze_1.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Map 1</strong>
+                        </button>
+
+                        <br>
+
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="2" >
+                        	<img class="img-responsive" src="static/img/maze_2.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Map 2</strong>
+                        </button>
+                        <br>
+
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="3">
+                        	<img class="img-responsive" src="static/img/maze_3.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Map 3</strong>
+                        </button>
+                        <br>
+
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="4">
+                        	<img class="img-responsive" src="static/img/maze_4.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Map 4</strong>
+                        </button>
+                        <br>
+
+
+                        <button type="button" class="btn btn-block btn-default btn-sm load_model" dt-id="5">
+                        	<img class="img-responsive" src="static/img/maze_0.png" style="margin: 0 auto;" alt="Photo">
+                        	<br/>
+                        	<strong>Random Map</strong>
+                        </button>
+
+	      			</div>		
+	      		</div>
+
+
+	      		<!-- Settings tab content -->
+	      		<!-- <div class="tab-pane" id="control-sidebar-settings-tab">
+	      			<h3 class="control-sidebar-heading">Recent Activity</h3>
+	        		<ul class="control-sidebar-menu" id="motion_history_content">
+			         
+	       			</ul>
+	        		<!-- /.control-sidebar-menu --
+	      		</div> -->
+	     		 <!-- /.tab-pane -->
+	    	</div>
+	  	</aside>
+		<!-- /.control-sidebar -->
+		<!-- Add the sidebar's background. This div must be placed
+		       immediately after the control sidebar -->
+	  	<div class="control-sidebar-bg"></div>
+
+
+
+
+
+
+	</div>
+
+
+
+		<!-- THREE JS PLUGIN -->
+	<script src="static/js/three.js/three.min.js"></script>
+	<script src="static/js/three.js/Detector.js"></script>
+	<script src="static/js/three.js/OrbitControls.js"></script>
+	<script src="static/js/three.js/stats.min.js"></script>
+	<script src="static/js/three.js/dat.gui.min.js"></script>
+	<script src="static/js/three.js/DragControls.js"></script>
+	<script src="static/js/three.js/TrackballControls.js"></script>
+
+	<!-- <script src="static/js/timeliner/timeliner_gui.min.js"></script>
+	<script src="static/js/timeliner/TimelinerController.js"></script> -->
+
+
+
+	<!-- THREE JS PLUGIN -->
+	<script src="static/js/app/app.js"></script>
+
+
+	<!-- jQuery 3 -->
+	<script src="static/bootstrap/plugin/jquery/dist/jquery.min.js"></script>
+  	
+	<!-- Bootstrap 3.3.7 -->
+	<script src="static/bootstrap/plugin/bootstrap/dist/js/bootstrap.min.js"></script>
+
+	<!-- Slimscroll -->
+	<script src="static/bootstrap/plugin/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+	<!-- FastClick -->
+	<script src="static/bootstrap/plugin/fastclick/lib/fastclick.js"></script>
+
+	<script src="static/bootstrap/plugin/moment/min/moment.min.js"></script>
+	<!-- AdminLTE App -->
+	<script src="static/bootstrap/dist/js/adminlte.min.js"></script>
+	<!-- AdminLTE for demo purposes -->
+	<script src="static/bootstrap/dist/js/demo.js"></script>
+	<!-- 
+	<script src="static/bootstrap/plugin/bootstrap-slider/bootstrap-slider.js"></script>
+	<script>
+	  	$(function () {
+	    	/* BOOTSTRAP SLIDER */
+	    	$('.slider').slider()
+	  	})
+	</script>
+	-->
+
+
+
+	<!-- JAVASCRIPT LIBRARY-->
+	<script src="static/js/toast/toastr.min.js"></script>
+	<script src="static/js/sweetalert/sweetalert.min.js"></script>
+	<script src="static/js/mathjs/math.js"></script>
+	<script src="static/js/web_socket.js"></script>
+	<script src="static/js/underscore-min.js"></script>
+
+	<script src="static/bootstrap/plugin/pace.min.js"></script>
+	<!-- JAVASCRIPT LIBRARY-->
+
+
+
+
+
+
+	<script type="x-shader/x-fragment" id="fragmentShaderDepth">
+		#include <packing>
+
+		uniform sampler2D texture;
+		varying vec2 vUV;
+
+		void main() {
+
+			vec4 pixel = texture2D( texture, vUV );
+
+			if ( pixel.a < 0.5 ) discard;
+
+			gl_FragData[ 0 ] = packDepthToRGBA( gl_FragCoord.z );
+
+		}
+	</script>
+
+
+
+
+	<script type="x-shader/x-vertex" id="vertexShaderDepth">
+
+		varying vec2 vUV;
+
+		void main() {
+
+			vUV = 0.75 * uv;
+
+			vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+
+			gl_Position = projectionMatrix * mvPosition;
+
+		}
+	</script>
+
+
+
+
+
+	<script>
+
+		if ( ! Detector.webgl ) Detector.addGetWebGLMessage();
+
+		var stats;
+		var camera, scene, renderer, cameraControls;
+
+		var clothGeometry;
+		var sphere;
+		var object;
+		var canvas_height = window.innerHeight, canvas_width = document.getElementById('container').offsetWidth;
+
+		var container = document.getElementById( 'container' );
+
+
+		var loader = new THREE.ObjectLoader();
+
+		var is_play = false;
+
+		var controls, effect, cameraVR, isVR,id;
+
+		var events = {};
+		this.width = 500;
+		this.height = 500;
+
+
+
+		
+		var url = window.location.href;
+		var arr = url.split("/");
+		
+		var base_url = arr[0] + "//" + arr[2];
+
+
+
+
+
+		var add_notif = new Audio('static/sounds/appointment.mp3');
+		var success_notif = new Audio('static/sounds/success.mp3');
+		var delete_notif = new Audio('static/sounds/chat_sound.mp3');
+		// audio.play();
+
+
+
+
+		var mesh, skeleton, mixer;
+
+		var crossFadeControls = [];
+
+		var idleAction, walkAction, runAction;
+		var idleWeight, walkWeight, runWeight;
+		var actions;
+		var settings;
+
+		var clock = new THREE.Clock();
+
+		var singleStepMode = false;
+		var sizeOfNextStep = 0;
+
+
+
+		$(document).ready(function() {
+
+			//start js rendering
+			init_page('static/json/great_one.json');
+
+
+
+
+
+
+            toast_options= {
+		        "closeButton": true,
+		        "debug": false,
+		        "newestOnTop": false,
+		        "progressBar": true,
+		        "positionClass": "toast-top-right",
+		        "preventDuplicates": true,
+		        "onclick": null,
+		        "showDuration": "300",
+		        "hideDuration": "300",
+		        "timeOut": "1500",
+		        "extendedTimeOut": "1000",
+		        "showEasing": "swing", //easeOutBounce swing
+		        "hideEasing": "linear", //easeInBack linear
+		        "closeEasing": "linear",
+		        "showMethod": "fadeIn",//slideDown fadeIn
+		        "hideMethod": "fadeOut", //slideUp fadeOut
+		        "closeMethod": "fadeOut"
+		    }
+
+
+
+
+
+            stats_monitor();
+
+
+
+
+
+
+            if(window.innerHeight > 740){
+            	document.getElementsByClassName("ct_slider")[0].style.height = (window.innerHeight* 5/6) + "px";
+            	// document.getElementsByClassName("control-sidebar-dark")[0].style.opacity = 1;
+        	}else{
+        		document.getElementsByClassName("ct_slider")[0].style.height = (window.innerHeight* 3/4) + "px";
+        		// document.getElementsByClassName("control-sidebar-dark")[0].style.opacity = 0.5;
+        	}
+
+
+
+
+        	$("#mb_2").addClass("active");
+
+        });
+
+
+        
+
+
+
+		var cz_pos;
+
+		function init_page(url){
+			var loader = new THREE.FileLoader();  
+			loader.load( url, function ( model ) {
+				init_model(JSON.parse(model));
+
+				set_size( canvas_height, canvas_width);
+				play();
+
+
+				init_bones();
+				cz_pos = camera.position.z;
+
+
+				window.addEventListener( 'resize', function () {
+					// set_size( window.innerHeight, window.innerWidth );
+					set_size( $("#container").height(), $("#container").width());
+				} );
+
+			});
+		}
+
+
+
+
+		$(window).resize(function() {
+            set_size( $("#container").height(), $("#container").width());
+        });
+
+
+
+		$(document).ajaxStart(function () {
+			Pace.restart()
+		});
+
+
+
+
+
+
+
+
+
+
+
+
+		function init_model(json){
+			
+			init_render(json);
+
+			set_scene( loader.parse( json.scene ) );
+
+			set_camera( loader.parse( json.camera ) );
+
+			set_light();
+
+			init_ground();
+
+			init_control();
+
+			init_events(json);
+
+			// init_panel();
+
+
+			// var clock = new THREE.Clock();
+			// var delta = clock.getDelta();
+			// console.log(clock);
+		}
+
+
+
+		function init_render(json) {
+			renderer = new THREE.WebGLRenderer( { antialias: true } );
+			renderer.setClearColor( 0x000000 );
+			renderer.setPixelRatio( window.devicePixelRatio );
+			// renderer.setSize( window.innerWidth, window.innerHeight );
+			// renderer.shadowMap.renderSingleSided = false;
+
+
+			if ( json.project.gammaInput ) renderer.gammaInput = true;
+			if ( json.project.gammaOutput ) renderer.gammaOutput = true;
+
+			if ( json.project.shadows ) {
+				renderer.shadowMap.enabled = true;
+			}
+
+
+
+			// this.dom.appendChild( renderer.domElement );
+			$("#container").append( renderer.domElement );
+		}
+
+
+
+		function set_scene(value){
+			scene = value;
+			scene.background = new THREE.Color( 0xffffff );
+			scene.fog = new THREE.Fog( 0xffffff, 1000, 2500 );
+			// scene.fog = new THREE.Fog( 0xcce0ff, 500, 10000 );			
+		}
+
+
+
+		function set_camera(value){
+			camera = value;
+			camera.aspect = this.width / this.height;
+			camera.updateProjectionMatrix();
+
+			cameraVR = new THREE.PerspectiveCamera(60, canvas_width / canvas_height, 1, 10000);
+			cameraVR.projectionMatrix = camera.projectionMatrix;
+			camera.position.set( 0, 120, 500 );//1000, 50, 1500 => h rotate, v rotate, camera pos
+			camera.add( cameraVR );
+		}
+
+
+
+		function set_size(h, w){
+			this.width = w;
+			this.height = h;
+
+			if ( camera ) {
+				camera.aspect = w / h;
+				camera.updateProjectionMatrix();
+
+			}
+
+			if ( renderer ) {
+				renderer.setSize( w, h );
+			}
+
+			stats_monitor();
+		}
+
+
+
+		function set_light() {
+			//LIGHT
+			var light = [3];
+			scene.add( new THREE.AmbientLight( 0x151515 ) );
+			light[0] = new THREE.DirectionalLight( 0xdfebff, 1 ); //color , intensity
+			light[0].position.set( 200, 300, 200 );//intencity, v pos, sh pos
+			// light.position.set( 50, 200, 100 ); 
+			light[0].castShadow = true;
+			light[0].shadow.mapSize.width = 1024;
+			light[0].shadow.mapSize.height = 512;//1024 512
+
+			light[0].shadow.camera.near = 100;
+			light[0].shadow.camera.far = 1200;
+			light[0].shadow.camera.left = -1000;
+			light[0].shadow.camera.right = 1000;
+			light[0].shadow.camera.top = 350;
+			light[0].shadow.camera.bottom = -350;
+			
+			scene.add( light[0] );
+
+
+			light[ 1 ] = new THREE.DirectionalLight( 0xdfebff, 0.7 , 200 );
+			light[ 1 ].position.set( -200, 300, 200 );
+			scene.add( light[1] );
+
+
+			light[ 2 ] = new THREE.DirectionalLight( 0xdfebff, 0.4 , 500 );
+			light[ 2 ].position.set( 0, 400, -300 );
+			scene.add( light[2] );
+		}
+
+
+
+
+
+
+		function init_ground() {
+			//  GROUND
+			var gt = new THREE.TextureLoader().load( "static/img/grasslight-big.jpg" );
+			var gg = new THREE.PlaneBufferGeometry(4000, 4000);
+			var gm = new THREE.MeshPhongMaterial( { color: 0xffffff, map: gt } );
+
+			// Set the "world" modelisation object
+        	// scene = new THREE.Object3D();
+	        var mesh = new THREE.Object3D();
+	        mesh.receiveShadow = true;
+			mesh.castShadow = true;
+			mesh.name = "plane mesh";
+
+
+			var ground = new THREE.Mesh( gg, gm );
+			ground.rotation.x = - Math.PI / 2;
+			ground.material.map.repeat.set( 20, 20 );
+			ground.material.map.wrapS = THREE.RepeatWrapping;
+			ground.material.map.wrapT = THREE.RepeatWrapping;
+			// note that because the ground does not cast a shadow, .castShadow is left false
+			
+			ground.receiveShadow = true;
+			ground.castShadow = true;
+			ground.name = "plane ground";
+
+			mesh.add( ground );	
+		
+			
+
+			/*
+
+			var height = 250, 
+				walls = [
+	                new THREE.PlaneGeometry(gg.parameters.height, height),
+	                new THREE.PlaneGeometry(gg.parameters.width, height),
+	                new THREE.PlaneGeometry(gg.parameters.height, height),
+	                new THREE.PlaneGeometry(gg.parameters.width, height)
+	            ],
+	            obstacles = [
+	                new THREE.CubeGeometry(gg.parameters.width - 200, 300, 64),//panjang, tinggi, lebar
+	                new THREE.CubeGeometry(gg.parameters.width - 200, 300, 64),
+	                new THREE.CubeGeometry(gg.parameters.width - 200, 300, 64),
+	                new THREE.CubeGeometry(gg.parameters.width/6, 300, 64),
+	                new THREE.CubeGeometry(gg.parameters.width/5, 300, 64)
+	            ],
+	            i;
+
+
+	        var wallss = [];
+	        for (i = 0; i < walls.length; i += 1) {
+	            wallss.push(new THREE.Mesh(walls[i], gm));
+	            wallss[i].position.y = height / 2;
+	            wallss[i].name = "wall_"+i;
+	            wallss[i].receiveShadow = true;
+				wallss[i].castShadow = true;
+				wallss[i].material.map.wrapT = THREE.RepeatWrapping;
+	            mesh.add(wallss[i]);
+	        }
+
+
+	        wallss[0].rotation.y = -Math.PI / 2;
+	        wallss[0].position.x = gg.parameters.width / 2;
+	        wallss[1].rotation.y = Math.PI;
+	        wallss[1].position.z = gg.height / 2;
+	        wallss[2].rotation.y = Math.PI / 2;
+	        wallss[2].position.x = -gg.parameters.width / 2;
+	        wallss[3].position.z = -gg.parameters.height / 2;
+
+
+
+	        // // Set and add the obstacles
+	        obstacless = [];
+	        for (i = 0; i < obstacles.length; i += 1) {
+	            obstacless.push(new THREE.Mesh(obstacles[i], gm));
+	            obstacless.name = "obstacles";
+	            obstacless.receiveShadow = true;
+				obstacless.castShadow = true;
+	            mesh.add(obstacless[i]);
+	        }
+	        obstacless[0].position.set(-gg.parameters.width/2, 32, -150);
+
+	        obstacless[1].position.set(gg.parameters.width/2, 32, -150);
+	        
+	        obstacless[2].position.set(132, 32, 0);
+	        obstacless[2].rotation.y = Math.PI / 2;
+
+	        obstacless[3].position.set(-132, 32, -450);
+	        obstacless[3].rotation.y = -Math.PI / 2;
+
+	        obstacless[4].position.set(-505, 32, -450);
+	        
+	        */
+
+	        scene.add(mesh);
+		}
+
+
+
+		// function getObstacles(){
+	 //        return this.obstacles.concat(this.walls);
+	 //    }
+
+
+
+		function init_control() {
+			// CONTROLS
+			cameraControls = new THREE.OrbitControls( camera, renderer.domElement );
+			cameraControls.maxPolarAngle = Math.PI * 0.4;//rotate camera vertically
+			// cameraControls.setAzimuthalAngle = -0.029893144818949887;
+			cameraControls.target.set( 0, 150, 0 );
+			cameraControls.maxDistance = 2000;
+			cameraControls.update();
+		}
+
+
+
+		function init_events(json) {
+			events = {
+				init: [],
+				start: [],
+				stop: [],
+				keydown: [],
+				keyup: [],
+				mousedown: [],
+				mouseup: [],
+				mousemove: [],
+				touchstart: [],
+				touchend: [],
+				touchmove: [],
+				update: []
+			};
+
+
+
+
+			var scriptWrapParams = 'player,renderer,scene,camera';
+			var scriptWrapResultObj = {};
+
+			for ( var eventKey in events ) {
+
+				scriptWrapParams += ',' + eventKey;
+				scriptWrapResultObj[ eventKey ] = eventKey;
+
+			}
+
+
+
+
+			var scriptWrapResult = JSON.stringify( scriptWrapResultObj ).replace( /\"/g, '' );
+
+			for ( var uuid in json.scripts ) {
+
+				var object = scene.getObjectByProperty( 'uuid', uuid, true );
+
+				if ( object === undefined ) {
+
+					console.warn( 'APP.Player: Script without object.', uuid );
+					continue;
+
+				}
+
+				var scripts = json.scripts[ uuid ];
+
+				for ( var i = 0; i < scripts.length; i ++ ) {
+
+					var script = scripts[ i ];
+
+					var functions = ( new Function( scriptWrapParams, script.source + '\nreturn ' + scriptWrapResult + ';' ).bind( object ) )( this, renderer, scene, camera );
+
+					for ( var name in functions ) {
+
+						if ( functions[ name ] === undefined ) continue;
+
+						if ( events[ name ] === undefined ) {
+
+							console.warn( 'APP.Player: Event type not supported (', name, ')' );
+							continue;
+
+						}
+
+						events[ name ].push( functions[ name ].bind( object ) );
+
+					}
+
+				}
+
+			}
+
+			dispatch( events.init, arguments );
+		}
+
+
+
+
+
+
+		function init_panel() {
+			var panel = new dat.GUI({ width: 220, autoPlace: false });
+			var customContainer = $('#dat').append($(panel.domElement));
+
+			var gui1 = panel.addFolder( 'GUI' );
+
+			settings = {
+				'show model'		: true,
+				'show skeleton'		: false,
+				'Button'	 		: test_button,
+				'Slider'			: 0,
+				'Slider Swing'		: 0
+			}
+			gui1.add( settings, 'show skeleton' ).onChange( showSkeleton );
+			gui1.add( settings, 'Button' );
+			gui1.add( settings, 'Slider' , -180, 180, 1 ).listen().onChange( function ( val ) {
+				bones_update(val);
+			});
+			gui1.add( settings, 'Slider Swing' , -180, 180, 1 ).listen().onChange( function ( val ) {
+				bones_update(val);
+			});
+			gui1.open();
+		}
+
+		
+
+
+
+
+		function dispatch( array, event ) {
+
+			for ( var i = 0, l = array.length; i < l; i ++ ) {
+
+				array[ i ]( event );
+
+			}
+		}
+
+
+
+
+
+
+		var prevTime, request;
+		function animate( time ) {
+
+			request = requestAnimationFrame( animate );
+
+			try {
+
+				dispatch( events.update, { time: time, delta: time - prevTime } );
+
+			} catch ( e ) {
+
+				console.error( ( e.message || e ), ( e.stack || "" ) );
+
+			}
+
+			if ( isVR === true ) {
+
+				camera.updateMatrixWorld();
+
+				controls.update();
+				effect.render( scene, cameraVR );
+
+			} else {
+				renderer.render( scene, camera );
+			}
+
+			prevTime = time;
+
+
+			// console.log(cameraControls.getAzimuthalAngle ());
+
+
+			stats.update();
+		}
+
+		
+
+
+
+
+		function onWindowResize() {
+
+			// camera.aspect = window.innerWidth / window.innerHeight;
+			camera.aspect = canvas_width / canvas_height;
+			camera.updateProjectionMatrix();
+
+			// renderer.setSize( window.innerWidth, window.innerHeight );
+		}
+
+
+
+
+
+
+
+
+
+
+		function play(){
+			document.addEventListener( 'keydown', onKeyDown );
+			dispatch( events.start, arguments );
+
+			request = requestAnimationFrame( animate );
+			prevTime = performance.now();
+		}
+
+
+
+
+
+
+
+
+		function stop(){
+			document.removeEventListener( 'keydown', onKeyDown );
+			dispatch( events.stop, arguments );
+
+			cancelAnimationFrame( request );
+		}
+
+
+
+
+
+
+
+
+		function dispose(){
+			while ( this.dom.children.length ) {
+
+				this.dom.removeChild( this.dom.firstChild );
+
+			}
+
+			renderer.dispose();
+
+			camera = undefined;
+			scene = undefined;
+			renderer = undefined;
+		}
+
+
+
+
+
+
+
+		
+		function onKeyDown ( event ) {
+			event.stopPropagation();
+
+			key = event.keyCode;
+			var a = camera.position.z;
+
+
+			console.log(key);
+		
+
+			if(key == 38){
+				a-=5;				
+			}
+			if(key == 40){
+				a+=5;
+			}
+
+			camera.position.z = a;
+
+
+
+
+			if(key == 32){
+				step(0);
+			}//space
+
+			if(key == 65){
+				if(is_play == false){
+					step(3);
+				}
+			}//a
+
+			if(key == 83){
+				for(var i = 4; i < 20; i++){
+					(function(i) {
+						setTimeout(function() {
+							if(is_play == false){
+								if(i%4 == 0){
+									step(4);
+								}
+								if(i%4 == 1){
+									step(5);
+								}
+								if(i%4 == 2){
+									step(6);
+								}
+								if(i%4 == 3){
+									step(7);
+								}
+							}							
+							
+						}, i*1000);
+					})(i);
+				}				
+			}//s
+
+
+
+			if(key == 81){
+				step(4);
+			}//space
+
+			if(key == 87){
+				step(5);
+			}//space
+
+			if(key == 69){
+				step(6);
+			}//space
+
+			if(key == 82){
+				step(7);
+			}//space
+
+
+			
+
+			// switch( event.keyCode ) {
+
+			// 	case 38: /*up*/
+			// 	case 87: /*W*/ 	controls.moveForward = true; break;
+
+			// 	case 40: /*down*/
+			// 	case 83: /*S*/ 	 controls.moveBackward = true; break;
+
+			// 	case 37: /*left*/
+			// 	case 65: /*A*/   controls.moveLeft = true; break;
+
+			// 	case 39: /*right*/
+			// 	case 68: /*D*/    controls.moveRight = true; break;
+
+			// 	//case 67: /*C*/     controls.crouch = true; break;
+			// 	//case 32: /*space*/ controls.jump = true; break;
+			// 	//case 17: /*ctrl*/  controls.attack = true; break;
+
+			// }
+		}
+
+
+
+
+
+
+		$(".load_model").click(function(){
+			bid = $(this).attr("dt-id");
+			$("#container").empty();
+			if(bid == '1'){
+				init_page('static/json/boolean/larm.json');
+			}
+			if(bid == '2'){
+				init_page('static/json/boolean/shoulder.json');
+			}
+			if(bid == '3'){
+				init_page('static/json/boolean/ankle.json');
+			}
+			if(bid == '4'){
+				init_page('static/json/boolean/calve.json');
+			}
+			if(bid == '5'){
+				init_page('static/json/boolean/thigh.json');
+			}
+			console.log(bid);
+		})
+
+
+
+
+
+
+
+
+
+
+		var nv_sd = 0;
+		$("#sb_tb_btn").click(function(){
+			
+			if($("#navbar").css("right") == '-230px'){
+				nv_sd = 1;
+				$("#ic_sb_tb_tb").removeClass("fa-bars");
+				$("#ic_sb_tb_tb").addClass("fa-arrow-right");
+			}else{
+				nv_sd = 0;
+				$("#ic_sb_tb_tb").removeClass("fa-arrow-right");
+				$("#ic_sb_tb_tb").addClass("fa-bars");
+			}
+			stats_monitor();
+		});
+
+
+
+
+
+
+		function stats_monitor(){
+			$("#stats").empty();
+			// performance monitor
+			stats = new Stats();
+			stats.showPanel(1);// 0: fps, 1: ms, 2: mb, 3+: custom
+			if(nv_sd == 1){
+				if($(window).width() > 740){
+					stats.dom.style.left = ($("#container").width()-270)+"px";
+				}else{
+					stats.dom.style.left =  "0px";
+				}
+			}else{
+				if($(window).width() > 740){
+					stats.dom.style.left = ($("#container").width()-40)+"px";
+				}else{
+					stats.dom.style.left = "0px";
+				}
+				
+			}
+			
+			//$("#navbar").css("margin-left");
+			if($(window).width() > 740){
+				stats.dom.style.top = '50px';
+			}else{
+				stats.dom.style.top = '0px';
+			}
+			
+			// stats.dom.style.position = 'relative';
+			$("#stats").append( stats.dom );
+		}
+
+
+
+
+
+
+		function showSkeleton(visibility) {
+			console.log("show skeleton");
+		}
+
+
+
+		function test_button() {
+			console.log(scene);
+		}
+
+
+
+
+		function bones_update(val) {			
+			/*scene.traverse(function(child){
+	            if (child instanceof THREE.SkinnedMesh){
+	            	
+	            	console.log(child);
+
+	            }else if  (child instanceof THREE.SkeletonHelper){
+	                child.update();
+	            }
+	        });*/
+		}
+
+
+
+
+
+
+
+
+
+		var rot_init_bones = [];
+		function init_bones(){
+			rot_init_bones = [
+								0, 0, //0 5
+								0, 0, 0, 0, 0, //7 -11 
+								0, 0, 0, 0, 0 //13 -17 
+							];
+		}
+
+
+
+
+
+		var c_rot_bones = [];
+		var is_swing;
+		function step(n){
+			if( n == 0 ){
+				c_rot_bones = [
+									0, 0, //0 5
+									0, 0, 0, 0, 0, //7 -11 
+									0, 0, 0, 0, 0 //13 -17 
+								];
+				//0.3 = 108, 0.55=198
+			}
+
+
+			if( n == 1 ){
+				c_rot_bones = [
+									0, 0, 			//0 5
+									0, 0, 0,		//7 8 9 
+									30, 120, 		//10 11 
+									0, 0, 0,		//13 14 15 	
+									45, -180 		//16 17
+								];
+			}
+
+
+			if( n == 2 ){
+				c_rot_bones = [
+									0, 0, 			//0 5
+									0, 0, 0,		//7 8 9 
+									0, 180, 		//10 11 
+									0, 0, 0,		//13 14 15 	
+									-180, 90 		//16 17
+								];
+			}
+
+
+			if( n == 3 ){
+
+			}
+
+
+
+			if( n == 4 ){
+				c_rot_bones = [
+									0, 45, 			
+									-20, 20, -45,	
+									75, -60, 	
+									0, 0, -45,			
+									-75, 60		
+								];
+				is_swing = 'sr';
+			}
+
+
+
+			if( n == 5 ){
+				c_rot_bones = [
+									0, 0, 			
+									0, 0, 0,	
+									75, -60, 	
+									100, -100, 0,			
+									-75, 60		
+								];
+				is_swing = 'srd';
+			}
+
+
+
+			if( n == 6 ){
+				c_rot_bones = [
+									0, -45,
+									0, 0, 45,			
+									-75, -60,			
+									20, -20, 45,	
+									75, 60
+								];
+				is_swing = 'sl';
+			}
+
+
+
+
+			if( n == 7 ){
+				c_rot_bones = [
+									0, 0,
+									100, -100, 0,			
+									-75, -60,		
+									0, 0, 0,	
+									75, 60
+								];
+				is_swing = 'sld';
+			}
+
+			update_pos();
+
+			// console.log(rot_init_bones);console.log(c_rot_bones);
+		}
+
+
+
+
+
+
+
+		
+		function update_pos() {
+			gvelo = 80;
+
+			for(var i = 0; i < c_rot_bones.length; i++){
+				(function(i) {
+					setTimeout(function() { 
+
+						var srv = check_srv(i);
+						
+						if(c_rot_bones[i] > rot_init_bones[i]){
+							for(pos = rot_init_bones[i]; pos <= c_rot_bones[i]; pos++){
+						    	(function(pos) {
+						    		setTimeout(function() {
+
+						    			if(pos == c_rot_bones[i]){
+						    				is_play = false;
+						    			}else{
+						    				is_play = true;
+						    			}
+								    	set_pos(srv, pos);
+
+									}, (160-gvelo) * (pos)/30);
+								})(pos);
+						    }
+						}else if(c_rot_bones[i] < rot_init_bones[i]){
+							for(pos = rot_init_bones[i]; pos >= c_rot_bones[i]; pos--){
+						    	(function(pos) {
+						    		setTimeout(function() {
+
+						    			if(pos == c_rot_bones[i]){
+						    				is_play = false;
+						    			}else{
+						    				is_play = true;
+						    			}						    			
+								    	set_pos(srv, pos);	
+
+									}, (160-gvelo) * -(pos)/30);
+								})(pos);
+						    }
+						}
+						rot_init_bones[i] = c_rot_bones[i];
+
+					}, i*1);
+				})(i);
+			}
+		}
+
+
+
+
+
+		var gnd_z_pos=0, gnd_x_pos=0;
+		
+		function set_pos(srv, val){
+			degree = val / 180;
+
+			scene.traverse(function(child){
+	            if (child instanceof THREE.SkinnedMesh){
+
+	            	if($.inArray(srv, [6, 11, 12, 17, 15, 9, 5]) > -1){
+						child.skeleton.bones[srv].rotation.set(0, 0, degree);
+					}
+					if($.inArray(srv, [7, 8, 10, 13, 14, 16])  > -1){
+						child.skeleton.bones[srv].rotation.set(degree, 0, 0);
+					}
+
+	            	if($.inArray(srv, [15, 9]) > -1){
+	            		if(is_swing == 'sr' || is_swing == 'sl'){
+							gnd_x_pos = degree * 8.6578 * 10.0123;
+						}
+	            	};
+
+	            	if($.inArray(srv, [7, 13]) > -1){
+	            		if(is_swing == 'srd' || is_swing == 'sld'){
+							// gnd_z_pos = degree * 65.3535;
+							gnd_z_pos += degree/10;
+							cz_pos += degree/10;
+						}
+	            	};
+
+
+
+            		child.skeleton.bones[0].position.set(gnd_x_pos, 3, gnd_z_pos);
+            		camera.position.z = cz_pos;
+
+	            }else if  (child instanceof THREE.SkeletonHelper){
+	                child.update();
+	            }
+	        });
+		}
+
+
+
+
+
+
+
+		function check_srv(i) {
+			var srv;
+			if(i == 0){
+				srv = 0;
+			}
+			if(i == 1){
+				srv = 5;
+			}
+			if(i == 2){
+				srv = 7;
+			}
+			if(i == 3){
+				srv = 8;
+			}
+			if(i == 4){
+				srv = 9;
+			}
+			if(i == 5){
+				srv = 10;
+			}
+			if(i == 6){
+				srv = 11;
+			}
+			if(i == 7){
+				srv = 13;
+			}
+			if(i == 8){
+				srv = 14;
+			}
+			if(i == 9){
+				srv = 15;
+			}
+			if(i == 10){
+				srv = 16;
+			}
+			if(i == 11){
+				srv = 17;
+			}
+			return srv;
+		}
+
+
+	</script>
+
+
+
+</body>
+</html>
